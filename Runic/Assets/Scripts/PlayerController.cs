@@ -19,16 +19,17 @@ public class PlayerController : MonoBehaviour {
 
     private Vector3 velocity;
     private bool isGrounded;
+    private bool isAiming;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         lastPos = new Vector3(0, 0, 0);
         startCamPos = new Vector3(0, 1.868f, 0.273f);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0) velocity.y = -2f;
@@ -39,10 +40,6 @@ public class PlayerController : MonoBehaviour {
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded) {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
@@ -50,17 +47,21 @@ public class PlayerController : MonoBehaviour {
         if (isGrounded) {
             anim.SetBool("isGrounded", true);
             anim.SetFloat("VelocityY", 0);
+            anim.SetBool("isAiming", Input.GetMouseButton(1));
+
+            if (Input.GetButtonDown("Jump")) velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
             if (pos.Equals(lastPos))
             {
                 anim.SetBool("isWalking", false);
-                Debug.Log(startCamPos.ToString());
+                //Debug.Log(startCamPos.ToString());
                 camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, startCamPos, 6f * Time.deltaTime);
-                //camera.transform.position.Set(startCamPos.x, startCamPos.y, startCamPos.z);
+                camera.transform.position.Set(startCamPos.x, startCamPos.y, startCamPos.z);
             }
             else
             {
                 anim.SetBool("isWalking", true);
-                //camera.transform.position.Set(startCamPos.x, 1.489f, 0.542f);
+                camera.transform.position.Set(startCamPos.x, 1.489f, 0.542f);
                 camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, new Vector3(startCamPos.x, 1.489f, 0.542f), 6f * Time.deltaTime);
             }
         } else {
