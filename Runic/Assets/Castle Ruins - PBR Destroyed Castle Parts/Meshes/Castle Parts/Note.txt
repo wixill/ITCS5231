@@ -1,0 +1,3 @@
+There are three brick materials for the castles. 
+I achieved my results using the blendmasks I included.
+Basically I blended the concrete textures into the bricks.
