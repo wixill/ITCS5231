@@ -9,7 +9,7 @@ public class ChangeColor : PuzzleObject
     // Color to change into
     [SerializeField] private Color endColor;
 
-    // Cube object
+    // Renderer
     Renderer rend;
 
     // Start is called before the first frame update
@@ -17,9 +17,6 @@ public class ChangeColor : PuzzleObject
     {
         rend = GetComponent<Renderer>();
         rend.material.SetColor("_Color", startColor);
-        //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //cubeRenderer = cube.GetComponent<Renderer>();
-        //cubeRenderer.material.SetColor("_Color", startColor);
     }
 
     // Activate - changes the color of the object
