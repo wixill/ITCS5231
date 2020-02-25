@@ -57,3 +57,17 @@ The following packages were added:
   com.unity.package-manager-ui@2.2.0
   com.unity.postprocessing@2.1.6
   com.unity.purchasing@2.0.6
+
+=== Mon Feb 24 17:22:55 2020
+
+Packages were changed.
+Update Mode: resetToDefaultDependencies
+
+The following packages were removed:
+  com.unity.ads@2.0.8
+  com.unity.analytics@3.3.2
+  com.unity.ext.nunit@1.0.0
+  com.unity.ide.visualstudio@1.0.5
+  com.unity.package-manager-ui@2.2.0
+  com.unity.postprocessing@2.1.6
+  com.unity.purchasing@2.0.6
