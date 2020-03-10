@@ -43,13 +43,15 @@ public class PlayerController : MonoBehaviour {
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        Vector3 pos = player.transform.position;
+        Vector3 pos = player.transform.localPosition;
         if (isGrounded) {
             anim.SetBool("isGrounded", true);
             anim.SetFloat("VelocityY", 0);
-            anim.SetBool("isAiming", Input.GetMouseButton(1));
+            bool aiming = Input.GetMouseButton(1);
+            anim.SetBool("isAiming", aiming);
 
             if (Input.GetButtonDown("Jump")) velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            
 
             if (pos.Equals(lastPos))
             {
@@ -61,8 +63,12 @@ public class PlayerController : MonoBehaviour {
             else
             {
                 anim.SetBool("isWalking", true);
-                camera.transform.position.Set(startCamPos.x, 1.489f, 0.542f);
-                camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, new Vector3(startCamPos.x, 1.489f, 0.542f), 6f * Time.deltaTime);
+                if (!aiming) {
+                    camera.transform.position.Set(startCamPos.x, 1.489f, 0.542f);
+                    camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, new Vector3(startCamPos.x, 1.489f, 0.542f), 6f * Time.deltaTime);
+                }
+                anim.SetFloat("VelocityX", Input.GetAxis("Horizontal"));
+                anim.SetFloat("VelocityZ", Input.GetAxis("Vertical"));
             }
         } else {
             anim.SetBool("isGrounded", false);
