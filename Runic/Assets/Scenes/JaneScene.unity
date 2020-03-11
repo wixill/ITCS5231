@@ -225,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198032264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.143, y: 5.271, z: 2.9128165}
+  m_LocalPosition: {x: 3.208, y: 5.271, z: 2.9128165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -322,6 +322,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Breakable Platform (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962789215246664693, guid: 308a04459f023d9459a1844e8f418f0e,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962789215246664693, guid: 308a04459f023d9459a1844e8f418f0e,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 308a04459f023d9459a1844e8f418f0e, type: 3}
@@ -767,7 +777,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583178414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.85, y: 5.271, z: 2.9128165}
+  m_LocalPosition: {x: -3.264, y: 5.271, z: 2.383}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1356,6 +1366,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1450146086005168388, guid: ce6a8b9e70c0a114597585b6effab4ec,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce6a8b9e70c0a114597585b6effab4ec, type: 3}
 --- !u!1001 &6962789215566108905
@@ -1420,10 +1435,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6962789215246664690, guid: 308a04459f023d9459a1844e8f418f0e,
+        type: 3}
+      propertyPath: breakCountdown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6962789215246664691, guid: 308a04459f023d9459a1844e8f418f0e,
         type: 3}
       propertyPath: m_Name
       value: Breakable Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962789215246664691, guid: 308a04459f023d9459a1844e8f418f0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962789215246664693, guid: 308a04459f023d9459a1844e8f418f0e,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962789215246664693, guid: 308a04459f023d9459a1844e8f418f0e,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 308a04459f023d9459a1844e8f418f0e, type: 3}

@@ -14,11 +14,14 @@ public class BreakablePlatform : MonoBehaviour
     [SerializeField] private float breakCountdown;
     private bool countdownStart = false;
 
-    // When player steps on a platform (enters the trigger box) then start the timer
+    // When player steps on a platform or a heavy enough object lands on it (enters the trigger box) then start the timer
     private void OnTriggerEnter(Collider other)
     {
-        countdownStart = true;
-        Debug.Log("scale vector " + new Vector3(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z));
+        if(other.gameObject.CompareTag("Player") || other.GetComponent<Rigidbody>().mass > 1)
+        {
+            countdownStart = true;
+        }
+
     }
 
     // Update is called once per frame
