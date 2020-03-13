@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AllSkyFree\AllSkyFree_Menu.cs" />
     <Compile Include="Assets\Scripts\Activators\Activator.cs" />
     <Compile Include="Assets\Scripts\Activators\Button.cs" />
     <Compile Include="Assets\Scripts\Environment\BreakBlock.cs" />
@@ -78,6 +79,7 @@
     <None Include="Assets\Models\Castle Ruins - PBR Destroyed Castle Parts\Meshes\Castle Parts\Note.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\AllSkyFree\AllSkyFree_Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
