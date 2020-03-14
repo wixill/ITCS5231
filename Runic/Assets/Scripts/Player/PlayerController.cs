@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float jumpHeight = 3f;
     private Vector3 lastPos;
     private Vector3 startCamPos;
+    public GameObject arrowPrefab;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] private float shootingForce;
+    private bool justShot = false;
 
     private Vector3 velocity;
     private bool isGrounded;
@@ -31,6 +35,25 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
+        //if the left button of the mouse is held down
+        if (Input.GetMouseButtonDown(0))
+        {
+            //if we did not just shoot an arrow or we waited 7 seconds to shoot again
+            if (justShot == false)
+            {
+                Shoot();
+                justShot = true;
+            }
+            //if we just shot an arrow
+            else
+            {
+                //cooldown time to wait before shooting again 
+                StartCoroutine(WaitTimeForShooting());
+                //allows the player to shoot again after cooldown
+                justShot = false;
+            }
+        }
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0) velocity.y = -2f;
 
@@ -75,5 +98,18 @@ public class PlayerController : MonoBehaviour {
             anim.SetFloat("VelocityY", velocity.y);
         }
         lastPos.Set(pos.x, pos.y, pos.z);
+    }
+    void Shoot()
+    {
+        GameObject a = Instantiate(arrowPrefab);
+        a.transform.position = new Vector3(player.transform.position.x, 2f, player.transform.position.z);
+        rb = a.GetComponent<Rigidbody>();
+        rb.velocity = camera.transform.forward * shootingForce;
+    }
+
+    //cooldown time for the shooting, set to 7 seconds to wait
+    IEnumerator WaitTimeForShooting()
+    {
+        yield return new WaitForSeconds(5);
     }
 }
