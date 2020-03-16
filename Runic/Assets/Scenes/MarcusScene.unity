@@ -541,22 +541,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1450146086005168387, guid: ce6a8b9e70c0a114597585b6effab4ec,
-        type: 3}
-      propertyPath: rb
-      value: 
-      objectReference: {fileID: 1427259615}
-    - target: {fileID: 1450146086005168387, guid: ce6a8b9e70c0a114597585b6effab4ec,
-        type: 3}
-      propertyPath: shootingForce
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1450146086005168387, guid: ce6a8b9e70c0a114597585b6effab4ec,
-        type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 3707921506181841935, guid: 5b9626517ca72464fa3c6a2fcc7b47ba,
-        type: 3}
     - target: {fileID: 1450146086005168388, guid: ce6a8b9e70c0a114597585b6effab4ec,
         type: 3}
       propertyPath: m_Name
@@ -564,28 +548,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce6a8b9e70c0a114597585b6effab4ec, type: 3}
---- !u!1 &1427259614 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1450146086005168388, guid: ce6a8b9e70c0a114597585b6effab4ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 1427259613}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1427259615
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427259614}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1653550566
 GameObject:
   m_ObjectHideFlags: 0
