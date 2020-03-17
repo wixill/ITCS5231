@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rope
+  - Death
   layers:
   - Default
   - TransparentFX
