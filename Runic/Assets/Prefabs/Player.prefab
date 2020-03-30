@@ -91,11 +91,11 @@ MonoBehaviour:
   player: {fileID: 1450146086005168386}
   groundCheck: {fileID: 1450146086441814672}
   camera: {fileID: 1450146087178159666}
-  groundDistance: 0.02
+  groundDistance: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 512
-  speed: 12
+  speed: 6
   gravity: -19.62
   jumpHeight: 3
   arrowPrefab: {fileID: 3707921506181841935, guid: 5b9626517ca72464fa3c6a2fcc7b47ba,
@@ -142,7 +142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450146086441814675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.026, z: 0}
+  m_LocalPosition: {x: 0, y: 0.049, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1450146086005168386}
@@ -204,7 +204,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.5
   far clip plane: 1000
   field of view: 26.991467
   orthographic: 0
