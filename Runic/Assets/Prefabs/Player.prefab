@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2011978071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011978072}
+  m_Layer: 0
+  m_Name: ArrowSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2011978072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011978071}
+  m_LocalRotation: {x: -0.6738617, y: 0.7269401, z: 0.09676705, w: -0.09002618}
+  m_LocalPosition: {x: 0.025380386, y: 0.03229661, z: -0.0072485595}
+  m_LocalScale: {x: 0.20000002, y: 0.19999996, z: 0.19999999}
+  m_Children: []
+  m_Father: {fileID: 1445914873693828615}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 73.757, y: 35.172, z: -46.894}
 --- !u!1 &1450146086005168388
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +120,7 @@ MonoBehaviour:
   controller: {fileID: 1450146086005168389}
   player: {fileID: 1450146086005168386}
   groundCheck: {fileID: 1450146086441814672}
+  cam: {fileID: 1450146087178159669}
   camera: {fileID: 1450146087178159666}
   groundDistance: 0.2
   groundMask:
@@ -98,10 +129,10 @@ MonoBehaviour:
   speed: 6
   gravity: -19.62
   jumpHeight: 3
-  arrowPrefab: {fileID: 3707921506181841935, guid: 5b9626517ca72464fa3c6a2fcc7b47ba,
+  arrowPrefab: {fileID: 8502519903798260032, guid: 21c1777c758e9444d8fa4af1f7f0aa66,
     type: 3}
-  rb: {fileID: 1427259615}
-  shootingForce: 60
+  arrowSpawn: {fileID: 2011978072}
+  shootingForce: 30
 --- !u!54 &1427259615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -339,6 +370,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100159904324142556}
     m_Modifications:
+    - target: {fileID: 1085628396646800, guid: dc600564e4a2a4f4db01b4901d8eda58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112038405571080, guid: dc600564e4a2a4f4db01b4901d8eda58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172984823471272, guid: dc600564e4a2a4f4db01b4901d8eda58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213195727858494, guid: dc600564e4a2a4f4db01b4901d8eda58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233991213053576, guid: dc600564e4a2a4f4db01b4901d8eda58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487709053102546, guid: dc600564e4a2a4f4db01b4901d8eda58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1763121779515588, guid: dc600564e4a2a4f4db01b4901d8eda58, type: 3}
       propertyPath: m_Name
       value: Elven Long Bow
@@ -399,5 +454,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 95474923942121276, guid: dc600564e4a2a4f4db01b4901d8eda58,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc600564e4a2a4f4db01b4901d8eda58, type: 3}
+--- !u!4 &1445914873693828615 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4257052585638816, guid: dc600564e4a2a4f4db01b4901d8eda58,
+    type: 3}
+  m_PrefabInstance: {fileID: 1450146087717391783}
+  m_PrefabAsset: {fileID: 0}

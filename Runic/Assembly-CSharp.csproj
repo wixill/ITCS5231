@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\PuzzleObject\ChangeColor.cs" />
     <Compile Include="Assets\Scripts\PuzzleObject\PuzzleObject.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
+    <Compile Include="Assets\Shoot.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Models\Castle Ruins - PBR Destroyed Castle Parts\Meshes\Castle Parts\Note.txt" />

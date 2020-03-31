@@ -16,9 +16,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float jumpHeight = 3f;
     private Vector3 lastPos;
     private Vector3 startCamPos;
-    public GameObject arrowPrefab;
-    [SerializeField] Rigidbody rb;
-    [SerializeField] private float shootingForce;
+    
     private bool justShot = false;
 
     private Vector3 velocity;
@@ -35,27 +33,10 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
+        bool isAiming = Input.GetMouseButton(1);
         //if the left button of the mouse is held down
-        if (Input.GetMouseButtonDown(0))
-        {
-            //if we did not just shoot an arrow or we waited 7 seconds to shoot again
-            if (justShot == false)
-            {
-                Shoot();
-                justShot = true;
-            }
-            //if we just shot an arrow
-            else
-            {
-                //cooldown time to wait before shooting again 
-                StartCoroutine(WaitTimeForShooting());
-                //allows the player to shoot again after cooldown
-                justShot = false;
-            }
-        }
-
         
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -73,8 +54,7 @@ public class PlayerController : MonoBehaviour {
         if (isGrounded) {
             anim.SetBool("isGrounded", true);
             anim.SetFloat("VelocityY", 0);
-            bool aiming = Input.GetMouseButton(1);
-            anim.SetBool("isAiming", aiming);
+            anim.SetBool("isAiming", isAiming);
 
             if (Input.GetButtonDown("Jump")) velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             
@@ -89,7 +69,7 @@ public class PlayerController : MonoBehaviour {
             else
             {
                 anim.SetBool("isWalking", true);
-                if (!aiming) {
+                if (!isAiming) {
                     camera.transform.position.Set(startCamPos.x, 1.489f, 0.542f);
                     camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, new Vector3(startCamPos.x, 1.489f, 0.542f), 6f * Time.deltaTime);
                 }
@@ -102,17 +82,10 @@ public class PlayerController : MonoBehaviour {
         }
         lastPos.Set(pos.x, pos.y, pos.z);
     }
-    void Shoot()
-    {
-        GameObject a = Instantiate(arrowPrefab);
-        a.transform.position = new Vector3(player.transform.position.x, 2f, player.transform.position.z);
-        rb = a.GetComponent<Rigidbody>();
-        rb.velocity = camera.transform.forward * shootingForce;
-    }
 
     //cooldown time for the shooting, set to 7 seconds to wait
-    IEnumerator WaitTimeForShooting()
-    {
-        yield return new WaitForSeconds(5);
-    }
+    //IEnumerator WaitTimeForShooting()
+    //{
+     //   yield return new WaitForSeconds(5);
+    //}
 }
