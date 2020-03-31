@@ -23,7 +23,7 @@ public class Shoot : MonoBehaviour
         //print("Spawn: " + arrowSpawn.position);
         if (Input.GetMouseButtonDown(0) && isAiming)
         {
-            print("shoot");
+            //print("shoot");
             SpawnArrow();
             //if we did not just shoot an arrow or we waited 7 seconds to shoot again
             //if (justShot == false)
