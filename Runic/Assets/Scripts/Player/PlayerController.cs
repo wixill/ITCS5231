@@ -35,14 +35,14 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         ApplyMovement(); // Applies gravity, do not put physics code before this.
 
-        isAiming = Input.GetMouseButton(1);
+        isAiming = (Input.GetMouseButton(1) && isGrounded);
         Vector3 pos = player.transform.localPosition;
         if (isGrounded) {
             anim.SetBool("isGrounded", true);
             anim.SetFloat("VelocityY", 0);
             anim.SetBool("isAiming", isAiming);
 
-            if (Input.GetButtonDown("Jump")) velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (Input.GetButtonDown("Jump") && !isAiming) velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
             if (pos.Equals(lastPos))
             {
