@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3613803525469540497}
   - component: {fileID: 7531447364564850421}
+  - component: {fileID: 4003904318404709081}
   m_Layer: 0
   m_Name: MetalFenceHinge
   m_TagString: Untagged
@@ -51,6 +52,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4003904318404709081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618308828326982251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d6a082d97f913448d79f5e8d1d05b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4867399302216045203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117,6 +130,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8968446467080873000, guid: f9ae1d98f94a0584881d39888a2e0aab,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7300722365147791280, guid: f9ae1d98f94a0584881d39888a2e0aab, type: 3}
