@@ -110,6 +110,10 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = cam.transform.forward * shootingForce;
     }
 
+    public bool isPlayerAiming() {
+        return isAiming;
+    }
+
     //cooldown time for the shooting, set to 3 seconds to wait
     IEnumerator WaitTimeForShooting()
     {

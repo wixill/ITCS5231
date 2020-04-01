@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: ArrowSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -30,23 +30,6 @@ Transform:
   m_Father: {fileID: 1445914873693828615}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 73.757, y: 35.172, z: -46.894}
---- !u!114 &603899897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448390662554414435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a687bcd327c07d94e977d2c9ff9f896d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 8502519903798260032, guid: 21c1777c758e9444d8fa4af1f7f0aa66,
-    type: 3}
-  arrowSpawn: {fileID: 2011978072}
-  shootingForce: 20
-  cam: {fileID: 1450146087178159669}
 --- !u!1 &1450146086005168388
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +120,7 @@ MonoBehaviour:
   controller: {fileID: 1450146086005168389}
   player: {fileID: 1450146086005168386}
   groundCheck: {fileID: 1450146086441814672}
-  camera: {fileID: 1450146087178159666}
+  cam: {fileID: 1450146087178159669}
   groundDistance: 0.2
   groundMask:
     serializedVersion: 2
@@ -145,6 +128,10 @@ MonoBehaviour:
   speed: 6
   gravity: -19.62
   jumpHeight: 3
+  arrowPrefab: {fileID: 8502519903798260032, guid: 21c1777c758e9444d8fa4af1f7f0aa66,
+    type: 3}
+  arrowSpawn: {fileID: 2011978072}
+  shootingForce: 20
 --- !u!54 &1427259615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -247,7 +234,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.5
+  near clip plane: 0.4
   far clip plane: 1000
   field of view: 26.991467
   orthographic: 0
@@ -287,8 +274,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de06ed68c511286458ce8855f825794b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 150
+  mouseSensitivity: 100
   playerBody: {fileID: 1450146086005168386}
+  spineTransform: {fileID: 5094193673930967074}
+  pController: {fileID: 1450146086005168387}
+  rotateMinimum: -30
+  rotateMaximum: 25
 --- !u!1001 &1450146087409834014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -364,13 +355,19 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 75ab05aff22c4ef4a9fb8d9bfac251c7,
         type: 3}
       propertyPath: m_Name
-      value: Idle
+      value: Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75ab05aff22c4ef4a9fb8d9bfac251c7, type: 3}
 --- !u!4 &5865165422380577540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 75ab05aff22c4ef4a9fb8d9bfac251c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1450146087409834014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5094193673930967074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5957631226323849276, guid: 75ab05aff22c4ef4a9fb8d9bfac251c7,
     type: 3}
   m_PrefabInstance: {fileID: 1450146087409834014}
   m_PrefabAsset: {fileID: 0}
@@ -478,12 +475,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc600564e4a2a4f4db01b4901d8eda58, type: 3}
---- !u!1 &1448390662554414435 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1763121779515588, guid: dc600564e4a2a4f4db01b4901d8eda58,
-    type: 3}
-  m_PrefabInstance: {fileID: 1450146087717391783}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1445914873693828615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4257052585638816, guid: dc600564e4a2a4f4db01b4901d8eda58,

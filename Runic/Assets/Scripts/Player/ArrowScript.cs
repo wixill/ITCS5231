@@ -23,7 +23,6 @@ public class ArrowScript : MonoBehaviour
         
         if (!hitSomething)
         {
-            print(rb.velocity);
             trans.rotation = Quaternion.LookRotation(rb.velocity);
         }
     }
