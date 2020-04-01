@@ -7,19 +7,42 @@ using UnityEngine;
 // Object's shader must be set to Fade or Transparent in order for the fade to work
 public class DestroyTimer : MonoBehaviour
 {
+
     // How long until it destroys itself after creation
     [SerializeField] private float destroyCountdown;
-    private bool countdownStart = false;
+    // Holds drop down options for what will cause the destroy countdown to start
+    [HideInInspector] public string[] startTrigger = new string[]{"Start", "Collision", "Trigger"};
+    [HideInInspector] public int startTriggerIndex = 0;
 
+    private bool countdownStart = false;
+    
     // Used to change the object's transparency
     private Color alphaColor;
 
     // Start is called before the first frame update
     void Start()
     {
-        countdownStart = true;
+        if(startTriggerIndex == 0)
+        {
+            countdownStart = true;
+        }
         alphaColor = GetComponent<MeshRenderer>().material.color;
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(startTriggerIndex == 1)
+        {
+            countdownStart = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(startTriggerIndex == 2)
+        {
+            countdownStart = true;
+        }
     }
 
     // Update is called once per frame

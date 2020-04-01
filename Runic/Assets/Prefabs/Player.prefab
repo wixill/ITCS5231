@@ -131,7 +131,7 @@ MonoBehaviour:
   arrowPrefab: {fileID: 8502519903798260032, guid: 21c1777c758e9444d8fa4af1f7f0aa66,
     type: 3}
   arrowSpawn: {fileID: 2011978072}
-  shootingForce: 20
+  shootingForce: 30
 --- !u!54 &1427259615
 Rigidbody:
   m_ObjectHideFlags: 0
