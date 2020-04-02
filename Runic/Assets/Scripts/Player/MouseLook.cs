@@ -58,14 +58,14 @@ public class MouseLook : MonoBehaviour
                 zAimPreRotated = new Vector3(spineTransform.localEulerAngles.x, spineTransform.localEulerAngles.y, spineTransform.localEulerAngles.z);
                 firstRotation = false;
             }
-            if (!zRotated) {
-                spineTransform.localEulerAngles = zAimPreRotated;
-                zRotated = true;
-            }
+            //if (!zRotated) {
+                //spineTransform.localEulerAngles = zAimPreRotated;
+                //zRotated = true;
+            //}
             spineTransform.localEulerAngles = new Vector3(0, spineTransform.localEulerAngles.y, -spineRotation);
-        } else if (zRotated) {
+        } else {
             spineTransform.localEulerAngles = zIdlePreRotated;
-            zRotated = false;
+            //zRotated = false;
         }
     }
 }

@@ -47,16 +47,10 @@ public class PlayerController : MonoBehaviour {
             if (pos.Equals(lastPos))
             {
                 anim.SetBool("isWalking", false);
-                //camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, startCamPos, 6f * Time.deltaTime);
-                //camera.transform.position.Set(startCamPos.x, startCamPos.y, startCamPos.z);
             }
             else
             {
                 anim.SetBool("isWalking", true);
-                if (!isAiming) {
-                    //camera.transform.position.Set(startCamPos.x, 1.489f, 0.542f);
-                    //camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, new Vector3(startCamPos.x, 1.489f, 0.542f), 6f * Time.deltaTime);
-                }
                 anim.SetFloat("VelocityX", Input.GetAxis("Horizontal"));
                 anim.SetFloat("VelocityZ", Input.GetAxis("Vertical"));
             }
