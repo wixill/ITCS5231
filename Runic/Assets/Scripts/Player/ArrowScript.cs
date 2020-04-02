@@ -9,6 +9,9 @@ public class ArrowScript : MonoBehaviour
     private float lifeTimer = 6f;
     private float timer = 0;
     private bool hitSomething = false;
+    private bool stuck = false;
+    private Vector3 stickPosition;
+    private Quaternion stickRotation;
 
     private void Start()
     {
@@ -23,15 +26,22 @@ public class ArrowScript : MonoBehaviour
         
         if (!hitSomething)
         {
+            stickPosition = trans.position;
+            stickRotation = trans.rotation;
             trans.rotation = Quaternion.LookRotation(rb.velocity);
+        } else if (!stuck) {
+            trans.rotation = stickRotation;
+            trans.position = stickPosition;
+            stuck = true;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         if (hitSomething) return;
         hitSomething = true;
+        rb.useGravity = false;
+        rb.velocity = new Vector3(0,0,0);
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
-
 }
