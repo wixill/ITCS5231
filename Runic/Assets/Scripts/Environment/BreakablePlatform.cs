@@ -24,6 +24,16 @@ public class BreakablePlatform : MonoBehaviour
 
     }
 
+    // When it is hit with an arrow, break
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("In collision");
+        if (collision.gameObject.CompareTag("Arrow"))
+        {
+            countdownStart = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

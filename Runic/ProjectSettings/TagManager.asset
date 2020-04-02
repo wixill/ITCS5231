@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Rope
   - Death
+  - Arrow
   layers:
   - Default
   - TransparentFX
