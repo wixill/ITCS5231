@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\ArrowInteractionEditor.cs" />
     <Compile Include="Assets\Editor\DestroyTimerDropdown.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>C:/Programs/Development/Unity/ITCS5231/Runic/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>

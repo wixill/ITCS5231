@@ -24,16 +24,6 @@ public class BreakablePlatform : MonoBehaviour
 
     }
 
-    // When it is hit with an arrow, break
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("In collision");
-        if (collision.gameObject.CompareTag("Arrow"))
-        {
-            countdownStart = true;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -44,7 +34,6 @@ public class BreakablePlatform : MonoBehaviour
             {
                 GameObject broken = Instantiate(fracturedBlock, transform.position, transform.rotation);
                 broken.transform.localScale = new Vector3(this.transform.localScale.x * scaleFactor, this.transform.localScale.y * scaleFactor, this.transform.localScale.z * scaleFactor);
-
                 Destroy(this.gameObject);
             }
         }
