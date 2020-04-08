@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArrowInteraction : MonoBehaviour
 
 {
-    [Header ("Interaction Behaviors")]
+    [Header("Interaction Behaviors")]
     // Can be broken by a normal arrow
     [SerializeField] private bool breakable;
     // Can be pulled towards the player by a grapple arrow (as opposed to the player being pulled towards it)
@@ -16,19 +16,19 @@ public class ArrowInteraction : MonoBehaviour
     [SerializeField] private bool freezable;
 
     // Breakable Specific Fields //
-    [Header ("Breakable Fields")]
+    [Header("Breakable Fields")]
     // Broken block to replace platform
     [SerializeField] private GameObject fracturedBlock;
     // Scale factor to ensure it scales to the correct size as the original object - defaulted to 0.5 to match a default cube
     [SerializeField] private float scaleFactor = 0.5f;
 
     // Pullable Specific Fields //
-    [Header ("Pullable Fields")]
+    [Header("Pullable Fields")]
     // How fast it gets pulled toward the player
     [SerializeField] private int pullSpeed;
 
     // Flamable Specific Fields //
-    [Header ("Flamable Fields")]
+    [Header("Flamable Fields")]
     // Should the particle effect be prewarmed (start at 100%) or start from 0 and build up to full
     [SerializeField] private bool prewarm;
     // What type of fire should eminate from the object
@@ -39,6 +39,14 @@ public class ArrowInteraction : MonoBehaviour
     [SerializeField] private Vector3 fireCenter;
     // Should the fire die out? If so, how quickly? -1 for no, any positive int for how fast it should die out
     [SerializeField] private int burnoutTime;
+    // Used to spread fire
+    private bool isOnFire = false;
+    // Used to detect surrounding (flamable) objects
+    Collider[] adjacentObjects = null;
+    // How far away does an object need to be to catch fire from an already ignited object
+    private float fireJumpDist = 0.75f;
+    // How long it takes so spread the fire
+    [SerializeField] private float fireSpread = 10;
 
     // Freezable Specific Fields //
     [Header ("Freezable Fields")]
@@ -51,9 +59,12 @@ public class ArrowInteraction : MonoBehaviour
      */
     public void breakSelf()
     {
-        GameObject broken = Instantiate(fracturedBlock, transform.position, transform.rotation);
-        broken.transform.localScale = new Vector3(this.transform.localScale.x * scaleFactor, this.transform.localScale.y * scaleFactor, this.transform.localScale.z * scaleFactor);
-        Destroy(this.gameObject);
+        if (breakable)
+        {
+            GameObject broken = Instantiate(fracturedBlock, transform.position, transform.rotation);
+            broken.transform.localScale = new Vector3(this.transform.localScale.x * scaleFactor, this.transform.localScale.y * scaleFactor, this.transform.localScale.z * scaleFactor);
+            Destroy(this.gameObject);
+        }
     }
 
     /**
@@ -69,20 +80,24 @@ public class ArrowInteraction : MonoBehaviour
      */
     public void catchFire()
     {
-        // Create the fire
-        Vector3 fc = transform.position;
-        if (fireCenter != Vector3.zero)
+        if (flamable && !isOnFire)
         {
-            fc = fireCenter;
-        }
-        GameObject fire = Instantiate(fireType, fc, transform.rotation);
-        fire.transform.localScale = new Vector3(this.transform.localScale.x * fireScaleFactor, this.transform.localScale.y * fireScaleFactor, this.transform.localScale.z * fireScaleFactor);
+            isOnFire = true;
+            // Create the fire
+            Vector3 fc = transform.position;
+            if (fireCenter != Vector3.zero)
+            {
+                fc = new Vector3(fc.x + fireCenter.x, fc.y + fireCenter.y, fc.z + fireCenter.z);
+            }
+            GameObject fire = Instantiate(fireType, fc, transform.rotation);
+            fire.transform.localScale = new Vector3(this.transform.localScale.x * fireScaleFactor, this.transform.localScale.y * fireScaleFactor, this.transform.localScale.z * fireScaleFactor);
 
-        ParticleSystem firePS = fire.GetComponent<ParticleSystem>();
+            ParticleSystem firePS = fire.GetComponent<ParticleSystem>();
 
-        if (!prewarm)
-        {
-            //firePS.
+            if (!prewarm)
+            {
+                //firePS.
+            }
         }
     }
 
@@ -94,6 +109,47 @@ public class ArrowInteraction : MonoBehaviour
 
     }
 
+    // To visualize the range of fire spreading
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, fireJumpDist);
+    }
 
-    
+    // Used to spread fire
+    private void Update()
+    {
+        if (flamable && isOnFire)
+        {
+            // Check to see if adjacent objects are on fire
+            if(adjacentObjects == null)
+            {
+                adjacentObjects = Physics.OverlapSphere(transform.position, fireJumpDist);
+                Debug.Log(adjacentObjects.Length);
+                for(int i = 0; i < adjacentObjects.Length; i++)
+                {
+                    if(adjacentObjects[i].CompareTag("Interactable"))
+                    {
+                        if(fireSpread == 0)
+                        {
+                            adjacentObjects[i].SendMessage("catchFire");
+                        }
+                        else
+                        {
+                            fireSpread--;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.B)){
+            breakSelf();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            catchFire();
+        }
+    }
+
 }

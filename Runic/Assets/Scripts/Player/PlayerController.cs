@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour {
             print(arrowType);
         }
 
-        print(isGrappling);
+        //print(isGrappling);
         if (isGrappling) {
             isAiming = false;
             print(grapplePoint);

@@ -7,6 +7,7 @@ TagManager:
   - Rope
   - Death
   - Arrow
+  - Interactable
   layers:
   - Default
   - TransparentFX
