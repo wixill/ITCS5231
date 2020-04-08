@@ -25,7 +25,11 @@ public class ArrowInteraction : MonoBehaviour
     // Pullable Specific Fields //
     [Header("Pullable Fields")]
     // How fast it gets pulled toward the player
-    [SerializeField] private int pullSpeed;
+    [SerializeField] private int pullSpeed = 4;
+    // Where the object gets pulled towards
+    private Vector3 destination;
+    // Checks if it is being pulled
+    private bool isPulled = false;
 
     // Flamable Specific Fields //
     [Header("Flamable Fields")]
@@ -69,10 +73,12 @@ public class ArrowInteraction : MonoBehaviour
 
     /**
      * Pulls object towards player
+     * @param dest Vector3 - the destination to get pulled towards
      */
-    public void getPulled()
+    public void getPulled(Vector3 dest)
     {
-
+        isPulled = true;
+        destination = dest;
     }
 
     /*
@@ -119,6 +125,14 @@ public class ArrowInteraction : MonoBehaviour
     // Used to spread fire
     private void Update()
     {
+        if (isPulled)
+        {
+            transform.position = Vector3.Lerp(transform.position, destination, pullSpeed * Time.deltaTime);
+            float dist = Vector3.Distance(transform.position, destination);
+            //print("Distance: " + dist);
+            if (dist < 2) isPulled = false;
+        }
+
         if (flamable && isOnFire)
         {
             // Check to see if adjacent objects are on fire
@@ -143,8 +157,15 @@ public class ArrowInteraction : MonoBehaviour
             }
         }
 
+
+
         if (Input.GetKeyDown(KeyCode.B)){
             breakSelf();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Vector3 dest = new Vector3(-2.549149f, 2.676207f, -3.976184f);
+            getPulled(dest);
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
