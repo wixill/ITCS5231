@@ -9,11 +9,10 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private Transform playerBody;
     [SerializeField] private Transform spineTransform;
     [SerializeField] private PlayerController pController;
-    public float rotateMinimum = -40f;
-    public float rotateMaximum = 40f;
 
+    private float rotateMinimum = -25f;
+    private float rotateMaximum = 25f;
     private float xRotation = 0f;
-    private float spineRotation = 0f;
     private bool zRotated = false;
     private bool firstRotation = true;
     private Vector3 zIdlePreRotated;
@@ -33,14 +32,9 @@ public class MouseLook : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
-        if (pController.isPlayerAiming()) {
-            if (xRotation > rotateMaximum + 6f) {
-                xRotation = Mathf.Lerp(xRotation, rotateMaximum, 3f * Time.deltaTime);
-            } else if (xRotation < rotateMinimum - 6f) {
-                xRotation = Mathf.Lerp(xRotation, rotateMinimum, 3f * Time.deltaTime);
-            } else {
-                xRotation = Mathf.Clamp(xRotation, rotateMinimum, rotateMaximum);
-            }
+        
+        if (pController.IsPlayerAiming()) {
+            xRotation = Mathf.Clamp(xRotation, rotateMinimum, rotateMaximum);
         } else {
             xRotation = Mathf.Clamp(xRotation, -80f, 80f);
         }
@@ -51,9 +45,7 @@ public class MouseLook : MonoBehaviour
 
     private void LateUpdate()
     {
-        spineRotation += Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-        spineRotation = Mathf.Clamp(spineRotation, rotateMinimum, rotateMaximum);
-        if (pController.isPlayerAiming()) {
+        if (pController.IsPlayerAiming()) {
             if (firstRotation) {
                 zAimPreRotated = new Vector3(spineTransform.localEulerAngles.x, spineTransform.localEulerAngles.y, spineTransform.localEulerAngles.z);
                 firstRotation = false;
@@ -62,7 +54,7 @@ public class MouseLook : MonoBehaviour
                 //spineTransform.localEulerAngles = zAimPreRotated;
                 //zRotated = true;
             //}
-            spineTransform.localEulerAngles = new Vector3(0, spineTransform.localEulerAngles.y, -spineRotation);
+            spineTransform.localEulerAngles = new Vector3(0, spineTransform.localEulerAngles.y, xRotation);
         } else {
             spineTransform.localEulerAngles = zIdlePreRotated;
             //zRotated = false;

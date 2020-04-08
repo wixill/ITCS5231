@@ -6,12 +6,20 @@ public class ArrowScript : MonoBehaviour
 {
     [SerializeField] private Transform trans;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Transform grapplePoint;
+    private PlayerController shooterController;
     private float lifeTimer = 6f;
     private float timer = 0;
     private bool hitSomething = false;
     private bool stuck = false;
     private Vector3 stickPosition;
     private Quaternion stickRotation;
+    private ArrowType type;
+
+    private void Awake()
+    {
+        shooterController = PlayerController.getInstance();
+    }
 
     private void Start()
     {
@@ -39,9 +47,17 @@ public class ArrowScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (hitSomething) return;
+        print("This arrow is: " + type);
         hitSomething = true;
         rb.useGravity = false;
         rb.velocity = new Vector3(0,0,0);
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        if (type == ArrowType.Grapple && collision.gameObject.layer != 9) {
+            shooterController.StartGrapple(grapplePoint.position);
+        }
+    }
+
+    public void setType(ArrowType type) {
+        this.type = type;
     }
 }
