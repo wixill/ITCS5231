@@ -19,34 +19,6 @@ obj/
 *.unityproj
 *.booproj
 
-# Unity Files & Folders
-/Runic/Temp/
-/Runic/Library/previews/
-/Runic/Library/cache/
-/Runic/Temp/
-/Runic/Library/previews/
-/Runic/Library/ScriptAssemblies
-/Runic/Assembly-CSharp.csproj
-/Runic/Assembly-CSharp-Editor.csproj
-/Runic/Assembly-CSharp-Editor-vs.csproj
-/Runic/Assembly-CSharp-firstpass.csproj
-/Runic/Assembly-CSharp-firstpass-vs.csproj
-/Runic/Assembly-CSharp-vs.csproj
-/Runic/Assembly-CSharp.pidb
-/Runic/Assembly-CSharp-Editor.pidb
-/Runic/Assembly-CSharp-firstpass.pidb
-/Runic/Assembly-UnityScript.pidb
-/Runic/Assembly-UnityScript-firstpass.pidb
-/Runic/Assembly-UnityScript-vs.unityproj
-/Runic/Runic.sln
-/Runic/Runic-csharp.sln
-/Runic/Assembly-UnityScript.unityproj
-/Runic/Assembly-UnityScript-firstpass.unityproj
-/Runic/Assembly-UnityScript-firstpass-vs.unityproj
-/Runic/Runic.userprefs
-metadata
-CurrentLayout
-
 ============
 OS generated
 ============
