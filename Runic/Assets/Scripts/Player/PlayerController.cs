@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    [SerializeField] private Renderer model;
     [SerializeField] private Animator anim;
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform player;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowSpawn;
     [SerializeField] private float shootingForce;
+    [SerializeField] private LineRenderer line;
 
     private static PlayerController instance = null;
     private Vector3 lastPos;
@@ -25,9 +27,11 @@ public class PlayerController : MonoBehaviour {
     private Vector3 velocity;
     private bool isGrounded;
     private bool isAiming;
-    private bool isGrappling;
+    private bool isGrapplingTo;
+    private bool isGrapplingFrom;
     private ArrowType arrowType;
     private Vector3 grapplePoint;
+    private GameObject objectToPull;
 
     private void Awake()
     {
@@ -51,7 +55,8 @@ public class PlayerController : MonoBehaviour {
         justShot = false;
         isGrounded = true;
         isAiming = false;
-        isGrappling = false;
+        isGrapplingTo = false;
+        isGrapplingFrom = false;
     }
 
     // Update is called once per frame
@@ -69,13 +74,28 @@ public class PlayerController : MonoBehaviour {
         }
 
         //print(isGrappling);
-        if (isGrappling) {
-            isAiming = false;
-            print(grapplePoint);
-            player.position = Vector3.Lerp(player.position, grapplePoint, 5f * Time.deltaTime);
-            float dist = Vector3.Distance(player.position, grapplePoint);
-            //print("Distance: " + dist);
-            if (dist < 3) isGrappling = false;
+        if (isGrapplingTo || isGrapplingFrom) {
+            if (isGrapplingTo) {
+                Vector3[] positions = { model.bounds.center, grapplePoint };
+                line.SetPositions(positions);
+                isAiming = false;
+                player.position = Vector3.Lerp(player.position, grapplePoint, 5f * Time.deltaTime);
+                float dist = Vector3.Distance(player.position, grapplePoint);
+                //print("Distance: " + dist);
+                if (dist < 3) {
+                    isGrapplingTo = false;
+                    line.positionCount = 0;
+                }
+            } else if (isGrapplingFrom && objectToPull != null) {
+                Vector3[] positions = { model.bounds.center, objectToPull.transform.position };
+                line.SetPositions(positions);
+                objectToPull.transform.position = Vector3.Lerp(objectToPull.transform.position, model.bounds.center, 4f * Time.deltaTime);
+                float dist = Vector3.Distance(objectToPull.transform.position, model.bounds.center);
+                if (dist < 2) {
+                    isGrapplingFrom = false;
+                    line.positionCount = 0;
+                }
+            }
         }
 
 
@@ -129,7 +149,7 @@ public class PlayerController : MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        if (!isGrappling) {
+        if (!isGrapplingTo) {
             Vector3 move = transform.right * x + transform.forward * z;
             controller.Move(move * speed * Time.deltaTime);
             velocity.y += gravity * Time.deltaTime;
@@ -159,13 +179,20 @@ public class PlayerController : MonoBehaviour {
         return lastPos;
     }
 
-    public void StartGrapple(Vector3 toPoint, bool isPull) {
+    public void StartGrappleTo(Vector3 toPoint) {
         print("GRAPPLIN!");
         arrowType = ArrowType.Standard;
-        if (!isPull) {
-            isGrappling = true;
-            grapplePoint = new Vector3(toPoint.x, toPoint.y, toPoint.z);
-        }
+        line.positionCount = 2;
+        isGrapplingTo = true;
+        grapplePoint = new Vector3(toPoint.x, toPoint.y, toPoint.z);
+    }
+
+    public void StartGrappleFrom(GameObject toPull) {
+        print("PULLIN!");
+        arrowType = ArrowType.Standard;
+        line.positionCount = 2;
+        isGrapplingFrom = true;
+        this.objectToPull = toPull;
     }
 
     //cooldown time for the shooting, set to 3 seconds to wait
@@ -177,8 +204,8 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isGrappling && collision.gameObject.tag != "Ground") {
-            isGrappling = false;
+        if (isGrapplingTo && collision.gameObject.tag != "Ground") {
+            isGrapplingTo = false;
             grapplePoint = Vector3.zero;
         }
     }

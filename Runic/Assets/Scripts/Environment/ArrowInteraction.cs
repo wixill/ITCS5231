@@ -28,8 +28,6 @@ public class ArrowInteraction : MonoBehaviour
     [SerializeField] private int pullSpeed = 4;
     // Where the object gets pulled towards
     private Vector3 destination;
-    // Checks if it is being pulled
-    private bool isPulled = false;
 
     // Flamable Specific Fields //
     [Header("Flamable Fields")]
@@ -75,12 +73,8 @@ public class ArrowInteraction : MonoBehaviour
      * Pulls object towards player
      * @param dest Vector3 - the destination to get pulled towards
      */
-    public bool getPulled(Vector3 dest)
+    public bool getPulled()
     {
-        if (pullable) {
-            isPulled = true;
-            destination = dest;
-        }
         return pullable;
     }
 
@@ -128,14 +122,6 @@ public class ArrowInteraction : MonoBehaviour
     // Used to spread fire
     private void Update()
     {
-        if (isPulled)
-        {
-            transform.position = Vector3.Lerp(transform.position, destination, pullSpeed * Time.deltaTime);
-            float dist = Vector3.Distance(transform.position, destination);
-            //print("Distance: " + dist);
-            if (dist < 2) isPulled = false;
-        }
-
         if (flamable && isOnFire)
         {
             // Check to see if adjacent objects are on fire

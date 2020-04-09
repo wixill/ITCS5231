@@ -55,13 +55,13 @@ public class ArrowScript : MonoBehaviour
         if (type == ArrowType.Grapple) {
             if (collision.gameObject.tag == "Interactable") {
                 ArrowInteraction pullTarget = collision.gameObject.GetComponent<ArrowInteraction>();
-                if (pullTarget.getPulled(shooterController.getPlayerPos())) {
-                    shooterController.StartGrapple(Vector3.zero, true);
+                if (pullTarget.getPulled()) {
+                    shooterController.StartGrappleFrom(collision.gameObject);
                 } else {
-                    shooterController.StartGrapple(grapplePoint.position, false);
+                    shooterController.StartGrappleTo(grapplePoint.position);
                 }
             } else if (collision.gameObject.layer != 9) {
-                shooterController.StartGrapple(grapplePoint.position, false);
+                shooterController.StartGrappleTo(grapplePoint.position);
             }
         }
     }
