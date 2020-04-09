@@ -52,8 +52,17 @@ public class ArrowScript : MonoBehaviour
         rb.useGravity = false;
         rb.velocity = new Vector3(0,0,0);
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        if (type == ArrowType.Grapple && collision.gameObject.layer != 9) {
-            shooterController.StartGrapple(grapplePoint.position);
+        if (type == ArrowType.Grapple) {
+            if (collision.gameObject.tag == "Interactable") {
+                ArrowInteraction pullTarget = collision.gameObject.GetComponent<ArrowInteraction>();
+                if (pullTarget.getPulled(shooterController.getPlayerPos())) {
+                    shooterController.StartGrapple(Vector3.zero, true);
+                } else {
+                    shooterController.StartGrapple(grapplePoint.position, false);
+                }
+            } else if (collision.gameObject.layer != 9) {
+                shooterController.StartGrapple(grapplePoint.position, false);
+            }
         }
     }
 

@@ -1038,7 +1038,7 @@ MonoBehaviour:
   fracturedBlock: {fileID: 2173185435563131220, guid: 86441e0a8aa9d5b46890090e2e570d71,
     type: 3}
   scaleFactor: 0.5
-  pullSpeed: 0
+  pullSpeed: 4
   prewarm: 0
   fireType: {fileID: 0}
   fireScaleFactor: 1
@@ -1788,9 +1788,10 @@ GameObject:
   - component: {fileID: 1904059441}
   - component: {fileID: 1904059440}
   - component: {fileID: 1904059439}
+  - component: {fileID: 1904059443}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1869,6 +1870,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1904059443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904059438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f26b0a774d968f459fe38da8fe4b0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakable: 0
+  pullable: 0
+  flamable: 0
+  freezable: 0
+  fracturedBlock: {fileID: 0}
+  scaleFactor: 0.5
+  pullSpeed: 4
+  prewarm: 0
+  fireType: {fileID: 0}
+  fireScaleFactor: 1
+  fireCenter: {x: 0, y: 0, z: 0}
+  burnoutTime: 0
+  fireSpread: 10
+  thawTime: 0
 --- !u!1001 &1919718257
 PrefabInstance:
   m_ObjectHideFlags: 0

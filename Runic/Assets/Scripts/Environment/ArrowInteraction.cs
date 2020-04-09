@@ -75,10 +75,13 @@ public class ArrowInteraction : MonoBehaviour
      * Pulls object towards player
      * @param dest Vector3 - the destination to get pulled towards
      */
-    public void getPulled(Vector3 dest)
+    public bool getPulled(Vector3 dest)
     {
-        isPulled = true;
-        destination = dest;
+        if (pullable) {
+            isPulled = true;
+            destination = dest;
+        }
+        return pullable;
     }
 
     /*

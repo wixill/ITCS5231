@@ -155,11 +155,17 @@ public class PlayerController : MonoBehaviour {
         return isAiming;
     }
 
-    public void StartGrapple(Vector3 toPoint) {
+    public Vector3 getPlayerPos() {
+        return lastPos;
+    }
+
+    public void StartGrapple(Vector3 toPoint, bool isPull) {
         print("GRAPPLIN!");
         arrowType = ArrowType.Standard;
-        isGrappling = true;
-        grapplePoint = new Vector3(toPoint.x, toPoint.y, toPoint.z);
+        if (!isPull) {
+            isGrappling = true;
+            grapplePoint = new Vector3(toPoint.x, toPoint.y, toPoint.z);
+        }
     }
 
     //cooldown time for the shooting, set to 3 seconds to wait
