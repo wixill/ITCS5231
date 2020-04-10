@@ -94,8 +94,7 @@ public class PlayerController : MonoBehaviour {
                 objectToPull.transform.position = Vector3.Lerp(objectToPull.transform.position, model.bounds.center, 4f * Time.deltaTime);
                 float dist = Vector3.Distance(objectToPull.transform.position, model.bounds.center);
                 if (dist < 2) {
-                    isGrapplingFrom = false;
-                    line.positionCount = 0;
+                    StopPullingObject();
                 }
             }
         }
@@ -195,6 +194,13 @@ public class PlayerController : MonoBehaviour {
         line.positionCount = 2;
         isGrapplingFrom = true;
         this.objectToPull = toPull;
+    }
+
+    public void StopPullingObject()
+    {
+        objectToPull.GetComponent<ArrowInteraction>().setIsBeingPulled(false);
+        isGrapplingFrom = false;
+        line.positionCount = 0;
     }
 
     //cooldown time for the shooting, set to 3 seconds to wait

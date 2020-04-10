@@ -15,6 +15,7 @@ public class ArrowScript : MonoBehaviour
     private Vector3 stickPosition;
     private Quaternion stickRotation;
     private ArrowType type;
+    private int groundLayer = 9;
 
     private void Awake()
     {
@@ -57,10 +58,11 @@ public class ArrowScript : MonoBehaviour
                 ArrowInteraction pullTarget = collision.gameObject.GetComponent<ArrowInteraction>();
                 if (pullTarget.getPulled()) {
                     shooterController.StartGrappleFrom(collision.gameObject);
+                    pullTarget.setIsBeingPulled(true);
                 } else {
                     shooterController.StartGrappleTo(grapplePoint.position);
                 }
-            } else if (collision.gameObject.layer != 9) {
+            } else if (collision.gameObject.layer != groundLayer) {
                 shooterController.StartGrappleTo(grapplePoint.position);
             }
         }

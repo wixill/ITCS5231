@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 public class ArrowInteraction : MonoBehaviour
@@ -26,8 +27,9 @@ public class ArrowInteraction : MonoBehaviour
     [Header("Pullable Fields")]
     // How fast it gets pulled toward the player
     [SerializeField] private int pullSpeed = 4;
-    // Where the object gets pulled towards
-    private Vector3 destination;
+    // Checks if it is being pulled
+    private bool isBeingPulled = false;
+    private int groundLayer = 9;
 
     // Flamable Specific Fields //
     [Header("Flamable Fields")]
@@ -78,6 +80,17 @@ public class ArrowInteraction : MonoBehaviour
         return pullable;
     }
 
+    public void setIsBeingPulled(bool pulledStatus)
+    {
+        isBeingPulled = pulledStatus;
+    }
+
+    public bool getIsBeingPulled()
+    {
+        if (isBeingPulled) return true;
+        return false;
+    }
+
     /*
      * Catches fire
      */
@@ -110,6 +123,14 @@ public class ArrowInteraction : MonoBehaviour
     public void freeze()
     {
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isBeingPulled && collision.gameObject.layer != groundLayer && !collision.gameObject.CompareTag("Arrow"))
+        {
+            PlayerController.getInstance().StopPullingObject();
+        }
     }
 
     // To visualize the range of fire spreading
