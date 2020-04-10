@@ -73,8 +73,9 @@ public class PlayerController : MonoBehaviour {
             print(arrowType);
         }
 
-        //print(isGrappling);
+        
         if (isGrapplingTo || isGrapplingFrom) {
+            // Pulling the player to an object
             if (isGrapplingTo) {
                 Vector3[] positions = { model.bounds.center, grapplePoint };
                 line.SetPositions(positions);
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour {
                     isGrapplingTo = false;
                     line.positionCount = 0;
                 }
+            // Pulling a grapple-able object to the player
             } else if (isGrapplingFrom && objectToPull != null) {
                 Vector3[] positions = { model.bounds.center, objectToPull.transform.position };
                 line.SetPositions(positions);

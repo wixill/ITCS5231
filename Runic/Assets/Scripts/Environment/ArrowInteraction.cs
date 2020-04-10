@@ -145,21 +145,6 @@ public class ArrowInteraction : MonoBehaviour
                 }
             }
         }
-
-
-
-        if (Input.GetKeyDown(KeyCode.B)){
-            breakSelf();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Vector3 dest = new Vector3(-2.549149f, 2.676207f, -3.976184f);
-            getPulled(dest);
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            catchFire();
-        }
     }
 
 }
