@@ -8,6 +8,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField] private Transform playerBody;
     [SerializeField] private Transform spineTransform;
+    [SerializeField] private Transform camPosition;
     [SerializeField] private PlayerController pController;
 
     private float rotateMinimum = -25f;
@@ -17,12 +18,14 @@ public class MouseLook : MonoBehaviour
     private bool firstRotation = true;
     private Vector3 zIdlePreRotated;
     private Vector3 zAimPreRotated;
+    private Vector3 initialPos;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         zIdlePreRotated = new Vector3(spineTransform.localEulerAngles.x, spineTransform.localEulerAngles.y, spineTransform.localEulerAngles.z);
+        initialPos = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
     }
 
     // Update is called once per frame
@@ -32,13 +35,23 @@ public class MouseLook : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
-        
+
+        float dif = Mathf.Abs((transform.position.magnitude - camPosition.position.magnitude));
         if (pController.IsPlayerAiming()) {
-            xRotation = Mathf.Clamp(xRotation, rotateMinimum, rotateMaximum);
+            if (dif >= 0.1) {
+                transform.position = Vector3.Lerp(transform.position, camPosition.position, 9f * Time.deltaTime);
+            } else {
+                transform.position = camPosition.position;
+            }
         } else {
-            xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+            if (dif >= 0.1) {
+                transform.localPosition = Vector3.Lerp(transform.localPosition, initialPos, 9f * Time.deltaTime);
+            } else {
+                transform.localPosition = initialPos;
+            }
         }
-        
+        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
     }
