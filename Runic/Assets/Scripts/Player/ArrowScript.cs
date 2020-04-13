@@ -54,19 +54,50 @@ public class ArrowScript : MonoBehaviour
             rb.useGravity = false;
             rb.velocity = new Vector3(0,0,0);
             rb.constraints = RigidbodyConstraints.FreezeAll;
-            if (type == ArrowType.Grapple) {
-                if (collision.gameObject.tag == "Interactable") {
-                    ArrowInteraction pullTarget = collision.gameObject.GetComponent<ArrowInteraction>();
-                    if (pullTarget.getPulled()) {
-                        shooterController.StartGrappleFrom(collision.gameObject);
-                        pullTarget.setIsBeingPulled(true);
-                    } else {
+            switch (type)
+            {
+                case ArrowType.Standard:
+                    if(collision.gameObject.tag == "Interactable")
+                    {
+                        collision.gameObject.GetComponent<ArrowInteraction>().breakSelf();
+                    }
+                    break;
+
+                case ArrowType.Grapple:
+                    if (collision.gameObject.tag == "Interactable")
+                    {
+                        ArrowInteraction pullTarget = collision.gameObject.GetComponent<ArrowInteraction>();
+                        if (pullTarget.getPulled())
+                        {
+                            shooterController.StartGrappleFrom(collision.gameObject);
+                            pullTarget.setIsBeingPulled(true);
+                        }
+                        else
+                        {
+                            shooterController.StartGrappleTo(grapplePoint.position);
+                        }
+                    }
+                    else if (collision.gameObject.layer != groundLayer)
+                    {
                         shooterController.StartGrappleTo(grapplePoint.position);
                     }
-                } else if (collision.gameObject.layer != groundLayer) {
-                    shooterController.StartGrappleTo(grapplePoint.position);
-                }
+                    break;
+
+                case ArrowType.Flame:
+                    if (collision.gameObject.tag == "Interactable")
+                    {
+                        collision.gameObject.GetComponent<ArrowInteraction>().catchFire();
+                    }
+                    break;
+
+                case ArrowType.Freeze:
+                    if (collision.gameObject.tag == "Interactable")
+                    {
+                        collision.gameObject.GetComponent<ArrowInteraction>().freeze();
+                    }
+                    break;
             }
+
         }
     }
 

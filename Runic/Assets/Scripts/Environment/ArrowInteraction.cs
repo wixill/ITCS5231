@@ -50,7 +50,7 @@ public class ArrowInteraction : MonoBehaviour
     // How far away does an object need to be to catch fire from an already ignited object
     private float fireJumpDist = 0.75f;
     // How long it takes so spread the fire
-    [SerializeField] private float fireSpread = 10;
+    [SerializeField] private float fireSpread = 500;
 
     // Freezable Specific Fields //
     [Header ("Freezable Fields")]
@@ -106,13 +106,14 @@ public class ArrowInteraction : MonoBehaviour
                 fc = new Vector3(fc.x + fireCenter.x, fc.y + fireCenter.y, fc.z + fireCenter.z);
             }
             GameObject fire = Instantiate(fireType, fc, transform.rotation);
-            fire.transform.localScale = new Vector3(this.transform.localScale.x * fireScaleFactor, this.transform.localScale.y * fireScaleFactor, this.transform.localScale.z * fireScaleFactor);
+            // Scale lenght and width but not height
+            fire.transform.localScale = new Vector3(this.transform.localScale.x * fireScaleFactor, fire.transform.localScale.y, this.transform.localScale.z * fireScaleFactor);
 
             ParticleSystem firePS = fire.GetComponent<ParticleSystem>();
 
             if (!prewarm)
             {
-                //firePS.
+                firePS.Clear();
             }
         }
     }
@@ -149,21 +150,20 @@ public class ArrowInteraction : MonoBehaviour
             if(adjacentObjects == null)
             {
                 adjacentObjects = Physics.OverlapSphere(transform.position, fireJumpDist);
-                Debug.Log(adjacentObjects.Length);
-                for(int i = 0; i < adjacentObjects.Length; i++)
+                Debug.Log("Adj objects " + adjacentObjects.Length);
+            } else if (fireSpread >= 0){
+                if (fireSpread == 0)
                 {
-                    if(adjacentObjects[i].CompareTag("Interactable"))
+                    for (int i = 0; i < adjacentObjects.Length; i++)
                     {
-                        if(fireSpread == 0)
+                        if (adjacentObjects[i].gameObject.tag == "Interactable")
                         {
+                            Debug.Log("SPREADING");
                             adjacentObjects[i].SendMessage("catchFire");
-                        }
-                        else
-                        {
-                            fireSpread--;
                         }
                     }
                 }
+                fireSpread--;
             }
         }
     }
