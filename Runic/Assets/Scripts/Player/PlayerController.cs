@@ -240,8 +240,10 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isGrapplingTo && collision.gameObject.tag != "Ground") {
+        if (isGrapplingTo && collision.gameObject.layer != 9) {
             isGrapplingTo = false;
+            line.positionCount = 0;
+            canGrapple = false;
             grapplePoint = Vector3.zero;
         }
     }
