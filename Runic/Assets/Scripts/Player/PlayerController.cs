@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float speed = 12f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float grappleCooldown = 8f;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowSpawn;
     [SerializeField] private float shootingForce;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     private Vector3 lastPos;
     private Vector3 startCamPos;
     private bool justShot;
+    private bool canGrapple;
     private Vector3 velocity;
     private bool isGrounded;
     private bool isAiming;
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour {
         startCamPos = new Vector3(0, 1.868f, 0.273f);
         arrowType = ArrowType.Standard;
         justShot = false;
+        canGrapple = true;
         isGrounded = true;
         isAiming = false;
         isGrapplingTo = false;
@@ -66,12 +69,22 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             arrowType = ArrowType.Standard;
+            UIManager.getInstance().SetActive(ArrowType.Standard);
             print(arrowType);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) && canGrapple) {
             arrowType = ArrowType.Grapple;
+            UIManager.getInstance().SetActive(ArrowType.Grapple);
+            print(arrowType);
+        } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            arrowType = ArrowType.Freeze;
+            UIManager.getInstance().SetActive(ArrowType.Freeze);
+            print(arrowType);
+        } else if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            arrowType = ArrowType.Flame;
+            UIManager.getInstance().SetActive(ArrowType.Flame);
             print(arrowType);
         }
+
 
         
         if (isGrapplingTo || isGrapplingFrom) {
@@ -86,6 +99,7 @@ public class PlayerController : MonoBehaviour {
                 if (dist < 3) {
                     isGrapplingTo = false;
                     line.positionCount = 0;
+                    canGrapple = false;
                 }
             // Pulling a grapple-able object to the player
             } else if (isGrapplingFrom && objectToPull != null) {
@@ -128,16 +142,15 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && isAiming)
         {
             //if we did not just shoot an arrow or we waited 7 seconds to shoot again
-            if (justShot == false)
+            if (!justShot)
             {
                 ShootArrow();
+                if (arrowType == ArrowType.Standard) {
+                    UIManager.getInstance().HideStandardIcon();
+                    UIManager.getInstance().FadeInStandardIcon(1f);
+                }
                 justShot = true;
-            }
-            else
-            { //if we just shot an arrow
-                //cooldown time to wait before shooting again 
-                StartCoroutine(WaitTimeForShooting());
-                //allows the player to shoot again after cooldown
+                StartCoroutine(WaitTimeForShooting()); ;
             }
         }
     }
@@ -182,18 +195,26 @@ public class PlayerController : MonoBehaviour {
 
     public void StartGrappleTo(Vector3 toPoint) {
         print("GRAPPLIN!");
+        UIManager.getInstance().HideGrappleIcon();
         arrowType = ArrowType.Standard;
+        UIManager.getInstance().SetActive(ArrowType.Standard);
         line.positionCount = 2;
         isGrapplingTo = true;
         grapplePoint = new Vector3(toPoint.x, toPoint.y, toPoint.z);
+        UIManager.getInstance().FadeInGrappleIcon(grappleCooldown);
+        StartCoroutine(WaitTimeForGrapple());
     }
 
     public void StartGrappleFrom(GameObject toPull) {
         print("PULLIN!");
+        UIManager.getInstance().HideGrappleIcon();
         arrowType = ArrowType.Standard;
+        UIManager.getInstance().SetActive(ArrowType.Standard);
         line.positionCount = 2;
         isGrapplingFrom = true;
         this.objectToPull = toPull;
+        UIManager.getInstance().FadeInGrappleIcon(grappleCooldown);
+        StartCoroutine(WaitTimeForGrapple());
     }
 
     public void StopPullingObject()
@@ -201,13 +222,20 @@ public class PlayerController : MonoBehaviour {
         objectToPull.GetComponent<ArrowInteraction>().setIsBeingPulled(false);
         isGrapplingFrom = false;
         line.positionCount = 0;
+        canGrapple = false;
     }
 
     //cooldown time for the shooting, set to 3 seconds to wait
     IEnumerator WaitTimeForShooting()
     {
-        new WaitForSeconds(3);
-        yield return justShot = false;
+        yield return new WaitForSeconds(1f);
+        justShot = false;
+    }
+
+    IEnumerator WaitTimeForGrapple()
+    {
+        yield return new WaitForSeconds(grappleCooldown);
+        canGrapple = true; ;
     }
 
     private void OnCollisionEnter(Collision collision)
