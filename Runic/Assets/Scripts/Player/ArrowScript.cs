@@ -48,22 +48,24 @@ public class ArrowScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (hitSomething) return;
-        print("This arrow is: " + type);
-        hitSomething = true;
-        rb.useGravity = false;
-        rb.velocity = new Vector3(0,0,0);
-        rb.constraints = RigidbodyConstraints.FreezeAll;
-        if (type == ArrowType.Grapple) {
-            if (collision.gameObject.tag == "Interactable") {
-                ArrowInteraction pullTarget = collision.gameObject.GetComponent<ArrowInteraction>();
-                if (pullTarget.getPulled()) {
-                    shooterController.StartGrappleFrom(collision.gameObject);
-                    pullTarget.setIsBeingPulled(true);
-                } else {
+        if (collision.collider.tag != "Arrow") {
+            print("This arrow is: " + type);
+            hitSomething = true;
+            rb.useGravity = false;
+            rb.velocity = new Vector3(0,0,0);
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            if (type == ArrowType.Grapple) {
+                if (collision.gameObject.tag == "Interactable") {
+                    ArrowInteraction pullTarget = collision.gameObject.GetComponent<ArrowInteraction>();
+                    if (pullTarget.getPulled()) {
+                        shooterController.StartGrappleFrom(collision.gameObject);
+                        pullTarget.setIsBeingPulled(true);
+                    } else {
+                        shooterController.StartGrappleTo(grapplePoint.position);
+                    }
+                } else if (collision.gameObject.layer != groundLayer) {
                     shooterController.StartGrappleTo(grapplePoint.position);
                 }
-            } else if (collision.gameObject.layer != groundLayer) {
-                shooterController.StartGrappleTo(grapplePoint.position);
             }
         }
     }
