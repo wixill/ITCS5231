@@ -56,6 +56,13 @@ public class ArrowInteraction : MonoBehaviour
     [Header ("Freezable Fields")]
     // How long until it takes to thaw
     [SerializeField] private int thawTime;
+    // If the object is frozen or not
+    bool isFrozen = false;
+    // Ice material
+    [SerializeField] private Material iceMat;
+    // Normal material of object
+    Material normalMat;
+
 
 
     /**
@@ -123,7 +130,15 @@ public class ArrowInteraction : MonoBehaviour
      */
     public void freeze()
     {
+        if (freezable)
+        {
+            isFrozen = true;
+            // Change material to ice
+            normalMat = this.gameObject.GetComponent<Material>();
+            //this.gameObject.GetComponent<Material>() = iceMat;
+            //this.gameObject.GetComponent < Material > = iceMat;
 
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
