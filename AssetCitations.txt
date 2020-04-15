@@ -3,3 +3,8 @@ Assets:
 Stairs:
 https://sketchfab.com/3d-models/stone-stairs-2b026a1c84924460a3b4b734367b97cc
 CC Attribution liscense
+
+Font - VTC Goblin Hand Font
+https://www.dafont.com/vtc-goblin-hand.font
+Created by Larry Yerkes (Vigilante Typeface Corporation)
+100% Free

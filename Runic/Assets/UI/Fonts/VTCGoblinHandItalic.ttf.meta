@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 1e13921a020ad8d41a864acb42c61215
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: VTCGoblinHand
+  fontNames:
+  - VTCGoblinHand
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e3b81639410abcb44906bbe764a392c8, type: 3}
+  - {fileID: 12800000, guid: 725a883a6c1d6a84daa6b727673bde95, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

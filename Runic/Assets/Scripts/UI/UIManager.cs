@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     private static UIManager instance;
+    [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private Image standardIcon;
     [SerializeField] private Image standardBackground;
     [SerializeField] private Image grappleIcon;
@@ -14,6 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image freezeBackground;
     [SerializeField] private Image flameIcon;
     [SerializeField] private Image flameBackground;
+
+    private bool isPaused;
     private float fadeInStandard;
     private float fadeInGrapple;
     private float fadeInFreeze;
@@ -28,6 +32,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        isPaused = false;
         activeArrow = standardBackground;
         activeAlpha = standardBackground.color.a;
         inactiveAlpha = grappleBackground.color.a;
@@ -45,8 +50,46 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void ActivatePause() {
+        isPaused = true;
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+        Cursor.lockState = CursorLockMode.None;
+        pauseMenuUI.SetActive(true);
+    }
+
+    public void ResumeGame() {
+        isPaused = false;
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        pauseMenuUI.SetActive(false);
+    }
+
+    public void RestartLevel() {
+        ResumeGame();
+        string currentSceen = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceen);
+    }
+
+    public void QuitGame() {
+        if (Application.isEditor)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+        else
+        {
+            Application.Quit();
+        }
+    }
+
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused) {
+            ActivatePause();
+        }
+
+
         if (fadeInStandard != 0) {
             Color tempColor = standardIcon.color;
             tempColor.a = Mathf.Lerp(tempColor.a, 1, Time.deltaTime / fadeInStandard);

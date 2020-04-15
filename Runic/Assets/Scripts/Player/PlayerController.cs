@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Animator anim;
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform player;
+    [SerializeField] private SkinnedMeshRenderer bow;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Camera cam;
     [SerializeField] private float groundDistance = 0.4f;
@@ -67,6 +68,16 @@ public class PlayerController : MonoBehaviour {
         ApplyMovement(); // Applies gravity, do not put physics code before this.
         isAiming = (Input.GetMouseButton(1) && isGrounded);
 
+        if (isAiming) {
+            Color tempColor = bow.material.color;
+            tempColor.a = 0.6f;
+            bow.material.color = tempColor;
+        } else {
+            Color tempColor = bow.material.color;
+            tempColor.a = 1f;
+            bow.material.color = tempColor;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             arrowType = ArrowType.Standard;
             UIManager.getInstance().SetActive(ArrowType.Standard);
@@ -85,8 +96,6 @@ public class PlayerController : MonoBehaviour {
             print(arrowType);
         }
 
-
-        
         if (isGrapplingTo || isGrapplingFrom) {
             // Pulling the player to an object
             if (isGrapplingTo) {
@@ -238,9 +247,11 @@ public class PlayerController : MonoBehaviour {
         canGrapple = true; ;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (isGrapplingTo && collision.gameObject.layer != 9) {
+        if (isGrapplingTo && other.gameObject.layer != 9 && other.gameObject.tag != "Player" && other.gameObject.tag != "Arrow")
+        {
+            print("PLAYER COLLIDE WITH: " + other.gameObject.name);
             isGrapplingTo = false;
             line.positionCount = 0;
             canGrapple = false;

@@ -168,6 +168,7 @@ MonoBehaviour:
   burnoutTime: 0
   fireSpread: 10
   thawTime: 0
+  iceMat: {fileID: 0}
 --- !u!54 &21250880
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -555,6 +556,7 @@ MonoBehaviour:
   burnoutTime: 0
   fireSpread: 10
   thawTime: 0
+  iceMat: {fileID: 0}
 --- !u!135 &1268151206
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -822,10 +824,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 432106673, guid: ce6a8b9e70c0a114597585b6effab4ec, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1450146086005168386, guid: ce6a8b9e70c0a114597585b6effab4ec,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -48,7 +48,7 @@ public class ArrowScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (hitSomething) return;
-        if (collision.collider.tag != "Arrow") {
+        if (collision.collider.tag != "Arrow" && collision.collider.tag != "Player") {
             print("This arrow is: " + type);
             hitSomething = true;
             rb.useGravity = false;
