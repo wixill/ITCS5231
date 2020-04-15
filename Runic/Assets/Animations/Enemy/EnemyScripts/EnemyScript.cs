@@ -107,6 +107,18 @@ public class EnemyScript : MonoBehaviour
     void Shoot()
     {
         //shooting code will go here
+        WaitToShoot();
+
+        //GameObject newArrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.identity);
+        //ArrowScript arrow = newArrow.GetComponent<ArrowScript>();
+        //arrow.setType(arrowType);
+        //Rigidbody rb = newArrow.GetComponent<Rigidbody>();
+        //rb.velocity = cam.transform.forward * shootingForce;
+    }
+
+    IEnumerator WaitToShoot()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }
 
