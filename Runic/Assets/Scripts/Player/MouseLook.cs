@@ -11,10 +11,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private Transform camPosition;
     [SerializeField] private PlayerController pController;
 
-    private float rotateMinimum = -25f;
-    private float rotateMaximum = 25f;
     private float xRotation = 0f;
-    private bool zRotated = false;
     private bool firstRotation = true;
     private Vector3 zIdlePreRotated;
     private Vector3 zAimPreRotated;
@@ -63,14 +60,9 @@ public class MouseLook : MonoBehaviour
                 zAimPreRotated = new Vector3(spineTransform.localEulerAngles.x, spineTransform.localEulerAngles.y, spineTransform.localEulerAngles.z);
                 firstRotation = false;
             }
-            //if (!zRotated) {
-                //spineTransform.localEulerAngles = zAimPreRotated;
-                //zRotated = true;
-            //}
             spineTransform.localEulerAngles = new Vector3(0, spineTransform.localEulerAngles.y, xRotation);
         } else {
             spineTransform.localEulerAngles = zIdlePreRotated;
-            //zRotated = false;
         }
     }
 }

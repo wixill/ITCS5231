@@ -1922,7 +1922,7 @@ GameObject:
   - component: {fileID: 1479096362}
   - component: {fileID: 1479096361}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MenuUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
