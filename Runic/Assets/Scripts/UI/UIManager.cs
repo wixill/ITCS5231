@@ -55,6 +55,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0;
         AudioListener.pause = true;
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         pauseMenuUI.SetActive(true);
     }
 
@@ -63,6 +64,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
         AudioListener.pause = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         pauseMenuUI.SetActive(false);
     }
 

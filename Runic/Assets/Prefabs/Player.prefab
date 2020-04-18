@@ -409,7 +409,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 1600, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -2341,7 +2341,7 @@ Transform:
   m_GameObject: {fileID: 1450146086005168388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.91, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.2000002, y: 1.2, z: 1.2000002}
   m_Children:
   - {fileID: 1450146086441814672}
   - {fileID: 5865165422380577540}
@@ -2539,7 +2539,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 26.991467
+  field of view: 41.9
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2619,6 +2619,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1450146086005168386}
     m_Modifications:
+    - target: {fileID: -8152699488791614679, guid: 75ab05aff22c4ef4a9fb8d9bfac251c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.957
+      objectReference: {fileID: 0}
+    - target: {fileID: -8152699488791614679, guid: 75ab05aff22c4ef4a9fb8d9bfac251c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.187
+      objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 75ab05aff22c4ef4a9fb8d9bfac251c7,
         type: 3}
       propertyPath: m_Controller

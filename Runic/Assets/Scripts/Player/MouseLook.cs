@@ -21,6 +21,7 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         zIdlePreRotated = new Vector3(spineTransform.localEulerAngles.x, spineTransform.localEulerAngles.y, spineTransform.localEulerAngles.z);
         initialPos = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
     }
