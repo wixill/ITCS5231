@@ -12,10 +12,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image standardBackground;
     [SerializeField] private Image grappleIcon;
     [SerializeField] private Image grappleBackground;
+    [SerializeField] private GameObject grappleObject;
     [SerializeField] private Image freezeIcon;
     [SerializeField] private Image freezeBackground;
+    [SerializeField] private GameObject freezeObject;
     [SerializeField] private Image flameIcon;
     [SerializeField] private Image flameBackground;
+    [SerializeField] private GameObject flameObject;
 
     private bool isPaused;
     private float fadeInStandard;
@@ -85,6 +88,19 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ToggleFullscreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+        if (Screen.fullScreen)
+        {
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        }
+    }
+
     public void Update()
     {
 
@@ -139,6 +155,18 @@ public class UIManager : MonoBehaviour
             }
             flameIcon.color = tempColor;
         }
+    }
+
+    public void EnableFreeze() {
+        freezeObject.SetActive(true);
+    }
+
+    public void EnableFlame() {
+        flameObject.SetActive(true);
+    }
+
+    public void EnableGrapple() {
+        grappleObject.SetActive(true);
     }
 
     public void HideStandardIcon() {

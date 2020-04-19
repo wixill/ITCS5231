@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour {
     private ArrowType arrowType;
     private Vector3 grapplePoint;
     private GameObject objectToPull;
+    private bool freezeEnabled;
+    private bool flameEnabled;
+    private bool grappleEnabled;
 
     private void Awake()
     {
@@ -61,6 +64,9 @@ public class PlayerController : MonoBehaviour {
         isAiming = false;
         isGrapplingTo = false;
         isGrapplingFrom = false;
+        freezeEnabled = false;
+        flameEnabled = false;
+        grappleEnabled = false;
     }
 
     // Update is called once per frame
@@ -82,15 +88,15 @@ public class PlayerController : MonoBehaviour {
             arrowType = ArrowType.Standard;
             UIManager.getInstance().SetActive(ArrowType.Standard);
             print(arrowType);
-        } else if (Input.GetKeyDown(KeyCode.Alpha2) && canGrapple) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) && grappleEnabled && canGrapple) {
             arrowType = ArrowType.Grapple;
             UIManager.getInstance().SetActive(ArrowType.Grapple);
             print(arrowType);
-        } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && freezeEnabled) {
             arrowType = ArrowType.Freeze;
             UIManager.getInstance().SetActive(ArrowType.Freeze);
             print(arrowType);
-        } else if (Input.GetKeyDown(KeyCode.Alpha4)) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha4) && flameEnabled) {
             arrowType = ArrowType.Flame;
             UIManager.getInstance().SetActive(ArrowType.Flame);
             print(arrowType);
@@ -232,6 +238,21 @@ public class PlayerController : MonoBehaviour {
         isGrapplingFrom = false;
         line.positionCount = 0;
         canGrapple = false;
+    }
+
+    public void UnlockFreeze() {
+        freezeEnabled = true;
+        UIManager.getInstance().EnableFreeze();
+    }
+
+    public void UnlockFlame() {
+        flameEnabled = true;
+        UIManager.getInstance().EnableFlame();
+    }
+
+    public void UnlockGrapple() {
+        grappleEnabled = true;
+        UIManager.getInstance().EnableGrapple();
     }
 
     //cooldown time for the shooting, set to 3 seconds to wait

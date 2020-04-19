@@ -7,6 +7,7 @@ public class Floater : MonoBehaviour
 
     [SerializeField] private float speed = 0.02f;
     [SerializeField] private float height = 0.05f;
+    [SerializeField] private float rotationSpeed = 0.0f;
     private float startY;
     private bool canChange;
 
@@ -29,6 +30,11 @@ public class Floater : MonoBehaviour
         }
         float newY = currentPos.y + speed * Time.deltaTime;
         transform.position = new Vector3(currentPos.x, newY, currentPos.z);
+
+        if (rotationSpeed != 0) {
+            transform.Rotate(0.0f, rotationSpeed * Time.deltaTime, 0.0f, Space.World);
+        }
+        
     }
 
     IEnumerator WaitTimeForFloat()
