@@ -18,7 +18,10 @@ public class PressurePlate : Activator
     void Start()
     {
         rend = GetComponentsInChildren<Renderer>();
-        rend[0].material.SetColor("_EmissionColor", offColor);
+        for (int i = 0; i < rend.Length; i++) {
+            rend[i].material.SetColor("_EmissionColor", offColor);
+        }
+        
 
         if (startOn)
         {
@@ -35,7 +38,10 @@ public class PressurePlate : Activator
             {
                 activate();
                 hasActivated = true;
-                rend[0].material.SetColor("_EmissionColor", onColor);
+                for (int i = 0; i < rend.Length; i++)
+                {
+                    rend[i].material.SetColor("_EmissionColor", onColor);
+                }
             }
         }
     }
