@@ -55,15 +55,24 @@ public class ArrowInteraction : MonoBehaviour
     // Freezable Specific Fields //
     [Header ("Freezable Fields")]
     // How long until it takes to thaw
-    [SerializeField] private int thawTime;
-    // If the object is frozen or not
-    bool isFrozen = false;
+    [SerializeField] private float thawTime;
     // Ice material
     [SerializeField] private Material iceMat;
     // Normal material of object
-    Material normalMat;
+    [SerializeField] private Rigidbody rigidBody;
 
+    // If the object is frozen or not
+    private bool isFrozen = false;
+    private Renderer matRenderer;
+    private Material normalMat;
+    private float thawCountdown;
 
+    private void Awake()
+    {
+        matRenderer = GetComponent<Renderer>();
+        normalMat = matRenderer.material;
+        isFrozen = false;
+    }
 
     /**
      * Breaks block into smaller blocks
@@ -101,7 +110,7 @@ public class ArrowInteraction : MonoBehaviour
     /*
      * Catches fire
      */
-    public void catchFire()
+    public bool catchFire()
     {
         if (flamable && !isOnFire)
         {
@@ -122,23 +131,32 @@ public class ArrowInteraction : MonoBehaviour
             {
                 firePS.Clear();
             }
+            return true;
+        } else {
+            return false;
         }
     }
 
     /*
      * Freezes object in place for a certain amount of time
      */
-    public void freeze()
+    public bool freeze()
     {
         if (freezable)
         {
             isFrozen = true;
             // Change material to ice
-            normalMat = this.gameObject.GetComponent<Material>();
-            //this.gameObject.GetComponent<Material>() = iceMat;
-            //this.gameObject.GetComponent < Material > = iceMat;
-
+            matRenderer.material = iceMat;
+            thawCountdown = thawTime;
+            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
         }
+        return freezable;
+    }
+
+    private void Unfreeze() {
+        isFrozen = false;
+        matRenderer.material = normalMat;
+        rigidBody.constraints = RigidbodyConstraints.None;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -159,6 +177,13 @@ public class ArrowInteraction : MonoBehaviour
     // Used to spread fire
     private void Update()
     {
+        if (isFrozen) {
+            thawCountdown -= Time.deltaTime;
+            if (thawCountdown <= 0) {
+                Unfreeze();
+            }
+        }
+
         if (flamable && isOnFire)
         {
             // Check to see if adjacent objects are on fire

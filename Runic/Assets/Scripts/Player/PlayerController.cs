@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float speed = 12f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 3f;
-    [SerializeField] private float grappleCooldown = 8f;
+    [SerializeField] private float grappleCooldown = 3f;
+    [SerializeField] private float freezeCooldown = 5f;
+    [SerializeField] private float flameCooldown = 5f;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowSpawn;
     [SerializeField] private float shootingForce;
@@ -27,6 +29,8 @@ public class PlayerController : MonoBehaviour {
     private Vector3 startCamPos;
     private bool justShot;
     private bool canGrapple;
+    private bool canFreeze;
+    private bool canFlame;
     private Vector3 velocity;
     private bool isGrounded;
     private bool isAiming;
@@ -60,6 +64,8 @@ public class PlayerController : MonoBehaviour {
         arrowType = ArrowType.Standard;
         justShot = false;
         canGrapple = true;
+        canFreeze = true;
+        canFlame = true;
         isGrounded = true;
         isAiming = false;
         isGrapplingTo = false;
@@ -92,11 +98,11 @@ public class PlayerController : MonoBehaviour {
             arrowType = ArrowType.Grapple;
             UIManager.getInstance().SetActive(ArrowType.Grapple);
             print(arrowType);
-        } else if (Input.GetKeyDown(KeyCode.Alpha3) && freezeEnabled) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && freezeEnabled && canFreeze) {
             arrowType = ArrowType.Freeze;
             UIManager.getInstance().SetActive(ArrowType.Freeze);
             print(arrowType);
-        } else if (Input.GetKeyDown(KeyCode.Alpha4) && flameEnabled) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha4) && flameEnabled && canFlame) {
             arrowType = ArrowType.Flame;
             UIManager.getInstance().SetActive(ArrowType.Flame);
             print(arrowType);
@@ -240,6 +246,27 @@ public class PlayerController : MonoBehaviour {
         canGrapple = false;
     }
 
+    public void StartFreezeCooldown() {
+        UIManager ui = UIManager.getInstance();
+        ui.HideFreezeIcon();
+        arrowType = ArrowType.Standard;
+        ui.SetActive(ArrowType.Standard);
+        canFreeze = false;
+        ui.FadeInFreezeIcon(freezeCooldown);
+        StartCoroutine(WaitTimeForFreeze());
+    }
+
+    public void StartFlameCooldown()
+    {
+        UIManager ui = UIManager.getInstance();
+        ui.HideFlameIcon();
+        arrowType = ArrowType.Standard;
+        ui.SetActive(ArrowType.Standard);
+        canFlame = false;
+        ui.FadeInFlameIcon(flameCooldown);
+        StartCoroutine(WaitTimeForFlame());
+    }
+
     public void UnlockFreeze() {
         freezeEnabled = true;
         UIManager.getInstance().EnableFreeze();
@@ -266,6 +293,17 @@ public class PlayerController : MonoBehaviour {
     {
         yield return new WaitForSeconds(grappleCooldown);
         canGrapple = true; ;
+    }
+
+    IEnumerator WaitTimeForFreeze() {
+        yield return new WaitForSeconds(freezeCooldown);
+        canFreeze = true;
+    }
+
+    IEnumerator WaitTimeForFlame()
+    {
+        yield return new WaitForSeconds(flameCooldown);
+        canFlame = true;
     }
 
     private void OnTriggerEnter(Collider other)

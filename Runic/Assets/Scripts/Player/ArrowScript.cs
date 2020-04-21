@@ -86,14 +86,18 @@ public class ArrowScript : MonoBehaviour
                 case ArrowType.Flame:
                     if (collision.gameObject.tag == "Interactable")
                     {
-                        collision.gameObject.GetComponent<ArrowInteraction>().catchFire();
+                        if (collision.gameObject.GetComponent<ArrowInteraction>().catchFire()) {
+                            shooterController.StartFlameCooldown();
+                        }
                     }
                     break;
 
                 case ArrowType.Freeze:
                     if (collision.gameObject.tag == "Interactable")
                     {
-                        collision.gameObject.GetComponent<ArrowInteraction>().freeze();
+                        if (collision.gameObject.GetComponent<ArrowInteraction>().freeze()) {
+                            shooterController.StartFreezeCooldown();
+                        }
                     }
                     break;
             }

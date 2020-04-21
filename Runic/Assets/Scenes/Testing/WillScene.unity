@@ -156,19 +156,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   breakable: 0
   pullable: 0
-  flamable: 0
-  freezable: 0
+  flamable: 1
+  freezable: 1
   fracturedBlock: {fileID: 0}
   scaleFactor: 0.5
   pullSpeed: 4
   prewarm: 0
-  fireType: {fileID: 0}
+  fireType: {fileID: 1208955778000141992, guid: 86bd9e169f65cde48b7cb6fb1dd0407a,
+    type: 3}
   fireScaleFactor: 1
   fireCenter: {x: 0, y: 0, z: 0}
   burnoutTime: 0
   fireSpread: 10
-  thawTime: 0
-  iceMat: {fileID: 0}
+  thawTime: 5
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBody: {fileID: 21250880}
 --- !u!54 &21250880
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -613,19 +615,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   breakable: 0
   pullable: 1
-  flamable: 0
+  flamable: 1
   freezable: 0
   fracturedBlock: {fileID: 0}
   scaleFactor: 0.5
   pullSpeed: 4
   prewarm: 0
-  fireType: {fileID: 0}
+  fireType: {fileID: 568223893636643920, guid: 47662dfa8cfc0bd49be71d0d5e2d294d, type: 3}
   fireScaleFactor: 1
   fireCenter: {x: 0, y: 0, z: 0}
   burnoutTime: 0
   fireSpread: 10
   thawTime: 0
   iceMat: {fileID: 0}
+  rigidBody: {fileID: 0}
 --- !u!135 &1268151206
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -895,6 +898,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 432106673, guid: ce6a8b9e70c0a114597585b6effab4ec, type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2127755326, guid: ce6a8b9e70c0a114597585b6effab4ec, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2127755326, guid: ce6a8b9e70c0a114597585b6effab4ec, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2127755326, guid: ce6a8b9e70c0a114597585b6effab4ec, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2127755326, guid: ce6a8b9e70c0a114597585b6effab4ec, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1450146086005168386, guid: ce6a8b9e70c0a114597585b6effab4ec,

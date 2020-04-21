@@ -3,7 +3,12 @@ guid: 5f26b0a774d968f459fe38da8fe4b0b8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - fracturedBlock: {instanceID: 0}
+  - fireType: {instanceID: 0}
+  - iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  - normalMat: {instanceID: 0}
+  - rigidBody: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
