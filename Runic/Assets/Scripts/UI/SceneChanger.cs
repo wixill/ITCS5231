@@ -11,8 +11,12 @@ public class SceneChanger : MonoBehaviour
         // When player enters trigger, switch to the desired next scene
         if (other.gameObject.CompareTag("Player"))
         {
-            anim.SetTrigger("FadeOut");
+            FadeOut();
         }
+    }
+
+    public void FadeOut() {
+        anim.SetTrigger("FadeOut");
     }
 
     public void onFadeComplete()

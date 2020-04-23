@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] SceneChanger sceneChanger;
     private static MainMenu instance;
 
     private void Awake()
@@ -29,8 +30,9 @@ public class MainMenu : MonoBehaviour
     }
 
     public void PlayGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Cursor.lockState = CursorLockMode.Locked;
+        sceneChanger.FadeOut();
     }
 
     public void QuitGame() {
