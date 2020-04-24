@@ -11,6 +11,21 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float distanceOffset;
     [SerializeField] private float angleOffset;
+    [SerializeField] private float shootingForce;
+    [SerializeField] private Animator boots;
+    [SerializeField] private Animator headgear;
+    [SerializeField] private Animator belt;
+    [SerializeField] private Animator cape;
+    [SerializeField] private Animator chestplates;
+    [SerializeField] private Animator gloves;
+    [SerializeField] private Animator handpads;
+    [SerializeField] private Animator kneepads;
+    [SerializeField] private Animator quiver;
+    [SerializeField] private Animator shoulder;
+    [SerializeField] private Animator skirt;
+    [SerializeField] private Animator tabard;
+    [SerializeField] private Animator bow;
+    public GameObject arrowPrefab;
 
 
     private float maxSpeed;
@@ -26,7 +41,10 @@ public class EnemyScript : MonoBehaviour
     Quaternion pRotate;
 
     bool moving = false;
- 
+    bool ready = false;
+    bool loading = false;
+    bool shooting = false;
+    bool wait = false;
 
 
     // Start is called before the first frame update
@@ -44,31 +62,49 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         //goes to the target location
+
         GoToTargetPos();
 
         if (trans.position == targetPosition)
         {
-            rb.velocity = Vector3.zero;
             moving = false;
+            rb.velocity = Vector3.zero;
             anim.SetBool("isMoving", moving);
+            boots.SetBool("isMoving", moving);
+            headgear.SetBool("isMoving", moving);
+            belt.SetBool("isMoving", moving);
+            cape.SetBool("isMoving", moving);
+            chestplates.SetBool("isMoving", moving);
+            gloves.SetBool("isMoving", moving);
+            handpads.SetBool("isMoving", moving);
+            kneepads.SetBool("isMoving", moving);
+            quiver.SetBool("isMoving", moving);
+            shoulder.SetBool("isMoving", moving);
+            skirt.SetBool("isMoving", moving);
+            tabard.SetBool("isMoving", moving);
+            bow.SetBool("isMoving", moving);
+        }
+
+        if (moving)
+        {
+            MovePlayer();
         }
 
         else
         {
-
-            //will move the character if moving is true
-            if (moving)
+            StartCoroutine(WaitToShoot());
+            if (wait)
             {
-                MovePlayer();
-
-            }
-
-            else
-            {
+                
                 Shoot();
             }
         }
+
+      
     }
+
+ 
+    
 
     // the function to set the target position
     void GoToTargetPos()
@@ -87,7 +123,7 @@ public class EnemyScript : MonoBehaviour
         targetPosition = new Vector3(targetPosition.x, 0f, targetPosition.z);
         //allows the character to rotate to the target position
         pRotate = Quaternion.LookRotation(seeTarget);
-        moving = true;     
+        moving = true;
     }
 
     void MovePlayer()
@@ -102,23 +138,39 @@ public class EnemyScript : MonoBehaviour
 
         //sets the boolean in Animator. since moving is true, this will make the enemy move
         anim.SetBool("isMoving", moving);
+        boots.SetBool("isMoving", moving);
+        headgear.SetBool("isMoving", moving);
+        belt.SetBool("isMoving", moving);
+        cape.SetBool("isMoving", moving);
+        chestplates.SetBool("isMoving", moving);
+        gloves.SetBool("isMoving", moving);
+        handpads.SetBool("isMoving", moving);
+        kneepads.SetBool("isMoving", moving);
+        quiver.SetBool("isMoving", moving);
+        shoulder.SetBool("isMoving", moving);
+        skirt.SetBool("isMoving", moving);
+        tabard.SetBool("isMoving", moving);
+        bow.SetBool("isMoving", moving);
     }
-
+    
     void Shoot()
     {
-        //shooting code will go here
-        WaitToShoot();
+        Vector3 shootingV = new Vector3(trans.position.x - .5f, trans.position.y + 1f, trans.position.z-.5f);
+        GameObject a = Instantiate(arrowPrefab) as GameObject;
+        a.transform.position = shootingV;
+        Rigidbody b = a.GetComponent<Rigidbody>();
+        //a.transform.Rotate(90.0f, 0.0f, 0.0f, Space.Self);
+        b.velocity = trans.forward * 10f;
+        wait = false;
 
-        //GameObject newArrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.identity);
-        //ArrowScript arrow = newArrow.GetComponent<ArrowScript>();
-        //arrow.setType(arrowType);
-        //Rigidbody rb = newArrow.GetComponent<Rigidbody>();
-        //rb.velocity = cam.transform.forward * shootingForce;
     }
-
+    
     IEnumerator WaitToShoot()
     {
-        yield return new WaitForSeconds(1f);
+        wait = true;
+        yield return new WaitForSeconds(10);
+ 
     }
+ 
 }
 
