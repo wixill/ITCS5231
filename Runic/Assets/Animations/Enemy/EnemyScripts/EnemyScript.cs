@@ -27,6 +27,8 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private Animator bow;
     public GameObject arrowPrefab;
 
+    private float timeBetweenShots;
+    public float startTimeBetweenShots;
 
     private float maxSpeed;
     private float radiusOfSat;
@@ -55,6 +57,7 @@ public class EnemyScript : MonoBehaviour
         radiusOfSat = 1f;
         turnSpeed = 3f;
         maxSpeed = 1.5f;
+        timeBetweenShots = startTimeBetweenShots;
 
     }
 
@@ -64,6 +67,7 @@ public class EnemyScript : MonoBehaviour
         //goes to the target location
 
         GoToTargetPos();
+
 
         if (trans.position == targetPosition)
         {
@@ -92,11 +96,16 @@ public class EnemyScript : MonoBehaviour
 
         else
         {
-            StartCoroutine(WaitToShoot());
-            if (wait)
+            
+            if (timeBetweenShots <= 0)
             {
                 
                 Shoot();
+                timeBetweenShots = startTimeBetweenShots;
+            }
+            else
+            {
+                timeBetweenShots -= Time.deltaTime;
             }
         }
 
@@ -155,22 +164,16 @@ public class EnemyScript : MonoBehaviour
     
     void Shoot()
     {
-        Vector3 shootingV = new Vector3(trans.position.x - .5f, trans.position.y + 1f, trans.position.z-.5f);
+        Vector3 shootingV = new Vector3(trans.position.x+0.7f, 1f, trans.position.z - 0.5f);
         GameObject a = Instantiate(arrowPrefab) as GameObject;
         a.transform.position = shootingV;
         Rigidbody b = a.GetComponent<Rigidbody>();
-        //a.transform.Rotate(90.0f, 0.0f, 0.0f, Space.Self);
-        b.velocity = trans.forward * 10f;
+        //a.transform.Rotate(.5f, 0.0f, 0.0f, Space.Self);
+        b.velocity = trans.forward * 20f;
         wait = false;
 
     }
-    
-    IEnumerator WaitToShoot()
-    {
-        wait = true;
-        yield return new WaitForSeconds(10);
  
-    }
  
 }
 
