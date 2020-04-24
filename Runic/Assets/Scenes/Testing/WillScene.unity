@@ -166,7 +166,7 @@ MonoBehaviour:
     type: 3}
   fireScaleFactor: 1
   fireCenter: {x: 0, y: 0, z: 0}
-  burnoutTime: 0
+  burnoutTime: 5
   fireSpread: 10
   thawTime: 5
   iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
@@ -404,7 +404,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 4.53e-43, y: -2.5309906, z: 4.53e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

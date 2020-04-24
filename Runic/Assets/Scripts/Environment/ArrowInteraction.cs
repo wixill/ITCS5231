@@ -42,14 +42,14 @@ public class ArrowInteraction : MonoBehaviour
     // Where should the fire's center be
     [SerializeField] private Vector3 fireCenter;
     // Should the fire die out? If so, how quickly? -1 for no, any positive int for how fast it should die out
-    [SerializeField] private int burnoutTime;
+    [SerializeField] private float burnoutTime;
     // Used to spread fire
     private bool isOnFire = false;
     // Used to detect surrounding (flamable) objects
     Collider[] adjacentObjects = null;
     // How far away does an object need to be to catch fire from an already ignited object
     private float fireJumpDist = 0.75f;
-    // How long it takes so spread the fire
+    // How long it takes to spread the fire
     [SerializeField] private float fireSpread = 500;
 
     // Freezable Specific Fields //
@@ -63,15 +63,18 @@ public class ArrowInteraction : MonoBehaviour
 
     // If the object is frozen or not
     private bool isFrozen = false;
+    private bool foreverBurn = false;
     private Renderer matRenderer;
     private Material normalMat;
     private float thawCountdown;
+    private GameObject fire;
 
     private void Awake()
     {
         matRenderer = GetComponent<Renderer>();
         normalMat = matRenderer.material;
         isFrozen = false;
+        if (burnoutTime <= 0) foreverBurn = true;
     }
 
     /**
@@ -121,7 +124,7 @@ public class ArrowInteraction : MonoBehaviour
             {
                 fc = new Vector3(fc.x + fireCenter.x, fc.y + fireCenter.y, fc.z + fireCenter.z);
             }
-            GameObject fire = Instantiate(fireType, fc, transform.rotation);
+            fire = Instantiate(fireType, fc, transform.rotation);
             // Scale lenght and width but not height
             fire.transform.localScale = new Vector3(this.transform.localScale.x * fireScaleFactor, fire.transform.localScale.y, this.transform.localScale.z * fireScaleFactor);
 
@@ -186,6 +189,23 @@ public class ArrowInteraction : MonoBehaviour
 
         if (flamable && isOnFire)
         {
+            if (burnoutTime > 0) {
+                burnoutTime -= Time.deltaTime;
+            } else if (!foreverBurn) {
+                // When its time to destroy, quickly fade out then destroy object
+                Color tempColor = matRenderer.material.color;
+                tempColor.a -= Time.deltaTime;
+                if (tempColor.a >= 0)
+                {
+                    matRenderer.material.color = tempColor;
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                    if (fire != null) Destroy(fire);
+                }
+            }
+
             // Check to see if adjacent objects are on fire
             if(adjacentObjects == null)
             {

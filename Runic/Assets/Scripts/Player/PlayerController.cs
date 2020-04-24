@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Transform arrowSpawn;
     [SerializeField] private float shootingForce;
     [SerializeField] private LineRenderer line;
+    [SerializeField] private bool freezeEnabled = false;
+    [SerializeField] private bool flameEnabled = false;
+    [SerializeField] private bool grappleEnabled = false;
 
     private static PlayerController instance = null;
     private Vector3 lastPos;
@@ -39,9 +42,6 @@ public class PlayerController : MonoBehaviour {
     private ArrowType arrowType;
     private Vector3 grapplePoint;
     private GameObject objectToPull;
-    private bool freezeEnabled;
-    private bool flameEnabled;
-    private bool grappleEnabled;
 
     private void Awake()
     {
@@ -70,9 +70,9 @@ public class PlayerController : MonoBehaviour {
         isAiming = false;
         isGrapplingTo = false;
         isGrapplingFrom = false;
-        freezeEnabled = false;
-        flameEnabled = false;
-        grappleEnabled = false;
+        if (freezeEnabled) UnlockFreeze();
+        if (flameEnabled) UnlockFlame();
+        if (grappleEnabled) UnlockGrapple();
     }
 
     // Update is called once per frame
@@ -188,6 +188,9 @@ public class PlayerController : MonoBehaviour {
             Vector3 move = transform.right * x + transform.forward * z;
             controller.Move(move * speed * Time.deltaTime);
             velocity.y += gravity * Time.deltaTime;
+        } else {
+            Vector3 move = transform.right * x + transform.forward * z; 
+            controller.Move(move * (speed/3) * Time.deltaTime);
         }
         controller.Move(velocity * Time.deltaTime);
 
