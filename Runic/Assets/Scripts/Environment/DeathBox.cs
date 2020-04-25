@@ -13,8 +13,8 @@ public class DeathBox : MonoBehaviour
         Debug.Log("DEATH TRIGGERED");
         if (other.gameObject.CompareTag("Player")){
             Debug.Log("PLAYER DIES");
-            string currentSceen = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceen);
+            //string currentSceen = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         } else if (other.gameObject.CompareTag("Destroyable"))
         {
             Destroy(other.gameObject);

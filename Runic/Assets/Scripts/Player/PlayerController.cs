@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour {
     private Vector3 grapplePoint;
     private GameObject objectToPull;
 
+    private CheckpointManager cm;
+
     private void Awake()
     {
         if (instance == null) {
@@ -62,6 +64,7 @@ public class PlayerController : MonoBehaviour {
         lastPos = Vector3.zero;
         startCamPos = new Vector3(0, 1.868f, 0.273f);
         arrowType = ArrowType.Standard;
+
         justShot = false;
         canGrapple = true;
         canFreeze = true;
@@ -73,6 +76,20 @@ public class PlayerController : MonoBehaviour {
         if (freezeEnabled) UnlockFreeze();
         if (flameEnabled) UnlockFlame();
         if (grappleEnabled) UnlockGrapple();
+
+        //transform.position = new Vector3(-1.7f, 22.6f, 40f);
+
+        /**
+        cm = GameObject.FindGameObjectWithTag("checkpointManager").GetComponent<CheckpointManager>();
+        print("cm pos = " + cm.checkpointPos);
+        if(cm.checkpointPos != Vector3.zero)
+        {
+            print("In cp pos, pos = " + cm.checkpointPos);
+            transform.position = cm.checkpointPos;
+            print("Actual pos = " + transform.position);
+        }
+        */
+        
     }
 
     // Update is called once per frame
@@ -320,4 +337,5 @@ public class PlayerController : MonoBehaviour {
             grapplePoint = Vector3.zero;
         }
     }
+
 }

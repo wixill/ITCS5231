@@ -9,6 +9,7 @@ TagManager:
   - Arrow
   - Interactable
   - Destroyable
+  - checkpointManager
   layers:
   - Default
   - TransparentFX
