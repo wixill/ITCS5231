@@ -26,6 +26,7 @@ public class EnemyArrow : MonoBehaviour
         if (!hitSomething)
         {
             trans.rotation = Quaternion.LookRotation(rb.velocity);
+            transform.Rotate(20f, 0.0f, 0.0f, Space.World);
         }
         
     }
