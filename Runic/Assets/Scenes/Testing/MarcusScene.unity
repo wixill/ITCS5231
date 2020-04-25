@@ -660,6 +660,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 55927a9aa18a355428322f6e2cc97a3e, type: 2}
+    - target: {fileID: 983485294422079504, guid: 37e6fcc94a713f344887bd307c5b46c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 983485294982545074, guid: 37e6fcc94a713f344887bd307c5b46c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -785,6 +790,7 @@ MonoBehaviour:
   bow: {fileID: 882883492}
   arrowPrefab: {fileID: 5215654917819680247, guid: 26910fb3f9b84d145ac3bd551cb51429,
     type: 3}
+  startTimeBetweenShots: 1.52
 --- !u!54 &1544492635
 Rigidbody:
   m_ObjectHideFlags: 0
