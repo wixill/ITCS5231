@@ -33,6 +33,7 @@ public class EnemyScript : MonoBehaviour
     private float maxSpeed;
     private float radiusOfSat;
     private float turnSpeed;
+    int hiddenArrows = 1;
     //Vector that will hold the target position
     Vector3 targetPosition;
     Vector3 targetPoint;
@@ -47,6 +48,8 @@ public class EnemyScript : MonoBehaviour
     bool loading = false;
     bool shooting = false;
     bool wait = false;
+
+    int showArrow = 0;
 
 
     // Start is called before the first frame update
@@ -92,19 +95,22 @@ public class EnemyScript : MonoBehaviour
         if (moving)
         {
             MovePlayer();
+            timeBetweenShots = startTimeBetweenShots;
         }
 
         else
         {
-            
+
             if (timeBetweenShots <= 0)
             {
-                
-                Shoot();
-                timeBetweenShots = startTimeBetweenShots;
+               
+                    Shoot();
+                    timeBetweenShots = startTimeBetweenShots;
+  
             }
             else
             {
+               
                 timeBetweenShots -= Time.deltaTime;
             }
         }
@@ -164,13 +170,19 @@ public class EnemyScript : MonoBehaviour
     
     void Shoot()
     {
-        Vector3 shootingV = new Vector3(trans.position.x+0.7f, 1f, trans.position.z - 0.5f);
-        GameObject a = Instantiate(arrowPrefab) as GameObject;
-        a.transform.position = shootingV;
-        Rigidbody b = a.GetComponent<Rigidbody>();
-        //a.transform.Rotate(.5f, 0.0f, 0.0f, Space.Self);
-        b.velocity = trans.forward * 20f;
-        wait = false;
+     
+       
+
+            Vector3 shootingV = new Vector3(trans.position.x + 0.55f, 1.1f, trans.position.z - 0.5f);
+            GameObject a = Instantiate(arrowPrefab) as GameObject;
+
+            a.transform.position = shootingV;
+            Rigidbody b = a.GetComponent<Rigidbody>();
+            b.velocity = trans.forward * 20f;
+            wait = false;
+     
+        
+    
 
     }
  
