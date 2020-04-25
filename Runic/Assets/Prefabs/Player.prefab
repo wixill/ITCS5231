@@ -2734,11 +2734,16 @@ MonoBehaviour:
   gravity: -19.62
   jumpHeight: 3
   grappleCooldown: 3
+  freezeCooldown: 5
+  flameCooldown: 5
   arrowPrefab: {fileID: 8502519903798260032, guid: 21c1777c758e9444d8fa4af1f7f0aa66,
     type: 3}
   arrowSpawn: {fileID: 2011978072}
   shootingForce: 30
   line: {fileID: 1468321699}
+  freezeEnabled: 0
+  flameEnabled: 0
+  grappleEnabled: 1
 --- !u!54 &1427259615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2765,10 +2770,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.75
-  m_Height: 1.75
+  m_Radius: 0.53
+  m_Height: 1.49
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Center: {x: 0, y: 1.14, z: 0}
 --- !u!1 &1450146086441814675
 GameObject:
   m_ObjectHideFlags: 0
