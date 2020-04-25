@@ -48,9 +48,11 @@ public class ArrowInteraction : MonoBehaviour
     // Used to detect surrounding (flamable) objects
     Collider[] adjacentObjects = null;
     // How far away does an object need to be to catch fire from an already ignited object
-    private float fireJumpDist = 0.75f;
+    [SerializeField] private Vector3 fireJumpDist;
     // How long it takes to spread the fire
     [SerializeField] private float fireSpread = 500;
+    // Can it spread fire?
+    private bool canSpread = false;
 
     // Freezable Specific Fields //
     [Header ("Freezable Fields")]
@@ -75,6 +77,7 @@ public class ArrowInteraction : MonoBehaviour
         normalMat = matRenderer.material;
         isFrozen = false;
         if (burnoutTime <= 0) foreverBurn = true;
+        if (fireSpread > 0) canSpread = true;
     }
 
     /**
@@ -174,7 +177,7 @@ public class ArrowInteraction : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, fireJumpDist);
+        Gizmos.DrawWireCube(transform.position, fireJumpDist);
     }
 
     // Used to spread fire
@@ -209,20 +212,19 @@ public class ArrowInteraction : MonoBehaviour
             // Check to see if adjacent objects are on fire
             if(adjacentObjects == null)
             {
-                adjacentObjects = Physics.OverlapSphere(transform.position, fireJumpDist);
+                adjacentObjects = Physics.OverlapBox(transform.position, fireJumpDist);
                 Debug.Log("Adj objects " + adjacentObjects.Length);
-            } else if (fireSpread >= 0){
-                if (fireSpread == 0)
+            } else if (fireSpread <= 0) {
+                for (int i = 0; i < adjacentObjects.Length; i++)
                 {
-                    for (int i = 0; i < adjacentObjects.Length; i++)
+                    if (adjacentObjects[i].gameObject.tag == "Interactable")
                     {
-                        if (adjacentObjects[i].gameObject.tag == "Interactable")
-                        {
-                            Debug.Log("SPREADING");
-                            adjacentObjects[i].SendMessage("catchFire");
-                        }
+                        Debug.Log("SPREADING");
+                        adjacentObjects[i].SendMessage("catchFire");
                     }
                 }
+                adjacentObjects = null;
+            } else {
                 fireSpread -= Time.deltaTime;
             }
         }
