@@ -65,8 +65,8 @@ MonoBehaviour:
   - {fileID: 0}
   startOn: 0
   isToggleable: 1
-  offColor: {r: 1, g: 1, b: 1, a: 0}
-  onColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0}
+  offColor: {r: 0.5849056, g: 0.5849056, b: 0.7882353, a: 0}
+  onColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1001 &4330155372299242551
 PrefabInstance:
   m_ObjectHideFlags: 0
