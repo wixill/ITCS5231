@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1921e09c7533f47b3b5300163065bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyCountdown: 3
+  destroyCountdown: 1
   startTrigger:
   - Start
   - Collision
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1921e09c7533f47b3b5300163065bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyCountdown: 3
+  destroyCountdown: 1
   startTrigger:
   - Start
   - Collision
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1921e09c7533f47b3b5300163065bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyCountdown: 3
+  destroyCountdown: 1
   startTrigger:
   - Start
   - Collision
@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1921e09c7533f47b3b5300163065bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyCountdown: 3
+  destroyCountdown: 1
   startTrigger:
   - Start
   - Collision
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1921e09c7533f47b3b5300163065bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyCountdown: 3
+  destroyCountdown: 1
   startTrigger:
   - Start
   - Collision
@@ -798,7 +798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1921e09c7533f47b3b5300163065bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyCountdown: 3
+  destroyCountdown: 1
   startTrigger:
   - Start
   - Collision
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1921e09c7533f47b3b5300163065bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyCountdown: 3
+  destroyCountdown: 1
   startTrigger:
   - Start
   - Collision
@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1921e09c7533f47b3b5300163065bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyCountdown: 3
+  destroyCountdown: 1
   startTrigger:
   - Start
   - Collision

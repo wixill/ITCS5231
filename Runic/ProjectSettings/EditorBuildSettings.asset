@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/OutsideCastle.unity
     guid: cfa2cb93ca724d44fa9d570a60b480c2
   - enabled: 1
-    path: Assets/Scenes/InsideCastle.unity
+    path: Assets/Scenes/GrapplePuzzle.unity
     guid: 42cb8b5b6cceba249a6ca88c194f2188
   m_configObjects: {}

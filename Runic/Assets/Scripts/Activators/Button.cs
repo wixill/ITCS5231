@@ -21,7 +21,10 @@ public class Button : Activator
     void Start()
     {
         rend = GetComponentsInChildren<Renderer>();
-        rend[0].material.SetColor("_EmissionColor", offColor);
+        for (int i = 0; i < rend.Length; i++)
+        {
+            rend[i].material.SetColor("_EmissionColor", offColor);
+        }
 
         if (startOn)
         {
@@ -30,42 +33,33 @@ public class Button : Activator
         }
     }
 
-    // When player gets near the button, display "E" to interact if the button can be activated
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Entered collider box");
 
-        if(!hasActivated || isToggleable)
-        {
-            Debug.Log("press E to interact");
-        }
-        
-    }
-
-    // If the player is near button and they press E, then activate button
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (!hasActivated || isToggleable)
-        {
-            if (Input.GetButtonDown("Interact"))
+        if(collision.gameObject.tag == "Arrow"){
+            if (!hasActivated || isToggleable)
             {
-                activate();
-                hasActivated = true;
-                if (rend[0].material.GetColor("_EmissionColor") == offColor)
-                {
-                    rend[0].material.SetColor("_EmissionColor", onColor);
-                }
-                else
-                {
-                    rend[0].material.SetColor("_EmissionColor", offColor);
+                ArrowType aType = collision.gameObject.GetComponent<ArrowScript>().getType();
+                if (aType == ArrowType.Standard) {
+                    activate();
+                    hasActivated = true;
+                    if (rend[0].material.GetColor("_EmissionColor") == offColor)
+                    {
+                        for (int i = 0; i < rend.Length; i++)
+                        {
+                            rend[i].material.SetColor("_EmissionColor", onColor);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < rend.Length; i++)
+                        {
+                            rend[i].material.SetColor("_EmissionColor", offColor);
+                        }
+                    }
                 }
             }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("player left button radius");
     }
-
 }

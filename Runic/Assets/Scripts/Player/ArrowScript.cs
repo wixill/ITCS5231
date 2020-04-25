@@ -108,4 +108,9 @@ public class ArrowScript : MonoBehaviour
     public void setType(ArrowType type) {
         this.type = type;
     }
+
+    public ArrowType getType()
+    {
+        return this.type;
+    }
 }

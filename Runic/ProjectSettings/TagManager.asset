@@ -8,6 +8,7 @@ TagManager:
   - Death
   - Arrow
   - Interactable
+  - Destroyable
   layers:
   - Default
   - TransparentFX

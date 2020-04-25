@@ -15,6 +15,9 @@ public class DeathBox : MonoBehaviour
             Debug.Log("PLAYER DIES");
             string currentSceen = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceen);
+        } else if (other.gameObject.CompareTag("Destroyable"))
+        {
+            Destroy(other.gameObject);
         }
     }
 }
