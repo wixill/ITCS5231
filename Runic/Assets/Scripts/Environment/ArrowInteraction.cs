@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
+using System;
 
 public class ArrowInteraction : MonoBehaviour
 
@@ -213,14 +214,18 @@ public class ArrowInteraction : MonoBehaviour
             if(adjacentObjects == null)
             {
                 adjacentObjects = Physics.OverlapBox(transform.position, fireJumpDist);
-                Debug.Log("Adj objects " + adjacentObjects.Length);
             } else if (fireSpread <= 0) {
                 for (int i = 0; i < adjacentObjects.Length; i++)
                 {
-                    if (adjacentObjects[i].gameObject.tag == "Interactable")
+                    try
                     {
-                        Debug.Log("SPREADING");
-                        adjacentObjects[i].SendMessage("catchFire");
+                        if (adjacentObjects[i].gameObject.tag == "Interactable")
+                        {
+                            adjacentObjects[i].SendMessage("catchFire");
+                        }
+                    } catch (Exception e)
+                    {
+                        print("error " + e);
                     }
                 }
                 adjacentObjects = null;

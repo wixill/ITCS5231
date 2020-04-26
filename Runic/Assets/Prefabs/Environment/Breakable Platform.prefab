@@ -124,7 +124,7 @@ MonoBehaviour:
   fracturedBlock: {fileID: 2173185435563131220, guid: 86441e0a8aa9d5b46890090e2e570d71,
     type: 3}
   scaleFactor: 0.5
-  breakCountdown: 5
+  breakCountdown: 1
 --- !u!114 &6708328557340175383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +150,8 @@ MonoBehaviour:
   fireScaleFactor: 1
   fireCenter: {x: 0, y: 0, z: 0}
   burnoutTime: 0
+  fireJumpDist: {x: 0, y: 0, z: 0}
   fireSpread: 500
   thawTime: 0
   iceMat: {fileID: 0}
+  rigidBody: {fileID: 0}

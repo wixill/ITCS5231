@@ -10,7 +10,6 @@ public class DeathBox : MonoBehaviour
     // TODO: Update to restart to checkpoint
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("DEATH TRIGGERED");
         if (other.gameObject.CompareTag("Player")){
             Debug.Log("PLAYER DIES");
             //string currentSceen = SceneManager.GetActiveScene().buildIndex;
