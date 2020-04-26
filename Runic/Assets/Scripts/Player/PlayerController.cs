@@ -132,9 +132,12 @@ public class PlayerController : MonoBehaviour {
                 Vector3[] positions = { model.bounds.center, grapplePoint };
                 line.SetPositions(positions);
                 isAiming = false;
-                player.position = Vector3.Lerp(player.position, grapplePoint, 5f * Time.deltaTime);
                 float dist = Vector3.Distance(player.position, grapplePoint);
+                Vector3 dif = (grapplePoint - player.position) / dist * 15f * Time.deltaTime;
+                controller.Move(dif);
+                //player.position = Vector3.Lerp(player.position, grapplePoint, 5f * Time.deltaTime);
                 //print("Distance: " + dist);
+                dist = Vector3.Distance(player.position, grapplePoint);
                 if (dist < 3) {
                     isGrapplingTo = false;
                     line.positionCount = 0;
@@ -335,14 +338,18 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isGrapplingTo && other.gameObject.layer != 9 && other.gameObject.tag != "Player" && other.gameObject.tag != "Arrow")
+        
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (isGrapplingTo && hit.gameObject.layer != 9 && hit.gameObject.tag != "Player" && hit.gameObject.tag != "Arrow")
         {
-            print("PLAYER COLLIDE WITH: " + other.gameObject.name);
+            print("PLAYER COLLIDE WITH: " + hit.gameObject.name);
             isGrapplingTo = false;
             line.positionCount = 0;
             canGrapple = false;
             grapplePoint = Vector3.zero;
         }
     }
-
 }
