@@ -11,7 +11,7 @@ public class DeathBox : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player")){
-            Debug.Log("PLAYER DIES");
+            Debug.Log("PLAYER DIES: " + other.transform.position);
             //string currentSceen = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         } else if (other.gameObject.CompareTag("Destroyable"))

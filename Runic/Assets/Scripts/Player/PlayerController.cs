@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         ApplyMovement(); // Applies gravity, do not put physics code before this.
         isAiming = (Input.GetMouseButton(1) && isGrounded);
-        print("y " + player.position.y);
+        //print("y " + player.position.y);
 
         if (isAiming) {
             Color tempColor = bow.material.color;
@@ -205,15 +205,16 @@ public class PlayerController : MonoBehaviour {
         if (!isGrapplingTo) {
             Vector3 move = transform.right * x + transform.forward * z;
             controller.Move(move * speed * Time.deltaTime);
-            velocity.y += gravity * Time.deltaTime;
+            if (!isGrounded) velocity.y += gravity * Time.deltaTime;
         } else {
             Vector3 move = transform.right * x + transform.forward * z; 
             controller.Move(move * (speed/3) * Time.deltaTime);
         }
-        controller.Move(velocity * Time.deltaTime);
+        
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask.value);
         if (isGrounded && velocity.y < 0) velocity.y = -2f;
+        controller.Move(velocity * Time.deltaTime);
     }
 
     /**
