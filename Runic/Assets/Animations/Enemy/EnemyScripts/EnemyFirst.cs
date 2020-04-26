@@ -38,7 +38,7 @@ public class EnemyFirst : MonoBehaviour
     void Update()
     {
         anim = GetComponent<Animator>();
-        LookatTarget();
+       // LookatTarget();
 
     }
 
