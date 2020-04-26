@@ -8,6 +8,8 @@ public class PressurePlate : Activator
     [SerializeField] private Color offColor;
     // Color when button is on
     [SerializeField] private Color onColor;
+    // Is reversed if it requires weight to be taken off of it
+    [SerializeField] private bool reversed;
 
     // Renderer
     private Renderer[] rend;
@@ -48,9 +50,26 @@ public class PressurePlate : Activator
 
     private void OnTriggerExit(Collider other)
     {
-        if (isToggleable)
+        if (reversed)
         {
-            rend[0].material.SetColor("_EmissionColor", offColor);
+            if(!hasActivated || isToggleable)
+            {
+                if(other.GetComponent<Rigidbody>().mass > 1)
+                {
+                    activate();
+                    hasActivated = true;
+                    for (int i = 0; i < rend.Length; i++)
+                    {
+                        rend[i].material.SetColor("_EmissionColor", onColor);
+                    }
+                }
+            }
+        } else
+        {
+            if (isToggleable)
+            {
+                rend[0].material.SetColor("_EmissionColor", offColor);
+            }
         }
     }
 }

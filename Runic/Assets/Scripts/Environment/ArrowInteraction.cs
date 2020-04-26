@@ -51,7 +51,7 @@ public class ArrowInteraction : MonoBehaviour
     // How far away does an object need to be to catch fire from an already ignited object
     [SerializeField] private Vector3 fireJumpDist;
     // How long it takes to spread the fire
-    [SerializeField] private float fireSpread = 500;
+    [SerializeField] private float fireSpread = 2;
     // Can it spread fire?
     private bool canSpread = false;
 
