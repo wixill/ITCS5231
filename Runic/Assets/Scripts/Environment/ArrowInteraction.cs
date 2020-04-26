@@ -232,7 +232,7 @@ public class ArrowInteraction : MonoBehaviour
                         } else if (adjacentObjects[i].gameObject.tag == "FireButton")
                         {
                             adjacentObjects[i].SendMessage("turnOn");
-                        } 
+                        }
                     } catch (Exception e)
                     {
                         print("error " + e);

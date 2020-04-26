@@ -11,6 +11,7 @@ TagManager:
   - Destroyable
   - checkpointManager
   - FireButton
+  - LightableTorch
   layers:
   - Default
   - TransparentFX

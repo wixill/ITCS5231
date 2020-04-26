@@ -83,7 +83,7 @@ public class PressurePlate : Activator
         {
             if (!hasActivated || isToggleable)
             {
-                if (other.GetComponent<Rigidbody>().mass > 1)
+                if (other.GetComponent<ArrowInteraction>().getPulled())
                 {
                     activate();
                     hasActivated = true;

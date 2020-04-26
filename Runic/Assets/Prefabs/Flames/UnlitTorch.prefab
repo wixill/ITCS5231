@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2751359855118516759}
   - component: {fileID: 2751359855119313863}
   - component: {fileID: 2751359855120799641}
-  - component: {fileID: 2751359855124600429}
   - component: {fileID: 1584530075105456891}
+  - component: {fileID: 2829827694657084553}
   m_Layer: 0
   m_Name: UnlitTorch
   m_TagString: LightableTorch
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &2751359855124600429
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2751359855118484235}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300520, guid: 628e5212ccbe5044ba8b70740d37394e, type: 3}
 --- !u!114 &1584530075105456891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +95,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3561ba3a8db6d1d4b94feedca4a13f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2829827694657084553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751359855118484235}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47608572, y: 0.9992721, z: 0.32194522}
+  m_Center: {x: -0.23804215, y: 0.16968596, z: 0.00000078976166}
 --- !u!1 &2751359855118488477
 GameObject:
   m_ObjectHideFlags: 0
