@@ -89,6 +89,12 @@ public class ArrowScript : MonoBehaviour
                         if (collision.gameObject.GetComponent<ArrowInteraction>().catchFire()) {
                             shooterController.StartFlameCooldown();
                         }
+                    } else if (collision.gameObject.tag == "LightableTorch")
+                    {
+                        if (collision.gameObject.GetComponent<LightTorch>().lightTorch())
+                        {
+                            shooterController.StartFlameCooldown();
+                        }
                     }
                     break;
 

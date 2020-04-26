@@ -50,6 +50,8 @@ public class ArrowInteraction : MonoBehaviour
     Collider[] adjacentObjects = null;
     // How far away does an object need to be to catch fire from an already ignited object
     [SerializeField] private Vector3 fireJumpDist;
+    // Offset for fireJumpDist
+    [SerializeField] private Vector3 jumpDistOffset;
     // How long it takes to spread the fire
     [SerializeField] private float fireSpread = 2;
     // Can it spread fire?
@@ -177,8 +179,12 @@ public class ArrowInteraction : MonoBehaviour
     // To visualize the range of fire spreading
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, fireJumpDist);
+        if (flamable)
+        {
+            Gizmos.color = Color.red;
+            Vector3 offsetPos = new Vector3(transform.position.x + jumpDistOffset.x, transform.position.y + jumpDistOffset.y, transform.position.z + jumpDistOffset.z);
+            Gizmos.DrawWireCube(offsetPos, fireJumpDist);
+        }
     }
 
     // Used to spread fire
@@ -213,7 +219,8 @@ public class ArrowInteraction : MonoBehaviour
             // Check to see if adjacent objects are on fire
             if(adjacentObjects == null)
             {
-                adjacentObjects = Physics.OverlapBox(transform.position, fireJumpDist);
+                Vector3 offsetPos = new Vector3(transform.position.x + jumpDistOffset.x, transform.position.y + jumpDistOffset.y, transform.position.z + jumpDistOffset.z);
+                adjacentObjects = Physics.OverlapBox(offsetPos, fireJumpDist);
             } else if (fireSpread <= 0) {
                 for (int i = 0; i < adjacentObjects.Length; i++)
                 {
@@ -225,7 +232,7 @@ public class ArrowInteraction : MonoBehaviour
                         } else if (adjacentObjects[i].gameObject.tag == "FireButton")
                         {
                             adjacentObjects[i].SendMessage("turnOn");
-                        }
+                        } 
                     } catch (Exception e)
                     {
                         print("error " + e);
