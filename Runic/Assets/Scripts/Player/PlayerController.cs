@@ -213,7 +213,12 @@ public class PlayerController : MonoBehaviour {
         
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask.value);
-        if (isGrounded && velocity.y < 0) velocity.y = -2f;
+        if (isGrounded && velocity.y < 0) {
+            velocity.y = -2f;
+        } else if (isGrounded && velocity.y == -2f) {
+            velocity.y = 0;
+        }
+        //print("vel y: " + velocity.y);
         controller.Move(velocity * Time.deltaTime);
     }
 
