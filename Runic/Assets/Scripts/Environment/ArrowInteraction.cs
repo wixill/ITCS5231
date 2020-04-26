@@ -222,6 +222,9 @@ public class ArrowInteraction : MonoBehaviour
                         if (adjacentObjects[i].gameObject.tag == "Interactable")
                         {
                             adjacentObjects[i].SendMessage("catchFire");
+                        } else if (adjacentObjects[i].gameObject.tag == "FireButton")
+                        {
+                            adjacentObjects[i].SendMessage("turnOn");
                         }
                     } catch (Exception e)
                     {
