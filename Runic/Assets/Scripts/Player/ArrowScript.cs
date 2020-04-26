@@ -6,7 +6,13 @@ public class ArrowScript : MonoBehaviour
 {
     [SerializeField] private Transform trans;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private TrailRenderer trail;
     [SerializeField] private Transform grapplePoint;
+    [SerializeField] private Color standardColor;
+    [SerializeField] private Color grappleColor;
+    [SerializeField] private Color flameColor;
+    [SerializeField] private Color freezeColor;
+
     private PlayerController shooterController;
     private float lifeTimer = 6f;
     private float timer = 0;
@@ -113,6 +119,21 @@ public class ArrowScript : MonoBehaviour
 
     public void setType(ArrowType type) {
         this.type = type;
+        switch (type)
+        {
+            case ArrowType.Standard:
+                trail.material.color = standardColor;
+                break;
+            case ArrowType.Grapple:
+                trail.material.color = grappleColor;
+                break;
+            case ArrowType.Flame:
+                trail.material.color = flameColor;
+                break;
+            case ArrowType.Freeze:
+                trail.material.color = freezeColor;
+                break;
+        }
     }
 
     public ArrowType getType()

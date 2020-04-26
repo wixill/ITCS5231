@@ -109,7 +109,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trans: {fileID: 8502519903798095200}
   rb: {fileID: 574310166817625913}
+  trail: {fileID: 3050142280833967675}
   grapplePoint: {fileID: 5733131017487028121}
+  standardColor: {r: 1, g: 1, b: 1, a: 1}
+  grappleColor: {r: 0.10856521, g: 1, b: 0, a: 1}
+  flameColor: {r: 1, g: 0.38056087, b: 0, a: 1}
+  freezeColor: {r: 0, g: 1, b: 0.9315584, a: 1}
 --- !u!96 &3050142280833967675
 TrailRenderer:
   serializedVersion: 2
