@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         ApplyMovement(); // Applies gravity, do not put physics code before this.
         isAiming = (Input.GetMouseButton(1) && isGrounded);
+        print("y " + player.position.y);
 
         if (isAiming) {
             Color tempColor = bow.material.color;
@@ -115,11 +116,11 @@ public class PlayerController : MonoBehaviour {
             arrowType = ArrowType.Grapple;
             UIManager.getInstance().SetActive(ArrowType.Grapple);
             print(arrowType);
-        } else if (Input.GetKeyDown(KeyCode.Alpha3) && freezeEnabled && canFreeze) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha4) && freezeEnabled && canFreeze) {
             arrowType = ArrowType.Freeze;
             UIManager.getInstance().SetActive(ArrowType.Freeze);
             print(arrowType);
-        } else if (Input.GetKeyDown(KeyCode.Alpha4) && flameEnabled && canFlame) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && flameEnabled && canFlame) {
             arrowType = ArrowType.Flame;
             UIManager.getInstance().SetActive(ArrowType.Flame);
             print(arrowType);
