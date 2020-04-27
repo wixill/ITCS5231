@@ -9577,8 +9577,8 @@ GameObject:
   - component: {fileID: 1915616915709285074}
   - component: {fileID: 1915616915710081794}
   - component: {fileID: 1915616915711461212}
-  - component: {fileID: 1915616915715262120}
   - component: {fileID: -3753986444314442686}
+  - component: {fileID: 3008038175779309773}
   m_Layer: 0
   m_Name: Anti_Torch
   m_TagString: LightableTorch
@@ -9650,20 +9650,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &1915616915715262120
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915616915709187022}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300520, guid: 628e5212ccbe5044ba8b70740d37394e, type: 3}
 --- !u!114 &-3753986444314442686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9676,6 +9662,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3561ba3a8db6d1d4b94feedca4a13f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toActivate: []
+  startOn: 0
+  isToggleable: 0
+  isActivator: 0
+--- !u!65 &3008038175779309773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915616915709187022}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 1.07, z: 0.67}
+  m_Center: {x: -0.31, y: 0.31, z: 0.0000007897617}
 --- !u!1 &8777353313308405987
 GameObject:
   m_ObjectHideFlags: 0
