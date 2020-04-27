@@ -22,11 +22,11 @@ public class SpawnMain : MonoBehaviour
     void Start()
     {
         StartCoroutine(Spawn1());
-        spawned = true;
     }
 
     void Update()
     {
+        
         if (spawned)
         {
             a.transform.LookAt(Playertrans.position);
@@ -40,8 +40,7 @@ public class SpawnMain : MonoBehaviour
         a = Instantiate(enemy) as GameObject;
         a.transform.position = spawnPos.position;
         a.transform.LookAt(Playertrans.position);
-
-
+        spawned = true;
 
     }
 
