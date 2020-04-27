@@ -27,7 +27,7 @@ public class EnemyFirst : MonoBehaviour
     private float maxSpeed;
     private float radiusOfSat;
     private bool gotHit = false;
-
+    private float numOfHits = 0;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class EnemyFirst : MonoBehaviour
         maxSpeed = 1.5f;
         timeBetweenShots = startTimeBetweenShots;
 
-        StartCoroutine(Disappear());
+        //StartCoroutine(Disappear());
     }
 
     // Start is called before the first frame update
@@ -70,7 +70,7 @@ public class EnemyFirst : MonoBehaviour
 
     IEnumerator Disappear()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 
@@ -78,9 +78,16 @@ public class EnemyFirst : MonoBehaviour
     {
         if(collision.gameObject.tag == "Arrow")
         {
-            gotHit = true;
-            //sets the boolean in Animator. since moving is true, this will make the enemy move
-            anim.SetBool("gotHit", gotHit);
+            Destroy(collision.gameObject);
+            numOfHits++;
+            trans.position = trans.position;
+           if(numOfHits == 2) {
+                StartCoroutine(Disappear());
+                gotHit = true;
+                //sets the boolean in Animator. since moving is true, this will make the enemy move
+                anim.SetBool("gotHit", gotHit);
+            }
+  
         }
     }
 
