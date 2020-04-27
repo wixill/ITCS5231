@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         ApplyMovement(); // Applies gravity, do not put physics code before this.
         isAiming = (Input.GetMouseButton(1) && isGrounded);
+        //print("y " + player.position.y);
 
         if (isAiming) {
             Color tempColor = bow.material.color;
@@ -115,11 +116,11 @@ public class PlayerController : MonoBehaviour {
             arrowType = ArrowType.Grapple;
             UIManager.getInstance().SetActive(ArrowType.Grapple);
             print(arrowType);
-        } else if (Input.GetKeyDown(KeyCode.Alpha3) && freezeEnabled && canFreeze) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha4) && freezeEnabled && canFreeze) {
             arrowType = ArrowType.Freeze;
             UIManager.getInstance().SetActive(ArrowType.Freeze);
             print(arrowType);
-        } else if (Input.GetKeyDown(KeyCode.Alpha4) && flameEnabled && canFlame) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && flameEnabled && canFlame) {
             arrowType = ArrowType.Flame;
             UIManager.getInstance().SetActive(ArrowType.Flame);
             print(arrowType);
@@ -131,9 +132,12 @@ public class PlayerController : MonoBehaviour {
                 Vector3[] positions = { model.bounds.center, grapplePoint };
                 line.SetPositions(positions);
                 isAiming = false;
-                player.position = Vector3.Lerp(player.position, grapplePoint, 5f * Time.deltaTime);
                 float dist = Vector3.Distance(player.position, grapplePoint);
+                Vector3 dif = (grapplePoint - player.position) / dist * 15f * Time.deltaTime;
+                controller.Move(dif);
+                //player.position = Vector3.Lerp(player.position, grapplePoint, 5f * Time.deltaTime);
                 //print("Distance: " + dist);
+                dist = Vector3.Distance(player.position, grapplePoint);
                 if (dist < 3) {
                     isGrapplingTo = false;
                     line.positionCount = 0;
@@ -204,15 +208,21 @@ public class PlayerController : MonoBehaviour {
         if (!isGrapplingTo) {
             Vector3 move = transform.right * x + transform.forward * z;
             controller.Move(move * speed * Time.deltaTime);
-            velocity.y += gravity * Time.deltaTime;
+            if (!isGrounded) velocity.y += gravity * Time.deltaTime;
         } else {
             Vector3 move = transform.right * x + transform.forward * z; 
             controller.Move(move * (speed/3) * Time.deltaTime);
         }
-        controller.Move(velocity * Time.deltaTime);
+        
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask.value);
-        if (isGrounded && velocity.y < 0) velocity.y = -2f;
+        if (isGrounded && velocity.y < 0) {
+            velocity.y = -2f;
+        } else if (isGrounded && velocity.y == -2f) {
+            velocity.y = 0;
+        }
+        //print("vel y: " + velocity.y);
+        controller.Move(velocity * Time.deltaTime);
     }
 
     /**
@@ -328,14 +338,18 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isGrapplingTo && other.gameObject.layer != 9 && other.gameObject.tag != "Player" && other.gameObject.tag != "Arrow")
+        
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (isGrapplingTo && hit.gameObject.layer != 9 && hit.gameObject.tag != "Player" && hit.gameObject.tag != "Arrow")
         {
-            print("PLAYER COLLIDE WITH: " + other.gameObject.name);
+            print("PLAYER COLLIDE WITH: " + hit.gameObject.name);
             isGrapplingTo = false;
             line.positionCount = 0;
             canGrapple = false;
             grapplePoint = Vector3.zero;
         }
     }
-
 }

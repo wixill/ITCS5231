@@ -8,6 +8,16 @@ public class PressurePlate : Activator
     [SerializeField] private Color offColor;
     // Color when button is on
     [SerializeField] private Color onColor;
+    // Is reversed if it requires weight to be taken off of it
+    [SerializeField] private bool reversed;
+    // Dimensions of the box that will detect if something heavy is inside it
+    [SerializeField] private Vector3 sensor;
+    // Offset for sensor
+    [SerializeField] private Vector3 sensorOffset;
+    // List of objects inside sensor
+    private Collider[] whatsOnTop;
+    // Length of whatsOnTop at the start of the scene
+    private int startLen;
 
     // Renderer
     private Renderer[] rend;
@@ -28,29 +38,75 @@ public class PressurePlate : Activator
             activate();
             hasActivated = true;
         }
+        Vector3 offsetPos = new Vector3(transform.position.x + sensorOffset.x, transform.position.y + sensorOffset.y, transform.position.z + sensorOffset.z);
+        whatsOnTop = Physics.OverlapBox(transform.position, sensor);
+        startLen = whatsOnTop.Length;
+        print("startLen = " + startLen);
+
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (reversed)
+        {
+            Gizmos.color = Color.red;
+            Vector3 offsetPos = new Vector3(transform.position.x + sensorOffset.x, transform.position.y + sensorOffset.y, transform.position.z + sensorOffset.z);
+            Gizmos.DrawWireCube(offsetPos, sensor);
+        }
+    }
+
+    private void Update()
+    {
+        if (reversed)
+        {
+            print("cur Len = " + whatsOnTop.Length);
+            if (whatsOnTop.Length < startLen)
+            {
+
+                if (!hasActivated)
+                {
+                    activate();
+                    hasActivated = true;
+                    for (int i = 0; i < rend.Length; i++)
+                    {
+                        rend[i].material.SetColor("_EmissionColor", onColor);
+                    }
+                }
+            }
+            else if (!hasActivated)
+            {
+                whatsOnTop = Physics.OverlapBox(transform.position, sensor);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!hasActivated || isToggleable)
+        if (!reversed)
         {
-            if (other.GetComponent<Rigidbody>().mass > 1)
+            if (!hasActivated || isToggleable)
             {
-                activate();
-                hasActivated = true;
-                for (int i = 0; i < rend.Length; i++)
+                if (other.GetComponent<ArrowInteraction>().getPulled())
                 {
-                    rend[i].material.SetColor("_EmissionColor", onColor);
+                    activate();
+                    hasActivated = true;
+                    for (int i = 0; i < rend.Length; i++)
+                    {
+                        rend[i].material.SetColor("_EmissionColor", onColor);
+                    }
                 }
             }
         }
     }
 
+
     private void OnTriggerExit(Collider other)
     {
-        if (isToggleable)
+        if (!reversed)
         {
-            rend[0].material.SetColor("_EmissionColor", offColor);
+            if (isToggleable)
+            {
+                rend[0].material.SetColor("_EmissionColor", offColor);
+            }
         }
     }
 }

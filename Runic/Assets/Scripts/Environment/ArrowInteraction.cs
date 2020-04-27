@@ -50,8 +50,10 @@ public class ArrowInteraction : MonoBehaviour
     Collider[] adjacentObjects = null;
     // How far away does an object need to be to catch fire from an already ignited object
     [SerializeField] private Vector3 fireJumpDist;
+    // Offset for fireJumpDist
+    [SerializeField] private Vector3 jumpDistOffset;
     // How long it takes to spread the fire
-    [SerializeField] private float fireSpread = 500;
+    [SerializeField] private float fireSpread = 2;
     // Can it spread fire?
     private bool canSpread = false;
 
@@ -61,21 +63,25 @@ public class ArrowInteraction : MonoBehaviour
     [SerializeField] private float thawTime;
     // Ice material
     [SerializeField] private Material iceMat;
-    // Normal material of object
-    [SerializeField] private Rigidbody rigidBody;
+ 
+    [SerializeField] private Rigidbody[] rigidBodies;
 
     // If the object is frozen or not
     private bool isFrozen = false;
     private bool foreverBurn = false;
-    private Renderer matRenderer;
-    private Material normalMat;
+    private Renderer[] matRenderers;
+    private Material[] normalMats;
     private float thawCountdown;
     private GameObject fire;
 
     private void Awake()
     {
-        matRenderer = GetComponent<Renderer>();
-        normalMat = matRenderer.material;
+        matRenderers = GetComponentsInChildren<Renderer>();
+        if (matRenderers.Length == 0) matRenderers[0] = GetComponent<Renderer>();
+        normalMats = new Material[matRenderers.Length];
+        for (int i = 0; i < matRenderers.Length; i++) {
+            normalMats[i] = matRenderers[i].material;
+        }
         isFrozen = false;
         if (burnoutTime <= 0) foreverBurn = true;
         if (fireSpread > 0) canSpread = true;
@@ -144,26 +150,47 @@ public class ArrowInteraction : MonoBehaviour
         }
     }
 
+    public bool IsFrozen() {
+        return isFrozen;
+    }
+
     /*
      * Freezes object in place for a certain amount of time
      */
     public bool freeze()
     {
-        if (freezable)
+        if (freezable && !isFrozen)
         {
             isFrozen = true;
             // Change material to ice
-            matRenderer.material = iceMat;
+            for (int i = 0; i < matRenderers.Length; i++) {
+                matRenderers[i].material = iceMat;
+            }
             thawCountdown = thawTime;
-            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+            for (int i = 0; i < rigidBodies.Length; i++) {
+                if (rigidBodies[i] != null) {
+                    rigidBodies[i].constraints = RigidbodyConstraints.FreezeAll;
+                    rigidBodies[i].isKinematic = true;
+                }
+            }
         }
         return freezable;
     }
 
     private void Unfreeze() {
         isFrozen = false;
-        matRenderer.material = normalMat;
-        rigidBody.constraints = RigidbodyConstraints.None;
+        for (int i = 0; i < matRenderers.Length; i++)
+        {
+            matRenderers[i].material = normalMats[i];
+        }
+        for (int i = 0; i < rigidBodies.Length; i++)
+        {
+            if (rigidBodies[i] != null)
+            {
+                rigidBodies[i].constraints = RigidbodyConstraints.None;
+                rigidBodies[i].isKinematic = false;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -177,8 +204,12 @@ public class ArrowInteraction : MonoBehaviour
     // To visualize the range of fire spreading
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, fireJumpDist);
+        if (flamable)
+        {
+            Gizmos.color = Color.red;
+            Vector3 offsetPos = new Vector3(transform.position.x + jumpDistOffset.x, transform.position.y + jumpDistOffset.y, transform.position.z + jumpDistOffset.z);
+            Gizmos.DrawWireCube(offsetPos, fireJumpDist);
+        }
     }
 
     // Used to spread fire
@@ -197,11 +228,11 @@ public class ArrowInteraction : MonoBehaviour
                 burnoutTime -= Time.deltaTime;
             } else if (!foreverBurn) {
                 // When its time to destroy, quickly fade out then destroy object
-                Color tempColor = matRenderer.material.color;
+                Color tempColor = matRenderers[0].material.color;
                 tempColor.a -= Time.deltaTime;
                 if (tempColor.a >= 0)
                 {
-                    matRenderer.material.color = tempColor;
+                    matRenderers[0].material.color = tempColor;
                 }
                 else
                 {
@@ -213,7 +244,8 @@ public class ArrowInteraction : MonoBehaviour
             // Check to see if adjacent objects are on fire
             if(adjacentObjects == null)
             {
-                adjacentObjects = Physics.OverlapBox(transform.position, fireJumpDist);
+                Vector3 offsetPos = new Vector3(transform.position.x + jumpDistOffset.x, transform.position.y + jumpDistOffset.y, transform.position.z + jumpDistOffset.z);
+                adjacentObjects = Physics.OverlapBox(offsetPos, fireJumpDist);
             } else if (fireSpread <= 0) {
                 for (int i = 0; i < adjacentObjects.Length; i++)
                 {
