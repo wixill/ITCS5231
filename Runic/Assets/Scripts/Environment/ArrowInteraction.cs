@@ -187,7 +187,17 @@ public class ArrowInteraction : MonoBehaviour
         {
             if (rigidBodies[i] != null)
             {
-                rigidBodies[i].constraints = RigidbodyConstraints.None;
+                if (rigidBodies[i].gameObject.name == "Seesaw Balance")
+                {
+                    rigidBodies[i].constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                } else if (rigidBodies[i].gameObject.name == "Seesaw Base")
+                {
+                    rigidBodies[i].constraints = RigidbodyConstraints.FreezeAll;
+                } else
+                {
+                    rigidBodies[i].constraints = RigidbodyConstraints.None;
+                }
+                
                 rigidBodies[i].isKinematic = false;
             }
         }
