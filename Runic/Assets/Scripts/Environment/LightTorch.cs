@@ -8,8 +8,6 @@ public class LightTorch : Activator
     [SerializeField] bool isActivator = false;
     // Checks if its been lit or not to prevent toggling
     private bool isLit = false;
-    // Checks if it has been activated before or not
-    private bool hasActivated = false;
    
 
     /*

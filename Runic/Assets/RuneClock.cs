@@ -16,6 +16,7 @@ public class RuneClock : MonoBehaviour
     private float lerpt;
     private bool alarmActive;
     private bool spedUp;
+ 
 
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class RuneClock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!interact.IsFrozen()) {
+        if (!interact.IsFrozen() && alarmActive) {
             alarm -= Time.deltaTime;
             if (alarm <= 10 && !spedUp) {
                 spedUp = true;
@@ -68,5 +69,10 @@ public class RuneClock : MonoBehaviour
         {
             renderers[i].material.SetColor("_EmissionColor", newColor);
         }
+    }
+
+    public void stopClock()
+    {
+        alarmActive = false;
     }
 }
