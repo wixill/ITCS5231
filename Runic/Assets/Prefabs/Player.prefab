@@ -460,6 +460,8 @@ MonoBehaviour:
   flameBackground: {fileID: 1355943540}
   flameObject: {fileID: 37615267}
   freezeImage: {fileID: 1193630646040917291}
+  audioMixer: {fileID: 24100000, guid: 74cfc91328410964fa1f9048b3520284, type: 2}
+  volumeSlider: {fileID: 3817077767987531514}
 --- !u!1 &577427927
 GameObject:
   m_ObjectHideFlags: 0
@@ -3466,13 +3468,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 3033000442109786219}
   m_HandleRect: {fileID: 4666376614255457366}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 432106677}
+        m_MethodName: SetVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &6384951347316197488
 GameObject:
   m_ObjectHideFlags: 0

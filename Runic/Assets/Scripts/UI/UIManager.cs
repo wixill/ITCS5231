@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image flameBackground;
     [SerializeField] private GameObject flameObject;
     [SerializeField] private Image freezeImage;
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private Slider volumeSlider;
 
     private bool screenFreezing;
     private bool isPaused;
@@ -37,6 +40,8 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        audioMixer.GetFloat("Volume", out float vol);
+        volumeSlider.SetValueWithoutNotify(vol);
         screenFreezing = false;
         isPaused = false;
         activeArrow = standardBackground;
@@ -109,6 +114,11 @@ public class UIManager : MonoBehaviour
         {
             Screen.fullScreenMode = FullScreenMode.Windowed;
         }
+    }
+
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("Volume", volume);
     }
 
     public void Update()

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] SceneChanger sceneChanger;
+    [SerializeField] AudioMixer audioMixer;
     private static MainMenu instance;
 
     private void Awake()
@@ -41,6 +43,10 @@ public class MainMenu : MonoBehaviour
         } else {
             Application.Quit();
         }
+    }
+
+    public void SetVolume(float volume) {
+        audioMixer.SetFloat("Volume", volume);
     }
 
     public void ToggleFullscreen() {
