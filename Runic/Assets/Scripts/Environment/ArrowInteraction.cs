@@ -69,15 +69,18 @@ public class ArrowInteraction : MonoBehaviour
     // If the object is frozen or not
     private bool isFrozen = false;
     private bool foreverBurn = false;
-    private Renderer matRenderer;
-    private Material normalMat;
+    private Renderer[] matRenderers;
+    private Material[] normalMats;
     private float thawCountdown;
     private GameObject fire;
 
     private void Awake()
     {
-        matRenderer = GetComponent<Renderer>();
-        normalMat = matRenderer.material;
+        matRenderers = GetComponentsInChildren<Renderer>();
+        normalMats = new Material[matRenderers.Length];
+        for (int i = 0; i < matRenderers.Length; i++) {
+            normalMats[i] = matRenderers[i].material;
+        }
         isFrozen = false;
         if (burnoutTime <= 0) foreverBurn = true;
         if (fireSpread > 0) canSpread = true;
@@ -146,6 +149,10 @@ public class ArrowInteraction : MonoBehaviour
         }
     }
 
+    public bool IsFrozen() {
+        return isFrozen;
+    }
+
     /*
      * Freezes object in place for a certain amount of time
      */
@@ -155,17 +162,27 @@ public class ArrowInteraction : MonoBehaviour
         {
             isFrozen = true;
             // Change material to ice
-            matRenderer.material = iceMat;
+            for (int i = 0; i < matRenderers.Length; i++) {
+                matRenderers[i].material = iceMat;
+            }
             thawCountdown = thawTime;
-            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+            if (rigidBody != null) {
+                rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+            }
         }
         return freezable;
     }
 
     private void Unfreeze() {
         isFrozen = false;
-        matRenderer.material = normalMat;
-        rigidBody.constraints = RigidbodyConstraints.None;
+        for (int i = 0; i < matRenderers.Length; i++)
+        {
+            matRenderers[i].material = normalMats[i];
+        }
+        if (rigidBody != null)
+        {
+            rigidBody.constraints = RigidbodyConstraints.None;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -203,11 +220,11 @@ public class ArrowInteraction : MonoBehaviour
                 burnoutTime -= Time.deltaTime;
             } else if (!foreverBurn) {
                 // When its time to destroy, quickly fade out then destroy object
-                Color tempColor = matRenderer.material.color;
+                Color tempColor = matRenderers[0].material.color;
                 tempColor.a -= Time.deltaTime;
                 if (tempColor.a >= 0)
                 {
-                    matRenderer.material.color = tempColor;
+                    matRenderers[0].material.color = tempColor;
                 }
                 else
                 {

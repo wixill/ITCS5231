@@ -19,7 +19,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image flameIcon;
     [SerializeField] private Image flameBackground;
     [SerializeField] private GameObject flameObject;
+    [SerializeField] private Image freezeImage;
 
+    private bool screenFreezing;
     private bool isPaused;
     private float fadeInStandard;
     private float fadeInGrapple;
@@ -35,6 +37,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        screenFreezing = false;
         isPaused = false;
         activeArrow = standardBackground;
         activeAlpha = standardBackground.color.a;
@@ -54,6 +57,7 @@ public class UIManager : MonoBehaviour
     }
 
     private void ActivatePause() {
+        freezeImage.gameObject.SetActive(false);
         isPaused = true;
         Time.timeScale = 0;
         AudioListener.pause = true;
@@ -63,6 +67,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void ResumeGame() {
+        if (screenFreezing) freezeImage.gameObject.SetActive(true);
         isPaused = false;
         Time.timeScale = 1;
         AudioListener.pause = false;
@@ -88,6 +93,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void FreezeScreen() {
+        freezeImage.gameObject.SetActive(true);
+        screenFreezing = true;
+    }
+
     public void ToggleFullscreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
@@ -103,6 +113,14 @@ public class UIManager : MonoBehaviour
 
     public void Update()
     {
+        if (screenFreezing) {
+            Color tempColor = freezeImage.color;
+            tempColor.a = Mathf.Lerp(tempColor.a, 1, Time.deltaTime);
+            freezeImage.color = tempColor;
+            if (tempColor.a >= 0.9) {
+                StartCoroutine(PauseForScreenFreeze());
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused) {
             ActivatePause();
@@ -246,5 +264,10 @@ public class UIManager : MonoBehaviour
                 activeArrow = flameBackground;
                 break;
         }
+    }
+
+    IEnumerator PauseForScreenFreeze() {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

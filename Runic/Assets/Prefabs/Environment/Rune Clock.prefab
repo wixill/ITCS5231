@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5285577696130495754}
   - component: {fileID: 2953419986118047496}
   - component: {fileID: 6650587958804124456}
+  - component: {fileID: 507527691}
   m_Layer: 0
   m_Name: Rune Clock
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5285577696130495752}
-  m_LocalRotation: {x: -0, y: 0.7350359, z: -0, w: 0.6780283}
+  m_LocalRotation: {x: 0, y: 0.7350329, z: 0, w: 0.67803144}
   m_LocalPosition: {x: -23.34, y: 21.3, z: 25.525246}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
@@ -66,6 +67,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be437b02f4aa7b54a98ca6e72bb97595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorChangeRate: 0.005
+  alarm: 20
+  interact: {fileID: 507527691}
+--- !u!114 &507527691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5285577696130495752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f26b0a774d968f459fe38da8fe4b0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakable: 0
+  pullable: 0
+  flamable: 0
+  freezable: 1
+  fracturedBlock: {fileID: 0}
+  scaleFactor: 0.5
+  pullSpeed: 4
+  prewarm: 0
+  fireType: {fileID: 0}
+  fireScaleFactor: 1
+  fireCenter: {x: 0, y: 0, z: 0}
+  burnoutTime: 0
+  fireJumpDist: {x: 0, y: 0, z: 0}
+  jumpDistOffset: {x: 0, y: 0, z: 0}
+  fireSpread: 2
+  thawTime: 10
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBody: {fileID: 0}
 --- !u!1001 &2177242181089768897
 PrefabInstance:
   m_ObjectHideFlags: 0

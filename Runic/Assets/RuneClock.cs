@@ -5,19 +5,26 @@ using UnityEngine;
 public class RuneClock : MonoBehaviour
 {
     [SerializeField] float colorChangeRate = 0.005f;
+    [SerializeField] float alarm = 50f;
+    [SerializeField] ArrowInteraction interact;
 
     private Renderer[] renderers;
     private Color startColor;
     private Color pulseColor;
     private Color targetColor;
-    private bool canPulse;
     private float pulseRate;
     private float lerpt;
+    private bool alarmActive;
+    private bool spedUp;
 
     private void Awake()
     {
+        alarmActive = true;
+        spedUp = false;
         pulseColor = Color.black;
-        renderers = GetComponentsInChildren<Renderer>();
+        try {
+            renderers = GetComponentsInChildren<Renderer>();
+        }  catch (MissingComponentException e) {}
         startColor = renderers[0].material.GetColor("_EmissionColor");
         targetColor = startColor;
         pulseRate = -1f;
@@ -32,7 +39,21 @@ public class RuneClock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ChangeColor();
+        if (!interact.IsFrozen()) {
+            alarm -= Time.deltaTime;
+            if (alarm <= 10 && !spedUp) {
+                spedUp = true;
+                colorChangeRate *= 2;
+            } else if (alarm <= 0 && alarmActive) {
+                alarmActive = false;
+                AlarmEnd();
+            }
+            ChangeColor();
+        }
+    }
+
+    private void AlarmEnd() {
+        UIManager.getInstance().FreezeScreen();
     }
 
     private void ChangeColor() {
