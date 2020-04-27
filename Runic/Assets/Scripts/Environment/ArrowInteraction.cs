@@ -63,8 +63,8 @@ public class ArrowInteraction : MonoBehaviour
     [SerializeField] private float thawTime;
     // Ice material
     [SerializeField] private Material iceMat;
-    // Normal material of object
-    [SerializeField] private Rigidbody rigidBody;
+ 
+    [SerializeField] private Rigidbody[] rigidBodies;
 
     // If the object is frozen or not
     private bool isFrozen = false;
@@ -77,6 +77,7 @@ public class ArrowInteraction : MonoBehaviour
     private void Awake()
     {
         matRenderers = GetComponentsInChildren<Renderer>();
+        if (matRenderers.Length == 0) matRenderers[0] = GetComponent<Renderer>();
         normalMats = new Material[matRenderers.Length];
         for (int i = 0; i < matRenderers.Length; i++) {
             normalMats[i] = matRenderers[i].material;
@@ -158,7 +159,7 @@ public class ArrowInteraction : MonoBehaviour
      */
     public bool freeze()
     {
-        if (freezable)
+        if (freezable && !isFrozen)
         {
             isFrozen = true;
             // Change material to ice
@@ -166,8 +167,11 @@ public class ArrowInteraction : MonoBehaviour
                 matRenderers[i].material = iceMat;
             }
             thawCountdown = thawTime;
-            if (rigidBody != null) {
-                rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+            for (int i = 0; i < rigidBodies.Length; i++) {
+                if (rigidBodies[i] != null) {
+                    rigidBodies[i].constraints = RigidbodyConstraints.FreezeAll;
+                    rigidBodies[i].isKinematic = true;
+                }
             }
         }
         return freezable;
@@ -179,9 +183,13 @@ public class ArrowInteraction : MonoBehaviour
         {
             matRenderers[i].material = normalMats[i];
         }
-        if (rigidBody != null)
+        for (int i = 0; i < rigidBodies.Length; i++)
         {
-            rigidBody.constraints = RigidbodyConstraints.None;
+            if (rigidBodies[i] != null)
+            {
+                rigidBodies[i].constraints = RigidbodyConstraints.None;
+                rigidBodies[i].isKinematic = false;
+            }
         }
     }
 

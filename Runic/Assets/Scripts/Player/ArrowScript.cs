@@ -14,7 +14,7 @@ public class ArrowScript : MonoBehaviour
     [SerializeField] private Color freezeColor;
 
     private PlayerController shooterController;
-    private float lifeTimer = 6f;
+    private float lifeTimer = 3f;
     private float timer = 0;
     private bool hitSomething = false;
     private bool stuck = false;
