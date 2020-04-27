@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirePuzzle.unity
     guid: 0032793478a50394ead93435683a9e80
+  - enabled: 1
+    path: Assets/Scenes/IcePuzzle.unity
+    guid: d40316359d128834081d5ebd2b02899d
   m_configObjects: {}
