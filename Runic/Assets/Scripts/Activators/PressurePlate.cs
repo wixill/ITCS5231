@@ -83,7 +83,7 @@ public class PressurePlate : Activator
     {
         if (!reversed)
         {
-            if (!hasActivated || isToggleable)
+            if ((!hasActivated || isToggleable) && other.tag == "Interactable")
             {
                 if (other.GetComponent<ArrowInteraction>().getPulled())
                 {

@@ -43,8 +43,6 @@ public class PlayerController : MonoBehaviour {
     private Vector3 grapplePoint;
     private GameObject objectToPull;
 
-    private CheckpointManager cm;
-
     private void Awake()
     {
         if (instance == null) {

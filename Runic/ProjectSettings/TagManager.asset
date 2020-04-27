@@ -12,6 +12,7 @@ TagManager:
   - checkpointManager
   - FireButton
   - LightableTorch
+  - IceRune
   layers:
   - Default
   - TransparentFX

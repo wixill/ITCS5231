@@ -107,7 +107,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.95, y: 0.1, z: 0.95}
+  m_Size: {x: 0.95, y: 0.3, z: 0.95}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &6962789215246664690
 MonoBehaviour:
@@ -151,7 +151,8 @@ MonoBehaviour:
   fireCenter: {x: 0, y: 0, z: 0}
   burnoutTime: 0
   fireJumpDist: {x: 0, y: 0, z: 0}
+  jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
   thawTime: 0
   iceMat: {fileID: 0}
-  rigidBody: {fileID: 0}
+  rigidBodies: []

@@ -110,6 +110,12 @@ public class ArrowScript : MonoBehaviour
                         if (collision.gameObject.GetComponent<ArrowInteraction>().freeze()) {
                             shooterController.StartFreezeCooldown();
                         }
+                    } else if (collision.gameObject.tag == "IceRune")
+                    {
+                        if (collision.gameObject.GetComponent<IceRune_activator>().freezeSelf())
+                        {
+                            shooterController.StartFreezeCooldown();
+                        }
                     }
                     break;
             }
