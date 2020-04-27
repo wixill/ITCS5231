@@ -74,6 +74,8 @@ public class ArrowInteraction : MonoBehaviour
     private float thawCountdown;
     private GameObject fire;
 
+    private BreakablePlatform bp;
+
     private void Awake()
     {
         matRenderers = GetComponentsInChildren<Renderer>();
@@ -85,6 +87,15 @@ public class ArrowInteraction : MonoBehaviour
         isFrozen = false;
         if (burnoutTime <= 0) foreverBurn = true;
         if (fireSpread > 0) canSpread = true;
+
+        // If its a breakable platform, get the script component - this is for a specific freeze machanic
+        try
+        {
+            bp = GetComponent<BreakablePlatform>();
+        } catch (Exception e)
+        {
+            bp = null;
+        }
     }
 
     /**
@@ -173,6 +184,11 @@ public class ArrowInteraction : MonoBehaviour
                     rigidBodies[i].isKinematic = true;
                 }
             }
+            // Special case for breakable platform
+            if(bp != null)
+            {
+                bp.paused = true;
+            }
         }
         return freezable;
     }
@@ -200,6 +216,11 @@ public class ArrowInteraction : MonoBehaviour
                 
                 rigidBodies[i].isKinematic = false;
             }
+        }
+        // Special case for breakable platform
+        if (bp != null)
+        {
+            bp.paused = false;
         }
     }
 

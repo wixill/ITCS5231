@@ -13,6 +13,7 @@ public class BreakablePlatform : MonoBehaviour
     // How long until it breaks after being stepped on
     [SerializeField] private float breakCountdown;
     private bool countdownStart = false;
+    public bool paused = false;
 
     // When player steps on a platform or a heavy enough object lands on it (enters the trigger box) then start the timer
     private void OnTriggerEnter(Collider other)
@@ -27,7 +28,7 @@ public class BreakablePlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countdownStart)
+        if (countdownStart && !paused)
         {
             breakCountdown -= Time.deltaTime;
             if(breakCountdown <= 0)
