@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -8,9 +9,6 @@ public class EnemyScript : MonoBehaviour
     static Animator anim;
     [SerializeField] private Transform trans;
     [SerializeField] private Transform Playertrans;
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private float distanceOffset;
-    [SerializeField] private float angleOffset;
     [SerializeField] private float shootingForce;
     [SerializeField] private Animator boots;
     [SerializeField] private Animator headgear;
@@ -26,7 +24,9 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private Animator tabard;
     [SerializeField] private Animator bow;
     public GameObject arrowPrefab;
-
+    public GameObject playerArrow;
+    public NavMeshAgent agent;
+    
     private float timeBetweenShots;
     public float startTimeBetweenShots;
 
@@ -47,7 +47,7 @@ public class EnemyScript : MonoBehaviour
     bool ready = false;
     bool loading = false;
     bool shooting = false;
-    bool wait = false;
+    bool gothit = false;
 
     int showArrow = 0;
 
@@ -56,7 +56,6 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
         radiusOfSat = 1f;
         turnSpeed = 3f;
         maxSpeed = 1.5f;
@@ -69,35 +68,13 @@ public class EnemyScript : MonoBehaviour
     {
         //goes to the target location
 
-        GoToTargetPos();
+                //MovePlayer();
+                agent.SetDestination(Playertrans.position);
+                timeBetweenShots = startTimeBetweenShots;
+       
+      
 
-
-        if (trans.position == targetPosition)
-        {
-            moving = false;
-            rb.velocity = Vector3.zero;
-            anim.SetBool("isMoving", moving);
-            boots.SetBool("isMoving", moving);
-            headgear.SetBool("isMoving", moving);
-            belt.SetBool("isMoving", moving);
-            cape.SetBool("isMoving", moving);
-            chestplates.SetBool("isMoving", moving);
-            gloves.SetBool("isMoving", moving);
-            handpads.SetBool("isMoving", moving);
-            kneepads.SetBool("isMoving", moving);
-            quiver.SetBool("isMoving", moving);
-            shoulder.SetBool("isMoving", moving);
-            skirt.SetBool("isMoving", moving);
-            tabard.SetBool("isMoving", moving);
-            bow.SetBool("isMoving", moving);
-        }
-
-        if (moving)
-        {
-            MovePlayer();
-            timeBetweenShots = startTimeBetweenShots;
-        }
-
+        /*
         else
         {
 
@@ -114,7 +91,7 @@ public class EnemyScript : MonoBehaviour
                 timeBetweenShots -= Time.deltaTime;
             }
         }
-
+        */
       
     }
 
@@ -127,30 +104,19 @@ public class EnemyScript : MonoBehaviour
         //sets the direction of the position
         seeTarget = new Vector3(Playertrans.position.x - trans.position.x, trans.position.y, Playertrans.position.z - trans.position.z);
 
-        //Gets the point forward from the leader's foward facing vector
-        targetPoint = Playertrans.forward * distanceOffset;
-
-        //sets the position in the formation
-        targetPosition = Quaternion.Euler(0f, angleOffset, 0f) * targetPoint;
-
-        //updates enemy position in the formation
-        targetPosition += Playertrans.position;
-        targetPosition = new Vector3(targetPosition.x, 0f, targetPosition.z);
         //allows the character to rotate to the target position
         pRotate = Quaternion.LookRotation(seeTarget);
+
+        //rotates the character to the target position
+        trans.rotation = Quaternion.Lerp(trans.rotation, pRotate, turnSpeed * Time.deltaTime);
         moving = true;
     }
 
     void MovePlayer()
     {
-        //rotates the enemy to the player's position
-        trans.rotation = Quaternion.Lerp(trans.rotation, pRotate, turnSpeed * Time.deltaTime);
-
-        trans.position = Vector3.MoveTowards(trans.position, targetPosition, maxSpeed * Time.deltaTime);
-
+        targetPosition += Playertrans.position;
         //sets the speed in Animator 
         //anim.SetFloat("Speed", maxSpeed * Time.deltaTime);
-
         //sets the boolean in Animator. since moving is true, this will make the enemy move
         anim.SetBool("isMoving", moving);
         boots.SetBool("isMoving", moving);
@@ -166,6 +132,7 @@ public class EnemyScript : MonoBehaviour
         skirt.SetBool("isMoving", moving);
         tabard.SetBool("isMoving", moving);
         bow.SetBool("isMoving", moving);
+        agent.SetDestination(Playertrans.position);
     }
     
     void Shoot()
@@ -179,13 +146,37 @@ public class EnemyScript : MonoBehaviour
             a.transform.position = shootingV;
             Rigidbody b = a.GetComponent<Rigidbody>();
             b.velocity = trans.forward * 20f;
-            wait = false;
+           
      
         
     
 
     }
- 
- 
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Arrow")
+        {
+            gothit = true;
+            //sets the boolean in Animator. since moving is true, this will make the enemy move
+            anim.SetBool("gotHit", gothit);
+            boots.SetBool("gotHit", gothit);
+            headgear.SetBool("gotHit", gothit);
+            belt.SetBool("gotHit", gothit);
+            cape.SetBool("gotHit", gothit);
+            chestplates.SetBool("gotHit", gothit);
+            gloves.SetBool("gotHit", gothit);
+            handpads.SetBool("gotHit", gothit);
+            kneepads.SetBool("gotHit", gothit);
+            quiver.SetBool("gotHit", gothit);
+            shoulder.SetBool("gotHit", gothit);
+            skirt.SetBool("gotHit", gothit);
+            tabard.SetBool("gotHit", gothit);
+            bow.SetBool("gotHit", gothit);
+
+        }
+    }
+
+
 }
 

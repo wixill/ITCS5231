@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnEnemy : MonoBehaviour
+public class SpawnMain : MonoBehaviour
 {
     public GameObject enemy;
     [SerializeField] private Transform Playertrans;
     [SerializeField] private Transform spawnPos;
-    private bool wespawwned = false;
+    private GameObject a;
 
+    private bool spawned = false;
 
     private float turnSpeed;
 
@@ -18,32 +19,32 @@ public class SpawnEnemy : MonoBehaviour
     //Quaternion needed to help rotate the character
     Quaternion pRotate;
     // Start is called before the first frame update
-    void Update()
+    void Start()
     {
-        if (!wespawwned)
-        {
-            if (Vector3.Distance(Playertrans.position, spawnPos.position) <= 30)
-            {
-                StartCoroutine(Spawn1());
-                wespawwned = true;
-
-            }
-        }
-    
-
+        StartCoroutine(Spawn1());
+        spawned = true;
     }
 
+    void Update()
+    {
+        if (spawned)
+        {
+            a.transform.LookAt(Playertrans.position);
+        }
+    }
 
     // Update is called once per frame
     IEnumerator Spawn1()
     {
         yield return new WaitForSeconds(1f);
-        GameObject a = Instantiate(enemy) as GameObject;
+        a = Instantiate(enemy) as GameObject;
         a.transform.position = spawnPos.position;
         a.transform.LookAt(Playertrans.position);
 
 
+
     }
+
 
 
 }

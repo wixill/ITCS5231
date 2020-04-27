@@ -8,9 +8,13 @@ public class EnemyFirst : MonoBehaviour
     static Animator anim;
     [SerializeField] private Transform trans;
     [SerializeField] private Transform Playertrans;
-   
+    private float timeBetweenShots;
+    public float startTimeBetweenShots;
+    public GameObject arrowPrefab;
 
-  
+
+
+
     private float turnSpeed;
  
     //Vector that will hold the direction of the target
@@ -22,14 +26,15 @@ public class EnemyFirst : MonoBehaviour
 
     private float maxSpeed;
     private float radiusOfSat;
-
+    private bool gotHit = false;
 
 
     void Start()
     {
         radiusOfSat = 1f;
-        turnSpeed = 3f;
+        turnSpeed = 1f;
         maxSpeed = 1.5f;
+        timeBetweenShots = startTimeBetweenShots;
 
         StartCoroutine(Disappear());
     }
@@ -37,25 +42,31 @@ public class EnemyFirst : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
+        
         anim = GetComponent<Animator>();
-       // LookatTarget();
 
+
+       
+
+        if (timeBetweenShots <= 0)
+        {
+ 
+            Shoot();
+            timeBetweenShots = startTimeBetweenShots;
+
+        }
+        else
+        {
+
+            timeBetweenShots -= Time.deltaTime;
+
+
+
+        }
     }
 
-    
-
-
-
+   
     // the function to set the target position
-    void LookatTarget()
-    {
-        //sets the direction of the position
-        seeTarget = new Vector3(Playertrans.position.x - trans.position.x, trans.position.y, Playertrans.position.z - trans.position.z);
-        pRotate = Quaternion.LookRotation(seeTarget);
-        //rotates the enemy to the player's position
-        trans.rotation = Quaternion.Lerp(trans.rotation, pRotate, turnSpeed * Time.deltaTime);
-
-    }
 
     IEnumerator Disappear()
     {
@@ -63,5 +74,25 @@ public class EnemyFirst : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Arrow")
+        {
+            gotHit = true;
+            //sets the boolean in Animator. since moving is true, this will make the enemy move
+            anim.SetBool("gotHit", gotHit);
+        }
+    }
+
+    void Shoot()
+    {
+
+        Vector3 shootingV = new Vector3(trans.position.x - .35f, trans.position.y + 1.1f, trans.position.z + 0.2f);
+        GameObject a = Instantiate(arrowPrefab) as GameObject;
+
+        a.transform.position = shootingV;
+        Rigidbody b = a.GetComponent<Rigidbody>();
+        b.velocity = trans.forward * 30f;
+    }
 
 }
