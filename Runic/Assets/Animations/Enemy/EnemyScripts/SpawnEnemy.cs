@@ -10,7 +10,7 @@ public class SpawnEnemy : MonoBehaviour
     private GameObject a;
     private AudioSource audioSource;
     private bool wespawwned = false;
-
+    private bool look = false;
 
     private float turnSpeed;
 
@@ -23,6 +23,9 @@ public class SpawnEnemy : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
+
+   
+
 
     void Update()
     {
@@ -44,20 +47,25 @@ public class SpawnEnemy : MonoBehaviour
             }
         }
 
-        if (wespawwned)
+        if (a != null)
         {
-            a.transform.LookAt(Playertrans.position);
+            a.transform.LookAt(Playertrans);
         }
-    
+
+        
+
+
+
+
+
 
     }
-
 
     // Update is called once per frame
     IEnumerator Spawn1()
     {
         yield return new WaitForSeconds(1f);
-        GameObject a = Instantiate(enemy) as GameObject;
+        a = Instantiate(enemy) as GameObject;
         a.transform.position = spawnPos.position;
         a.transform.LookAt(Playertrans.position);
         

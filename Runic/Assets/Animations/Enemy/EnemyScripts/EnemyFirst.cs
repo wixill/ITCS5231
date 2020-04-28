@@ -82,6 +82,8 @@ public class EnemyFirst : MonoBehaviour
 
 
         }
+
+      
     }
 
    
@@ -126,11 +128,11 @@ public class EnemyFirst : MonoBehaviour
     void Shoot()
     {
 
-        Vector3 shootingV = new Vector3(trans.position.x, trans.position.y + 1.1f, trans.position.z + 0.5f);
+        Vector3 shootingV = new Vector3(trans.position.x -.35f, trans.position.y + 1.1f, trans.position.z + 0.5f);
         GameObject a = Instantiate(arrowPrefab, shootingV, trans.rotation) as GameObject;
 
         Rigidbody b = a.GetComponent<Rigidbody>();
-        b.velocity = trans.forward * 60f;
+        b.velocity = trans.forward * 70f;
     }
 
 }
