@@ -2810,6 +2810,7 @@ MonoBehaviour:
   arrowShootSound: {fileID: 8300000, guid: 335e84e9e6f748241875f68344c2cf7a, type: 3}
   jumpSound: {fileID: 8300000, guid: 993f0e78123b1624eb56a292ed12a154, type: 3}
   landSound: {fileID: 8300000, guid: 96ad8d428bc4dc945936220d9c1f7d78, type: 3}
+  hitSound: {fileID: 8300000, guid: b2e48ecc829f1ea489ce8d6930a444b9, type: 3}
   grappleSound: {fileID: 8300000, guid: aab01723c6908bc48a02796100d534e4, type: 3}
   model: {fileID: 6931535200245345109}
   anim: {fileID: 1450146086005168384}
@@ -2867,7 +2868,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
