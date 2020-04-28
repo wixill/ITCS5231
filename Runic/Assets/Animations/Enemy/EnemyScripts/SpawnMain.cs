@@ -7,9 +7,10 @@ public class SpawnMain : MonoBehaviour
     public GameObject enemy;
     [SerializeField] private Transform Playertrans;
     [SerializeField] private Transform spawnPos;
+    private AudioSource audioSource;
     private GameObject a;
- 
 
+    private bool wait = false;
     private bool spawned = false;
 
     private float turnSpeed;
@@ -20,26 +21,43 @@ public class SpawnMain : MonoBehaviour
     //Quaternion needed to help rotate the character
     Quaternion pRotate;
     // Start is called before the first frame update
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
+        
         StartCoroutine(Spawn1());
+        audioSource.time = 15f;
+        audioSource.Play();
+        audioSource.SetScheduledEndTime(AudioSettings.dspTime + (20f - 15f));
+      
+
+
     }
 
     void Update()
     {
-        
-        
-            if (spawned)
-            {
+        if (a != null)
+        {
            
+          if (Vector3.Distance(Playertrans.position, a.transform.position) <= 18f){
+                
+                StartCoroutine(Wait());
+                
+                if (spawned)
+                {
+                   
+                    Destroy(a);
+                }
 
-                a.transform.LookAt(Playertrans.position);
+
             }
-            
-
-        
-        
+        }
     }
+
 
     // Update is called once per frame
     IEnumerator Spawn1()
@@ -48,9 +66,17 @@ public class SpawnMain : MonoBehaviour
         a = Instantiate(enemy) as GameObject;
         a.transform.position = spawnPos.position;
         a.transform.LookAt(Playertrans.position);
-        spawned = true;
+        
 
     }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(3);
+        spawned = true;
+    }
+    
+   
 
 
 

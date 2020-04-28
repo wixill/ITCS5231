@@ -25,7 +25,7 @@ public class EnemyFirst : MonoBehaviour
     private float timeBetweenShots;
     public float startTimeBetweenShots;
     public GameObject arrowPrefab;
-
+    private AudioSource audioSource;
 
 
 
@@ -43,6 +43,10 @@ public class EnemyFirst : MonoBehaviour
     private bool gotHit = false;
     private float numOfHits = 0;
 
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
         radiusOfSat = 1f;
@@ -94,6 +98,7 @@ public class EnemyFirst : MonoBehaviour
         if(collision.gameObject.tag == "Arrow")
         {
             Destroy(collision.gameObject);
+            audioSource.Play();
             numOfHits++;
            if(numOfHits == 2) {
                 StartCoroutine(Disappear());

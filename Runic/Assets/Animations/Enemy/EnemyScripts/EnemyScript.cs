@@ -28,8 +28,8 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] public Transform[] waypoints;
     private float timeBetweenShots;
     public float startTimeBetweenShots;
+    private AudioSource audioSource;
 
-    
     private float numOfHits;
   
  
@@ -46,7 +46,10 @@ public class EnemyScript : MonoBehaviour
     int curW = 0;
     public float speed = 2f;
 
-  
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
 
     // Start is called before the first frame update
@@ -128,6 +131,7 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.tag == "Arrow")
         {
             Destroy(collision.gameObject);
+            audioSource.Play();
             numOfHits++;
             if (numOfHits == 5)
             {

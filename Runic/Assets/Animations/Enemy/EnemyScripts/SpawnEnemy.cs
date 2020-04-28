@@ -7,6 +7,8 @@ public class SpawnEnemy : MonoBehaviour
     public GameObject enemy;
     [SerializeField] private Transform Playertrans;
     [SerializeField] private Transform spawnPos;
+    private GameObject a;
+    private AudioSource audioSource;
     private bool wespawwned = false;
 
 
@@ -17,7 +19,11 @@ public class SpawnEnemy : MonoBehaviour
 
     //Quaternion needed to help rotate the character
     Quaternion pRotate;
-    // Start is called before the first frame update
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         if (!wespawwned)
@@ -26,8 +32,21 @@ public class SpawnEnemy : MonoBehaviour
             {
                 StartCoroutine(Spawn1());
                 wespawwned = true;
+                audioSource.time = 3f;
+                audioSource.Play();
+
+                if (audioSource.time > 7f)
+                {
+                    audioSource.Stop();
+                }
+
 
             }
+        }
+
+        if (wespawwned)
+        {
+            a.transform.LookAt(Playertrans.position);
         }
     
 

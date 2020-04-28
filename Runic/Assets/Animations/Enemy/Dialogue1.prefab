@@ -111,8 +111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 27.935036, y: -0.010032654}
-  m_SizeDelta: {x: 146.93007, y: 110.01993}
+  m_AnchoredPosition: {x: 23.160004, y: -0.0099983215}
+  m_SizeDelta: {x: 156.48001, y: 110.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6823577254298070525
 CanvasRenderer:
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Get out...NOW!!!!
+  m_Text: You will never get in, mwhahaha.
 --- !u!1 &6823577254376513729
 GameObject:
   m_ObjectHideFlags: 0
