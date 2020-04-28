@@ -16,8 +16,8 @@ public class EnemyArrow : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         hitSomething = false;
-        trans.rotation = Quaternion.LookRotation(rb.velocity);
-        transform.Rotate(-20f, 0.0f, 0.0f, Space.World);
+        //trans.LookAt(rb.velocity);
+        trans.Rotate(-10f, 0.0f, 0.0f, Space.Self);
 
     }
 
@@ -26,8 +26,9 @@ public class EnemyArrow : MonoBehaviour
     {
         if (!hitSomething)
         {
-            trans.rotation = Quaternion.LookRotation(rb.velocity);
-            transform.Rotate(20f, 0.0f, 0.0f, Space.World);
+            
+            trans.LookAt(rb.velocity);
+            
         }
         
     }

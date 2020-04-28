@@ -103,12 +103,11 @@ public class EnemyScript : MonoBehaviour
     void Shoot()
     {
 
-        Vector3 shootingV = new Vector3(trans.position.x - .35f, trans.position.y + 1.1f, trans.position.z + 0.2f);
-        GameObject a = Instantiate(arrowPrefab) as GameObject;
+        Vector3 shootingV = new Vector3(trans.position.x, trans.position.y + 1.1f, trans.position.z + 0.5f);
+        GameObject a = Instantiate(arrowPrefab, shootingV, trans.rotation) as GameObject;
 
-        a.transform.position = shootingV;
         Rigidbody b = a.GetComponent<Rigidbody>();
-        b.velocity = trans.forward * 30f;
+        b.velocity = trans.forward * 60f;
     }
 
     IEnumerator Wait()
@@ -130,7 +129,7 @@ public class EnemyScript : MonoBehaviour
         {
             Destroy(collision.gameObject);
             numOfHits++;
-            if (numOfHits == 2)
+            if (numOfHits == 5)
             {
                 StartCoroutine(Disappear());
 

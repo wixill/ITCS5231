@@ -8,6 +8,7 @@ public class SpawnMain : MonoBehaviour
     [SerializeField] private Transform Playertrans;
     [SerializeField] private Transform spawnPos;
     private GameObject a;
+ 
 
     private bool spawned = false;
 
@@ -27,10 +28,17 @@ public class SpawnMain : MonoBehaviour
     void Update()
     {
         
-        if (spawned)
-        {
-            a.transform.LookAt(Playertrans.position);
-        }
+        
+            if (spawned)
+            {
+           
+
+                a.transform.LookAt(Playertrans.position);
+            }
+            
+
+        
+        
     }
 
     // Update is called once per frame
