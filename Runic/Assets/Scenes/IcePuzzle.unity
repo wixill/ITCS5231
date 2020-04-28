@@ -4863,6 +4863,20 @@ MonoBehaviour:
   - {fileID: 2146770006}
   startTimeBetweenShots: 2
   speed: 2
+--- !u!114 &483962263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483962261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed8cc283dc90aa408830c34e80c349b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 4752384242986344023, guid: 343231da4425a644ab388976784f8d49,
+    type: 3}
 --- !u!4 &483962266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1385187770420580520, guid: 3e7b8d336c4a7e145a46b7cc263db670,
@@ -5268,7 +5282,7 @@ PrefabInstance:
     - target: {fileID: 1385187770420580520, guid: 3e7b8d336c4a7e145a46b7cc263db670,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.46
+      value: 13.46
       objectReference: {fileID: 0}
     - target: {fileID: 1385187770420580520, guid: 3e7b8d336c4a7e145a46b7cc263db670,
         type: 3}

@@ -39,7 +39,7 @@ public class EnemyScript : MonoBehaviour
     bool loading = false;
     bool shooting = false;
     bool gothit = false;
-
+    bool wait = false;
     int showArrow = 0;
 
 
@@ -64,33 +64,33 @@ public class EnemyScript : MonoBehaviour
         
         //if the player is now close to the enemy
 
-       
-            trans.LookAt(player.position);
-
-            if (timeBetweenShots <= 0)
-            {
-
-                Shoot();
-                timeBetweenShots = startTimeBetweenShots;
-
-            }
-            else
-            {
-
-                timeBetweenShots -= Time.deltaTime;
-
-
-
-            }
             if (trans.position != waypoints[curW].position)
             {
                 trans.position = Vector3.MoveTowards(trans.position, waypoints[curW].position, speed * Time.deltaTime);
+                trans.LookAt(player.position);
 
-            }
+        }
 
             else
             {
-                curW = (curW + 1) % waypoints.Length;
+            StartCoroutine(Wait());
+            if (wait)
+            {
+                timeBetweenShots -= Time.deltaTime;
+                timeBetweenShots -= Time.deltaTime;
+                if (timeBetweenShots <= 0)
+                {
+
+                    Shoot();
+                    timeBetweenShots = startTimeBetweenShots;
+                    curW = (curW + 1) % waypoints.Length;
+
+
+                }
+
+
+            }
+           
 
             }
         
@@ -109,6 +109,12 @@ public class EnemyScript : MonoBehaviour
         a.transform.position = shootingV;
         Rigidbody b = a.GetComponent<Rigidbody>();
         b.velocity = trans.forward * 30f;
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(2);
+        wait = true;
     }
 
 
