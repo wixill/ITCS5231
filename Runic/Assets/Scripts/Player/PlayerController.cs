@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    [SerializeField] private AudioClip arrowShootSound;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip landSound;
     [SerializeField] private Renderer model;
     [SerializeField] private Animator anim;
     [SerializeField] private CharacterController controller;
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour {
     private ArrowType arrowType;
     private Vector3 grapplePoint;
     private GameObject objectToPull;
+    private bool prevGrounded;
 
     private void Awake()
     {
@@ -147,7 +151,10 @@ public class PlayerController : MonoBehaviour {
             anim.SetFloat("VelocityY", 0);
             anim.SetBool("isAiming", isAiming);
 
-            if (Input.GetButtonDown("Jump") && !isAiming) velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (Input.GetButtonDown("Jump") && !isAiming) {
+                audioSource.PlayOneShot(jumpSound);
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
 
             if (pos.Equals(lastPos))
             {
@@ -197,9 +204,10 @@ public class PlayerController : MonoBehaviour {
             Vector3 move = transform.right * x + transform.forward * z; 
             controller.Move(move * (speed/3) * Time.deltaTime);
         }
-        
 
+        prevGrounded = isGrounded;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask.value);
+        if (!prevGrounded && isGrounded) audioSource.PlayOneShot(landSound);
         if (isGrounded && velocity.y < 0) {
             velocity.y = -2f;
         } else if (isGrounded && velocity.y == -2f) {
@@ -213,6 +221,7 @@ public class PlayerController : MonoBehaviour {
      * Creates a new arrow and shoots it in the direction the camera is looking.
      */
     private void ShootArrow() {
+        audioSource.PlayOneShot(arrowShootSound);
         GameObject newArrow = Instantiate(arrowPrefab, arrowSpawn.position, Quaternion.identity);
         ArrowScript arrow = newArrow.GetComponent<ArrowScript>();
         arrow.setType(arrowType);

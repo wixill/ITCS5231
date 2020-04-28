@@ -12,6 +12,8 @@ public class ArrowScript : MonoBehaviour
     [SerializeField] private Color grappleColor;
     [SerializeField] private Color flameColor;
     [SerializeField] private Color freezeColor;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip hitSound;
 
     private PlayerController shooterController;
     private float lifeTimer = 3f;
@@ -56,6 +58,7 @@ public class ArrowScript : MonoBehaviour
         if (hitSomething) return;
         if (collision.collider.tag != "Arrow" && collision.collider.tag != "Player") {
             print("This arrow is: " + type);
+            audioSource.PlayOneShot(hitSound);
             hitSomething = true;
             rb.useGravity = false;
             rb.velocity = new Vector3(0,0,0);
@@ -65,7 +68,10 @@ public class ArrowScript : MonoBehaviour
                 case ArrowType.Standard:
                     if(collision.gameObject.tag == "Interactable")
                     {
-                        collision.gameObject.GetComponent<ArrowInteraction>().breakSelf();
+                        ArrowInteraction breakTarget = collision.gameObject.GetComponent<ArrowInteraction>();
+                        if (breakTarget != null) {
+                            breakTarget.breakSelf();
+                        }
                     }
                     break;
 
@@ -73,9 +79,8 @@ public class ArrowScript : MonoBehaviour
                     if (collision.gameObject.tag == "Interactable")
                     {
                         ArrowInteraction pullTarget = collision.gameObject.GetComponent<ArrowInteraction>();
-                        if (pullTarget != null)
+                        if (pullTarget != null && pullTarget.getPulled())
                         {
-                            pullTarget.getPulled();
                             shooterController.StartGrappleFrom(collision.gameObject);
                             pullTarget.setIsBeingPulled(true);
                         }

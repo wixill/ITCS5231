@@ -10,6 +10,12 @@ public class UIButtonAudioPlayer : MonoBehaviour, IPointerEnterHandler, IPointer
     [SerializeField] AudioClip buttonHighlight;
     [SerializeField] AudioClip buttonPress;
 
+    private void Awake()
+    {
+        audioSource.ignoreListenerPause = true;
+        //audioSource.ignoreListenerVolume = true;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         audioSource.PlayOneShot(buttonPress);
