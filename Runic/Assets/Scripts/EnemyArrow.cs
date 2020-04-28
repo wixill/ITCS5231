@@ -8,7 +8,6 @@ public class EnemyArrow : MonoBehaviour
     [SerializeField] private Transform trans;
     [SerializeField] private Rigidbody rb;
     private bool hitSomething;
-    private float playerHits;
 
 
     // Start is called before the first frame update
@@ -37,12 +36,7 @@ public class EnemyArrow : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-
-            playerHits++;
-            if (playerHits == 2)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+            PlayerController.getInstance().LoseHealth();
         }
     }
 

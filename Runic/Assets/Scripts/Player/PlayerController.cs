@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Transform arrowSpawn;
     [SerializeField] private float shootingForce;
     [SerializeField] private LineRenderer line;
+    [SerializeField] private int playerHealth = 2;
+    [SerializeField] private float healthRegenRate = 6f;
     [SerializeField] private bool freezeEnabled = false;
     [SerializeField] private bool flameEnabled = false;
     [SerializeField] private bool grappleEnabled = false;
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour {
     private Vector3 grapplePoint;
     private GameObject objectToPull;
     private bool prevGrounded;
+    private int health;
 
     private void Awake()
     {
@@ -67,6 +70,7 @@ public class PlayerController : MonoBehaviour {
         lastPos = Vector3.zero;
         arrowType = ArrowType.Standard;
 
+        health = playerHealth;
         justShot = false;
         canGrapple = true;
         canFreeze = true;
@@ -306,6 +310,17 @@ public class PlayerController : MonoBehaviour {
         UIManager.getInstance().EnableGrapple();
     }
 
+    public void LoseHealth() {
+        health--;
+        if (health <= 0) {
+            UIManager.getInstance().RestartLevel();
+        } else if (health < playerHealth) {
+            UIManager.getInstance().DisplayPlayerHurt();
+        }
+        int current = health;
+        StartCoroutine(WaitTimeForHealthRegen(current));
+    }
+
     //cooldown time for the shooting, set to 3 seconds to wait
     IEnumerator WaitTimeForShooting()
     {
@@ -330,9 +345,13 @@ public class PlayerController : MonoBehaviour {
         canFlame = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator WaitTimeForHealthRegen(int prevHealth)
     {
-        
+        yield return new WaitForSeconds(healthRegenRate);
+        if (prevHealth == health) {
+            health = playerHealth;
+            UIManager.getInstance().HidePlayerHurt();
+        }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

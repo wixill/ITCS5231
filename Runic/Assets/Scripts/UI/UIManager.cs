@@ -21,11 +21,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image flameBackground;
     [SerializeField] private GameObject flameObject;
     [SerializeField] private Image freezeImage;
+    [SerializeField] private Image hurtImage;
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip toggleSound;
 
+    private bool playerHurt;
     private bool screenFreezing;
     private bool isPaused;
     private float fadeInStandard;
@@ -45,6 +47,7 @@ public class UIManager : MonoBehaviour
         audioMixer.GetFloat("Volume", out float vol);
         volumeSlider.SetValueWithoutNotify(vol);
         screenFreezing = false;
+        playerHurt = false;
         isPaused = false;
         activeArrow = standardBackground;
         activeAlpha = standardBackground.color.a;
@@ -65,6 +68,7 @@ public class UIManager : MonoBehaviour
 
     private void ActivatePause() {
         freezeImage.gameObject.SetActive(false);
+        hurtImage.gameObject.SetActive(false);
         isPaused = true;
         Time.timeScale = 0;
         AudioListener.pause = true;
@@ -75,6 +79,7 @@ public class UIManager : MonoBehaviour
 
     public void ResumeGame() {
         if (screenFreezing) freezeImage.gameObject.SetActive(true);
+        if (playerHurt) hurtImage.gameObject.SetActive(true);
         isPaused = false;
         Time.timeScale = 1;
         AudioListener.pause = false;
@@ -84,7 +89,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void RestartLevel() {
-        ResumeGame();
+        if (isPaused) ResumeGame();
         string currentSceen = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceen);
     }
@@ -98,6 +103,16 @@ public class UIManager : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+
+    public void DisplayPlayerHurt() {
+        playerHurt = false;
+        hurtImage.gameObject.SetActive(true);
+    }
+
+    public void HidePlayerHurt() {
+        playerHurt = true;
+        hurtImage.gameObject.SetActive(false);
     }
 
     public void FreezeScreen() {
