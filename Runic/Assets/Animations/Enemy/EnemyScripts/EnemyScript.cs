@@ -9,31 +9,28 @@ public class EnemyScript : MonoBehaviour
     static Animator anim;
     [SerializeField] private Transform trans;
     [SerializeField] private Transform player;
-    //[SerializeField] private float shootingForce;
-    //[SerializeField] private Animator boots;
-    //[SerializeField] private Animator headgear;
-    //[SerializeField] private Animator belt;
-    //[SerializeField] private Animator cape;
-    //[SerializeField] private Animator chestplates;
-    //[SerializeField] private Animator gloves;
-    //[SerializeField] private Animator handpads;
-    //[SerializeField] private Animator kneepads;
-    //[SerializeField] private Animator quiver;
-    //[SerializeField] private Animator shoulder;
-    //[SerializeField] private Animator skirt;
-    //[SerializeField] private Animator tabard;
-    //[SerializeField] private Animator bow;
+    [SerializeField] private Animator boots;
+    [SerializeField] private Animator headgear;
+    [SerializeField] private Animator belt;
+    [SerializeField] private Animator cape;
+    [SerializeField] private Animator chestplates;
+    [SerializeField] private Animator gloves;
+    [SerializeField] private Animator handpads;
+    [SerializeField] private Animator kneepads;
+    [SerializeField] private Animator quiver;
+    [SerializeField] private Animator shoulder;
+    [SerializeField] private Animator skirt;
+    [SerializeField] private Animator tabard;
+    [SerializeField] private Animator bow;
     public GameObject arrowPrefab;
     public GameObject playerArrow;
- 
-    
+
+    [SerializeField] public Transform[] waypoints;
     private float timeBetweenShots;
     public float startTimeBetweenShots;
 
     
-    private float maxSpeed;
-    private float radiusOfSat;
-    private float turnSpeed;
+    private float numOfHits;
   
  
 
@@ -45,6 +42,10 @@ public class EnemyScript : MonoBehaviour
 
     int showArrow = 0;
 
+
+    int curW = 0;
+    public float speed = 2f;
+
   
 
 
@@ -52,9 +53,7 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        radiusOfSat = 1f;
-        turnSpeed = 3f;
-        maxSpeed = 1.5f;
+    
         timeBetweenShots = startTimeBetweenShots;
 
     }
@@ -65,10 +64,9 @@ public class EnemyScript : MonoBehaviour
         
         //if the player is now close to the enemy
 
-        if(Vector3.Distance(player.position, trans.position) <= 30)
-        {
+       
             trans.LookAt(player.position);
-            anim.SetBool("isSeen", true);
+
             if (timeBetweenShots <= 0)
             {
 
@@ -84,35 +82,68 @@ public class EnemyScript : MonoBehaviour
 
 
             }
-        }
+            if (trans.position != waypoints[curW].position)
+            {
+                trans.position = Vector3.MoveTowards(trans.position, waypoints[curW].position, speed * Time.deltaTime);
+
+            }
+
+            else
+            {
+                curW = (curW + 1) % waypoints.Length;
+
+            }
+        
 
 
 
     }
 
-    
+
     void Shoot()
     {
-     
 
-            Vector3 shootingV = new Vector3(trans.position.x + 0.55f, 1.1f, trans.position.z - 0.5f);
-            GameObject a = Instantiate(arrowPrefab) as GameObject;
+        Vector3 shootingV = new Vector3(trans.position.x - .35f, trans.position.y + 1.1f, trans.position.z + 0.2f);
+        GameObject a = Instantiate(arrowPrefab) as GameObject;
 
-            a.transform.position = shootingV;
-            Rigidbody b = a.GetComponent<Rigidbody>();
-            b.velocity = trans.forward * 20f;
-          
-   
+        a.transform.position = shootingV;
+        Rigidbody b = a.GetComponent<Rigidbody>();
+        b.velocity = trans.forward * 30f;
+    }
+
+
+    IEnumerator Disappear()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Arrow")
+        if (collision.gameObject.tag == "Arrow")
         {
-            gothit = true;
-            //sets the boolean in Animator. since moving is true, this will make the enemy move
-            anim.SetBool("gotHit", gothit);
-    
+            Destroy(collision.gameObject);
+            numOfHits++;
+            if (numOfHits == 2)
+            {
+                StartCoroutine(Disappear());
+
+                //sets the boolean in Animator. since moving is true, this will make the enemy move
+                anim.SetBool("gotHit", false);
+                boots.SetBool("gotHit", false);
+                headgear.SetBool("gotHit", false);
+                belt.SetBool("gotHit", false);
+                cape.SetBool("gotHit", false);
+                chestplates.SetBool("gotHit", false);
+                gloves.SetBool("gotHit", false);
+                handpads.SetBool("gotHit", false);
+                kneepads.SetBool("gotHit", false);
+                quiver.SetBool("gotHit", false);
+                shoulder.SetBool("gotHit", false);
+                skirt.SetBool("gotHit", false);
+                tabard.SetBool("gotHit", false);
+                bow.SetBool("gotHit", false);
+            }
 
         }
     }

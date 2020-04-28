@@ -41,9 +41,8 @@ public class SpawnEnemy : MonoBehaviour
         GameObject a = Instantiate(enemy) as GameObject;
         a.transform.position = spawnPos.position;
         a.transform.LookAt(Playertrans.position);
-
+        
 
     }
-
 
 }

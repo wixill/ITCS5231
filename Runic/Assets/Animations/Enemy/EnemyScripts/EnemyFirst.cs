@@ -5,9 +5,23 @@ using UnityEngine;
 public class EnemyFirst : MonoBehaviour
 {
     //variable needed for animator
-    static Animator anim;
+   [SerializeField]Animator anim;
     [SerializeField] private Transform trans;
     [SerializeField] private Transform Playertrans;
+
+    [SerializeField] private Animator boots;
+    [SerializeField] private Animator headgear;
+    [SerializeField] private Animator belt;
+    [SerializeField] private Animator cape;
+    [SerializeField] private Animator chestplates;
+    [SerializeField] private Animator gloves;
+    [SerializeField] private Animator handpads;
+    [SerializeField] private Animator kneepads;
+    [SerializeField] private Animator quiver;
+    [SerializeField] private Animator shoulder;
+    [SerializeField] private Animator skirt;
+    [SerializeField] private Animator tabard;
+    [SerializeField] private Animator bow;
     private float timeBetweenShots;
     public float startTimeBetweenShots;
     public GameObject arrowPrefab;
@@ -35,18 +49,19 @@ public class EnemyFirst : MonoBehaviour
         turnSpeed = 1f;
         maxSpeed = 1.5f;
         timeBetweenShots = startTimeBetweenShots;
+        
+        //anim.SetBool("isReady", true);
 
-        //StartCoroutine(Disappear());
+
+       // StartCoroutine(Disappear());
     }
 
     // Start is called before the first frame update
     void Update()
     {
-        
-        anim = GetComponent<Animator>();
-
-
        
+
+        
 
         if (timeBetweenShots <= 0)
         {
@@ -80,13 +95,25 @@ public class EnemyFirst : MonoBehaviour
         {
             Destroy(collision.gameObject);
             numOfHits++;
-            trans.position = trans.position;
            if(numOfHits == 2) {
                 StartCoroutine(Disappear());
-                gotHit = true;
+          
                 //sets the boolean in Animator. since moving is true, this will make the enemy move
-                anim.SetBool("gotHit", gotHit);
-            }
+                anim.SetBool("gotHit", false);
+                boots.SetBool("gotHit", false); 
+                headgear.SetBool("gotHit", false);
+                belt.SetBool("gotHit", false); 
+                cape.SetBool("gotHit", false);
+                chestplates.SetBool("gotHit", false);
+                gloves.SetBool("gotHit", false);
+                handpads.SetBool("gotHit", false);
+                kneepads.SetBool("gotHit", false);
+                quiver.SetBool("gotHit", false);
+                shoulder.SetBool("gotHit", false);
+                skirt.SetBool("gotHit", false);
+                tabard.SetBool("gotHit", false);
+                bow.SetBool("gotHit", false);
+}
   
         }
     }

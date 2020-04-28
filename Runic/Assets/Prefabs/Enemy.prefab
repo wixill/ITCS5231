@@ -1753,7 +1753,6 @@ GameObject:
   - component: {fileID: 1385187770430177082}
   - component: {fileID: 2206524512208645654}
   - component: {fileID: 2206524512208645649}
-  - component: {fileID: 2206524512208645655}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1808,7 +1807,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
@@ -1825,24 +1824,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.12, z: 1}
   m_Center: {x: 0, y: 1.07, z: 0}
---- !u!114 &2206524512208645655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1385187770420809032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 076a0418457399b4381c7abe85b5b8bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trans: {fileID: 1385187770420580520}
-  arrowPrefab: {fileID: 5215654917819680247, guid: 26910fb3f9b84d145ac3bd551cb51429,
-    type: 3}
-  playerArrow: {fileID: 8502519903798260032, guid: 21c1777c758e9444d8fa4af1f7f0aa66,
-    type: 3}
-  startTimeBetweenShots: 5
 --- !u!1 &1385187770420809034
 GameObject:
   m_ObjectHideFlags: 0
