@@ -18,6 +18,7 @@ public class PressurePlate : Activator
     private Collider[] whatsOnTop;
     // Length of whatsOnTop at the start of the scene
     private int startLen;
+    private AudioSource audioS;
 
     // Renderer
     private Renderer[] rend;
@@ -41,8 +42,7 @@ public class PressurePlate : Activator
         Vector3 offsetPos = new Vector3(transform.position.x + sensorOffset.x, transform.position.y + sensorOffset.y, transform.position.z + sensorOffset.z);
         whatsOnTop = Physics.OverlapBox(transform.position, sensor);
         startLen = whatsOnTop.Length;
-        print("startLen = " + startLen);
-
+        audioS = gameObject.GetComponent<AudioSource>();
     }
     private void OnDrawGizmosSelected()
     {
@@ -58,7 +58,6 @@ public class PressurePlate : Activator
     {
         if (reversed)
         {
-            print("cur Len = " + whatsOnTop.Length);
             if (whatsOnTop.Length < startLen)
             {
 
@@ -70,6 +69,7 @@ public class PressurePlate : Activator
                     {
                         rend[i].material.SetColor("_EmissionColor", onColor);
                     }
+                    audioS.PlayOneShot(audioS.clip, 1.0f);
                 }
             }
             else if (!hasActivated)
@@ -93,6 +93,7 @@ public class PressurePlate : Activator
                     {
                         rend[i].material.SetColor("_EmissionColor", onColor);
                     }
+                    audioS.PlayOneShot(audioS.clip, 1.0f);
                 }
             }
         }

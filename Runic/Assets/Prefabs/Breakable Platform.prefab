@@ -125,6 +125,7 @@ MonoBehaviour:
     type: 3}
   scaleFactor: 0.5
   breakCountdown: 1
+  paused: 0
 --- !u!114 &6708328557340175383
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class Button : Activator
     // Renderer
     private Renderer[] rend;
 
+    private AudioSource audioS;
+
     // Checks if it has been activated before or not
     private bool hasActivated = false;
     // Start is called before the first frame update
@@ -31,6 +33,7 @@ public class Button : Activator
             activate();
             hasActivated = true;
         }
+        audioS = gameObject.GetComponent<AudioSource>();
     }
 
 
@@ -57,6 +60,7 @@ public class Button : Activator
                             rend[i].material.SetColor("_EmissionColor", offColor);
                         }
                     }
+                    audioS.PlayOneShot(audioS.clip, 1.0f);
                 }
             }
         }

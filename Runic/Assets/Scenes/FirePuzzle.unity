@@ -20500,7 +20500,7 @@ PrefabInstance:
     - target: {fileID: 1903344496980182027, guid: 846e73a43289e0542a6aa179f5cb1e07,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1903344496980182027, guid: 846e73a43289e0542a6aa179f5cb1e07,
         type: 3}
@@ -29917,7 +29917,7 @@ PrefabInstance:
     - target: {fileID: 623050067679785850, guid: a32e642cb10ebd545a9b5f5708ca54c6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 623050067679785850, guid: a32e642cb10ebd545a9b5f5708ca54c6,
         type: 3}
@@ -34537,7 +34537,7 @@ Transform:
   - {fileID: 824812780}
   - {fileID: 1026887708}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1593913103
 PrefabInstance:
@@ -41608,6 +41608,11 @@ PrefabInstance:
       propertyPath: breakCountdown
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6962789215246664690, guid: 308a04459f023d9459a1844e8f418f0e,
+        type: 3}
+      propertyPath: scaleFactor
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6962789215246664691, guid: 308a04459f023d9459a1844e8f418f0e,
         type: 3}
       propertyPath: m_Name
@@ -41781,6 +41786,109 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1962094223}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1971874390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1903344496980182025, guid: 846e73a43289e0542a6aa179f5cb1e07,
+    type: 3}
+  m_PrefabInstance: {fileID: 926982644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1971874395
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971874390}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 74cfc91328410964fa1f9048b3520284,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 6e5b03da2c3d50f4baa10fa42e7fb4bd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1972753959 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2751359855118516759, guid: 9c92d740bd27a3c4daac7af1b4533cc2,

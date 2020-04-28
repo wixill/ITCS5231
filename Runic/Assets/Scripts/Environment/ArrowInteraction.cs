@@ -73,7 +73,9 @@ public class ArrowInteraction : MonoBehaviour
     private Material[] normalMats;
     private float thawCountdown;
     private GameObject fire;
+    private AudioSource audioS;
 
+    private BoxCollider bc;
     private BreakablePlatform bp;
 
     private void Awake()
@@ -96,6 +98,22 @@ public class ArrowInteraction : MonoBehaviour
         {
             bp = null;
         }
+
+        try
+        {
+            bc = GetComponent<BoxCollider>();
+        } catch (Exception e) {
+            bc = null;
+
+        } 
+
+        try
+        {
+            audioS = GetComponent<AudioSource>();
+        } catch (Exception e)
+        {
+            audioS = null;
+        }
     }
 
     /**
@@ -105,9 +123,13 @@ public class ArrowInteraction : MonoBehaviour
     {
         if (breakable)
         {
+            matRenderers[0].enabled = false;
+            if (bc != null) bc.enabled = false;
+            audioS.PlayOneShot(audioS.clip, 1.0f);
+
             GameObject broken = Instantiate(fracturedBlock, transform.position, transform.rotation);
             broken.transform.localScale = new Vector3(this.transform.localScale.x * scaleFactor, this.transform.localScale.y * scaleFactor, this.transform.localScale.z * scaleFactor);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 1.0f);
         }
     }
 

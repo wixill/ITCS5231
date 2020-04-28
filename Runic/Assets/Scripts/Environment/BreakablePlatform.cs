@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngineInternal;
 
@@ -15,6 +16,7 @@ public class BreakablePlatform : MonoBehaviour
     [SerializeField] private float breakCountdown;
     private bool countdownStart = false;
     public bool paused = false;
+
 
     // When player steps on a platform or a heavy enough object lands on it (enters the trigger box) then start the timer
     private void OnTriggerEnter(Collider other)
@@ -34,9 +36,11 @@ public class BreakablePlatform : MonoBehaviour
             breakCountdown -= Time.deltaTime;
             if(breakCountdown <= 0)
             {
+
                 GameObject broken = Instantiate(fracturedBlock, transform.position, transform.rotation);
                 broken.transform.localScale = new Vector3(this.transform.localScale.x * scaleFactor, this.transform.localScale.y * scaleFactor, this.transform.localScale.z * scaleFactor);
-                Destroy(this.gameObject);
+
+                Destroy(gameObject);
             }
         }
     }
