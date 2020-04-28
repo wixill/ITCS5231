@@ -19,6 +19,7 @@ public class PressurePlate : Activator
     // Length of whatsOnTop at the start of the scene
     private int startLen;
     private AudioSource audioS;
+    [SerializeField] private AudioClip runeActivation;
 
     // Renderer
     private Renderer[] rend;
@@ -43,6 +44,7 @@ public class PressurePlate : Activator
         whatsOnTop = Physics.OverlapBox(transform.position, sensor);
         startLen = whatsOnTop.Length;
         audioS = gameObject.GetComponent<AudioSource>();
+        audioS.clip = runeActivation;
     }
     private void OnDrawGizmosSelected()
     {
@@ -70,6 +72,7 @@ public class PressurePlate : Activator
                         rend[i].material.SetColor("_EmissionColor", onColor);
                     }
                     audioS.PlayOneShot(audioS.clip);
+                    print(gameObject.name);
                 }
             }
             else if (!hasActivated)

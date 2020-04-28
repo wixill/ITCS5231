@@ -11,7 +11,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 74cfc91328410964fa1f9048b3520284,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 243a911de42758c42952522baabb1347, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -112,7 +112,7 @@ MonoBehaviour:
   iceRuneManager: {fileID: 0}
   offColor: {r: 0.454902, g: 1, b: 1, a: 1}
   onColor: {r: 1, g: 1, b: 1, a: 0}
-  volume: 0.5
+  runeActivation: {fileID: 8300000, guid: 243a911de42758c42952522baabb1347, type: 3}
 --- !u!1001 &8728460732679686632
 PrefabInstance:
   m_ObjectHideFlags: 0

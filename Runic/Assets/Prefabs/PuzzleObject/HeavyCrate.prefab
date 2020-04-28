@@ -144,9 +144,11 @@ MonoBehaviour:
   thawTime: 0
   iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
   rigidBodies: []
-  volume: 0.5
+  volume: 1
   ignition: {fileID: 8300000, guid: 241b86f61838616428ee421b4b73bc92, type: 3}
+  fireCrackle: {fileID: 8300000, guid: 0cdc20c7ec21adb419f60d014978ea70, type: 3}
   playFireSounds: 1
+  crackleSoundDelay: 0
 --- !u!82 &-4650165308473556225
 AudioSource:
   m_ObjectHideFlags: 0
@@ -158,7 +160,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 74cfc91328410964fa1f9048b3520284,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0cdc20c7ec21adb419f60d014978ea70, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
@@ -204,7 +206,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

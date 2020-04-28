@@ -15,6 +15,7 @@ public class IceRune_key : PuzzleObject
 
     private Renderer[] rend;
     private AudioSource audioS;
+    [SerializeField] private AudioClip runeActivation;
 
     private void Start()
     {
@@ -26,12 +27,14 @@ public class IceRune_key : PuzzleObject
             rend[i].material.SetColor("_EmissionColor", offColor);
         }
         audioS = gameObject.GetComponent<AudioSource>();
+        audioS.clip = runeActivation;
     }
 
     public override void activate()
     {
         rm.decrementRunes();
         audioS.PlayOneShot(audioS.clip);
+        print(gameObject.name);
 
         if (rend[0].material.GetColor("_EmissionColor") == offColor)
         {

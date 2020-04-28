@@ -11,7 +11,7 @@ public class FireButton : Activator
     [SerializeField] private Color offColor;
     // Color when button is on
     [SerializeField] private Color onColor;
-
+    [SerializeField] private AudioClip runeActivation;
     // Renderer
     private Renderer[] rend;
 
@@ -34,6 +34,7 @@ public class FireButton : Activator
             hasActivated = true;
         }
         audioS = gameObject.GetComponent<AudioSource>();
+        audioS.clip = runeActivation;
     }
 
 
@@ -58,6 +59,7 @@ public class FireButton : Activator
                 }
             }
             audioS.PlayOneShot(audioS.clip);
+            print(gameObject.name);
         }
 
     }

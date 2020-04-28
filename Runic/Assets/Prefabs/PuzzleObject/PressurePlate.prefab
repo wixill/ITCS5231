@@ -71,7 +71,7 @@ MonoBehaviour:
   reversed: 0
   sensor: {x: 0, y: 0, z: 0}
   sensorOffset: {x: 0, y: 0, z: 0}
-  volume: 0.5
+  runeActivation: {fileID: 8300000, guid: 243a911de42758c42952522baabb1347, type: 3}
 --- !u!65 &2895468211740848215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -96,8 +96,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 74cfc91328410964fa1f9048b3520284,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 243a911de42758c42952522baabb1347, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LightTorch : Activator
 {
@@ -8,7 +9,21 @@ public class LightTorch : Activator
     [SerializeField] bool isActivator = false;
     // Checks if its been lit or not to prevent toggling
     private bool isLit = false;
-   
+    [SerializeField] AudioClip torchAudio;
+
+    private AudioSource audioS;
+
+    private void Start()
+    {
+        try
+        {
+            audioS = GetComponent<AudioSource>();
+            audioS.clip = torchAudio;
+        } catch (Exception e)
+        {
+            audioS = null;
+        }
+    }
 
     /*
      * Ignights the torch by activating its children
@@ -34,9 +49,11 @@ public class LightTorch : Activator
             if (isActivator)
             {
                 activate();
+                
             }
 
         }
+        if(audioS != null) audioS.PlayOneShot(audioS.clip);
         isLit = true;
         return true;
 

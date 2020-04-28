@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MoveWhenActivated : PuzzleObject
 {
@@ -8,7 +9,8 @@ public class MoveWhenActivated : PuzzleObject
     [SerializeField] float moveSpeed;
     [SerializeField] Vector3 endRot;
     [SerializeField] float rotSpeed;
-
+    [SerializeField] float soundDelay;
+    private AudioSource audioS;
     private bool move = false;
     // Checks if it has been activated before or not
     private bool hasActivated = false;
@@ -17,16 +19,24 @@ public class MoveWhenActivated : PuzzleObject
     // Start is called before the first frame update
     void Start()
     {
-        
+        try
+        {
+            audioS = GetComponent<AudioSource>();
+        }
+        catch (Exception e)
+        {
+            audioS = null;
+        }
     }
 
     public override void activate()
     {
-        print("Moving object!");
+        print("Moving " + gameObject.name);
         if (!hasActivated)
         {
             move = true;
             hasActivated = true;
+            if(audioS != null) audioS.PlayOneShot(audioS.clip);
         }
     }
 
@@ -36,29 +46,22 @@ public class MoveWhenActivated : PuzzleObject
     {
         if (move)
         {
-
-            //print("lerping");
-            if(transform.localPosition != endPos)
+            if (transform.localPosition != endPos)
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, endPos, moveSpeed * Time.deltaTime);
-            } else
-            {
-                print("SAME POS");
             }
-            //print("loc " + transform.localPosition);
 
             if(transform.localEulerAngles != endRot)
             {
                 transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, endRot, rotSpeed * Time.deltaTime);
-            } else
-            {
-                print("SAME ROT");
             }
-            //print("rot " + transform.localEulerAngles);
+            //audioS.PlayDelayed(soundDelay);
+            
+
             if (transform.localPosition == endPos && transform.localEulerAngles == endRot)
             {
                 move = false;
-                print("STOP");
+
             }
         }
     }
