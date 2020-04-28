@@ -112,6 +112,7 @@ MonoBehaviour:
   iceRuneManager: {fileID: 0}
   offColor: {r: 0.454902, g: 1, b: 1, a: 1}
   onColor: {r: 1, g: 1, b: 1, a: 0}
+  volume: 0.5
 --- !u!1001 &8728460732679686632
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -24,8 +24,8 @@ public class RuneUnlock : MonoBehaviour
         if (other.gameObject.tag == "Player") {
             PlayerController player = PlayerController.getInstance();
 
-            audioS.PlayOneShot(audioS.clip, 1.0f);
-            for(int i = 0; i < rend.Length; i++)
+            audioS.PlayOneShot(audioS.clip);
+            for (int i = 0; i < rend.Length; i++)
             {
                 rend[i].enabled = false;
             }

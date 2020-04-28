@@ -68,6 +68,7 @@ MonoBehaviour:
   isToggleable: 1
   offColor: {r: 0.5849056, g: 0.5849056, b: 0.7882353, a: 0}
   onColor: {r: 1, g: 1, b: 1, a: 0}
+  volume: 0.5
 --- !u!82 &7500675066985683621
 AudioSource:
   m_ObjectHideFlags: 0

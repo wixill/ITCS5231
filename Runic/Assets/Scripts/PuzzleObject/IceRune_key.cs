@@ -31,7 +31,7 @@ public class IceRune_key : PuzzleObject
     public override void activate()
     {
         rm.decrementRunes();
-        audioS.PlayOneShot(audioS.clip, 1.0f);
+        audioS.PlayOneShot(audioS.clip);
 
         if (rend[0].material.GetColor("_EmissionColor") == offColor)
         {

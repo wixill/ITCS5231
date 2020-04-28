@@ -69,7 +69,7 @@ public class PressurePlate : Activator
                     {
                         rend[i].material.SetColor("_EmissionColor", onColor);
                     }
-                    audioS.PlayOneShot(audioS.clip, 1.0f);
+                    audioS.PlayOneShot(audioS.clip);
                 }
             }
             else if (!hasActivated)
@@ -93,7 +93,7 @@ public class PressurePlate : Activator
                     {
                         rend[i].material.SetColor("_EmissionColor", onColor);
                     }
-                    audioS.PlayOneShot(audioS.clip, 1.0f);
+                    audioS.PlayOneShot(audioS.clip);
                 }
             }
         }

@@ -146,6 +146,7 @@ MonoBehaviour:
   iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
   rigidBodies:
   - {fileID: 7870827239789713932}
+  volume: 0
 --- !u!114 &7022456776489841831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b568035a40795945ae1593d59eb1ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volume: 0.5
 --- !u!82 &554909092213446802
 AudioSource:
   m_ObjectHideFlags: 0

@@ -12641,6 +12641,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: MetalFenceHinge_05
       objectReference: {fileID: 0}
+    - target: {fileID: 4877417831118824585, guid: 1d0128fe211df9344a8a277ac5a69869,
+        type: 3}
+      propertyPath: rockfall
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fd545aad3f54b348b9cca06334667dd, type: 3}
+    - target: {fileID: 4877417831118824585, guid: 1d0128fe211df9344a8a277ac5a69869,
+        type: 3}
+      propertyPath: volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4877417831118824586, guid: 1d0128fe211df9344a8a277ac5a69869,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -12710,6 +12720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.4009281
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448018598082464797, guid: 1d0128fe211df9344a8a277ac5a69869,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0128fe211df9344a8a277ac5a69869, type: 3}
@@ -15262,6 +15277,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877417831118824585, guid: 1d0128fe211df9344a8a277ac5a69869,
+        type: 3}
+      propertyPath: rockfall
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fd545aad3f54b348b9cca06334667dd, type: 3}
+    - target: {fileID: 4877417831118824585, guid: 1d0128fe211df9344a8a277ac5a69869,
+        type: 3}
+      propertyPath: volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4877417831118824586, guid: 1d0128fe211df9344a8a277ac5a69869,
         type: 3}
@@ -48562,12 +48587,12 @@ PrefabInstance:
     - target: {fileID: 3734515986061160991, guid: ac945c3f00fca13498a3899c15b84bbf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.741
+      value: 5.95
       objectReference: {fileID: 0}
     - target: {fileID: 3734515986061160991, guid: ac945c3f00fca13498a3899c15b84bbf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9430161
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3734515986061160991, guid: ac945c3f00fca13498a3899c15b84bbf,
         type: 3}

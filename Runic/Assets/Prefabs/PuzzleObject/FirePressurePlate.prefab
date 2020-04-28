@@ -84,6 +84,7 @@ MonoBehaviour:
   reversed: 1
   sensor: {x: 3, y: 0.67, z: 3}
   sensorOffset: {x: 0.02, y: 0.39, z: -0.43}
+  volume: 0.5
 --- !u!1001 &925970756127627080
 PrefabInstance:
   m_ObjectHideFlags: 0

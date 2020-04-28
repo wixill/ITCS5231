@@ -125,7 +125,7 @@ public class ArrowInteraction : MonoBehaviour
         {
             matRenderers[0].enabled = false;
             if (bc != null) bc.enabled = false;
-            audioS.PlayOneShot(audioS.clip, 1.0f);
+            audioS.PlayOneShot(audioS.clip);
 
             GameObject broken = Instantiate(fracturedBlock, transform.position, transform.rotation);
             broken.transform.localScale = new Vector3(this.transform.localScale.x * scaleFactor, this.transform.localScale.y * scaleFactor, this.transform.localScale.z * scaleFactor);
@@ -133,12 +133,9 @@ public class ArrowInteraction : MonoBehaviour
         }
     }
 
-    /**
-     * Pulls object towards player
-     * @param dest Vector3 - the destination to get pulled towards
-     */
     public bool getPulled()
     {
+        audioS.PlayOneShot(audioS.clip);
         return pullable;
     }
 
@@ -306,10 +303,11 @@ public class ArrowInteraction : MonoBehaviour
                     {
                         if (adjacentObjects[i].gameObject.tag == "Interactable")
                         {
-                            adjacentObjects[i].SendMessage("catchFire");
-                        } else if (adjacentObjects[i].gameObject.tag == "FireButton")
+                            adjacentObjects[i].SendMessage("catchFire", SendMessageOptions.DontRequireReceiver);
+                        }
+                        else if (adjacentObjects[i].gameObject.tag == "FireButton")
                         {
-                            adjacentObjects[i].SendMessage("turnOn");
+                            adjacentObjects[i].SendMessage("turnOn", SendMessageOptions.DontRequireReceiver);
                         }
                     } catch (Exception e)
                     {

@@ -21,7 +21,7 @@ public class BreakOnFloor : MonoBehaviour
         {
             rend.enabled = false;
             if (bc != null) bc.enabled = false;
-            audioS.PlayOneShot(audioS.clip, 1.0f);
+            audioS.PlayOneShot(audioS.clip);
 
             Destroy(gameObject, 3.0f);
         }

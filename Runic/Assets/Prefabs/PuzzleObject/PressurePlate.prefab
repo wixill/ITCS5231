@@ -71,6 +71,7 @@ MonoBehaviour:
   reversed: 0
   sensor: {x: 0, y: 0, z: 0}
   sensorOffset: {x: 0, y: 0, z: 0}
+  volume: 0.5
 --- !u!65 &2895468211740848215
 BoxCollider:
   m_ObjectHideFlags: 0

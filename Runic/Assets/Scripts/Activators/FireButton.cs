@@ -57,7 +57,7 @@ public class FireButton : Activator
                     rend[i].material.SetColor("_EmissionColor", offColor);
                 }
             }
-            audioS.PlayOneShot(audioS.clip, 1.0f);
+            audioS.PlayOneShot(audioS.clip);
         }
 
     }
