@@ -59,9 +59,9 @@ public class EnemyFirst : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-       
 
         
+
 
         if (timeBetweenShots <= 0)
         {
@@ -121,12 +121,11 @@ public class EnemyFirst : MonoBehaviour
     void Shoot()
     {
 
-        Vector3 shootingV = new Vector3(trans.position.x - .35f, trans.position.y + 1.1f, trans.position.z + 0.2f);
-        GameObject a = Instantiate(arrowPrefab) as GameObject;
+        Vector3 shootingV = new Vector3(trans.position.x, trans.position.y + 1.1f, trans.position.z + 0.5f);
+        GameObject a = Instantiate(arrowPrefab, shootingV, trans.rotation) as GameObject;
 
-        a.transform.position = shootingV;
         Rigidbody b = a.GetComponent<Rigidbody>();
-        b.velocity = trans.forward * 30f;
+        b.velocity = trans.forward * 60f;
     }
 
 }
