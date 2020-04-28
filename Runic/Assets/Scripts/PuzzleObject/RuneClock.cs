@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class RuneClock : MonoBehaviour
@@ -7,6 +8,7 @@ public class RuneClock : MonoBehaviour
     [SerializeField] float colorChangeRate = 0.005f;
     [SerializeField] float alarm = 50f;
     [SerializeField] ArrowInteraction interact;
+    [SerializeField] AudioClip clockTicking;
 
     private Renderer[] renderers;
     private Color startColor;
@@ -16,6 +18,7 @@ public class RuneClock : MonoBehaviour
     private float lerpt;
     private bool alarmActive;
     private bool spedUp;
+    private AudioSource audioS;
  
 
     private void Awake()
@@ -35,12 +38,16 @@ public class RuneClock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioS = GetComponent<AudioSource>();
+        audioS.clip = clockTicking;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!interact.IsFrozen() && alarmActive) {
+            print("updating");
+            if (!audioS.isPlaying) audioS.Play();
             alarm -= Time.deltaTime;
             if (alarm <= 10 && !spedUp) {
                 spedUp = true;
@@ -50,6 +57,10 @@ public class RuneClock : MonoBehaviour
                 AlarmEnd();
             }
             ChangeColor();
+        } else
+        {
+            print("in else");
+            if (audioS.isPlaying) audioS.Pause();
         }
     }
 
@@ -74,5 +85,6 @@ public class RuneClock : MonoBehaviour
     public void stopClock()
     {
         alarmActive = false;
+        audioS.Pause();
     }
 }

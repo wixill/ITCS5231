@@ -23,6 +23,7 @@ public class ArrowInteraction : MonoBehaviour
     [SerializeField] private GameObject fracturedBlock;
     // Scale factor to ensure it scales to the correct size as the original object - defaulted to 0.5 to match a default cube
     [SerializeField] private float scaleFactor = 0.5f;
+    private BreakablePlatform bp;
 
     // Pullable Specific Fields //
     [Header("Pullable Fields")]
@@ -56,6 +57,13 @@ public class ArrowInteraction : MonoBehaviour
     [SerializeField] private float fireSpread = 2;
     // Can it spread fire?
     private bool canSpread = false;
+    private GameObject fire;
+    [Range(0.0f, 1.0f)]
+    [SerializeField] private float volume;
+    [SerializeField] private AudioClip ignition;
+    [SerializeField] private AudioClip fireCrackle;
+    [SerializeField] private bool playFireSounds = true;
+    [SerializeField] private float crackleSoundDelay = 1.0f;
 
     // Freezable Specific Fields //
     [Header ("Freezable Fields")]
@@ -72,18 +80,12 @@ public class ArrowInteraction : MonoBehaviour
     private Renderer[] matRenderers;
     private Material[] normalMats;
     private float thawCountdown;
-    private GameObject fire;
+    [SerializeField] private AudioClip freezeSound;
+    [SerializeField] private AudioClip thawSound;
+
     private AudioSource audioS;
-    [Range(0.0f, 1.0f)]
-    [SerializeField] private float volume;
-    [SerializeField] private AudioClip ignition;
-    [SerializeField] private AudioClip fireCrackle;
-    [SerializeField] private bool playFireSounds = true;
-    [SerializeField] private float crackleSoundDelay = 1.0f;
-
-
     private BoxCollider bc;
-    private BreakablePlatform bp;
+
 
     private void Awake()
     {
@@ -125,10 +127,10 @@ public class ArrowInteraction : MonoBehaviour
 
     private void Start()
     {
-        if (fireCrackle != null)
-        {
-            audioS.clip = fireCrackle;
-        }
+       // if (fireCrackle != null)
+       // {
+       //     audioS.clip = fireCrackle;
+       // }
     }
 
     /**
@@ -212,6 +214,7 @@ public class ArrowInteraction : MonoBehaviour
     {
         if (freezable && !isFrozen)
         {
+            audioS.PlayOneShot(freezeSound);
             isFrozen = true;
             // Change material to ice
             for (int i = 0; i < matRenderers.Length; i++) {
@@ -234,6 +237,7 @@ public class ArrowInteraction : MonoBehaviour
     }
 
     private void Unfreeze() {
+        audioS.PlayOneShot(thawSound);
         isFrozen = false;
         for (int i = 0; i < matRenderers.Length; i++)
         {

@@ -12,6 +12,8 @@ public class IceRune_activator : Activator
     private bool isFrozen = false;
     // Color when button is off
     [SerializeField] private Color offColor;
+    [SerializeField] private AudioClip freezeSound;
+    private AudioSource audioS;
 
 
     private void Start()
@@ -24,7 +26,8 @@ public class IceRune_activator : Activator
             normalMats[i] = matRenderers[i].material;
             matRenderers[i].material.SetColor("_EmissionColor", offColor);
         }
-
+        audioS = GetComponent<AudioSource>();
+        audioS.clip = freezeSound;
     }
 
     public bool freezeSelf()
@@ -32,7 +35,7 @@ public class IceRune_activator : Activator
         if (!isFrozen)
         {
             activate();
-
+            audioS.PlayOneShot(freezeSound);
             for (int i = 0; i < matRenderers.Length; i++)
             {
                 matRenderers[i].material = iceMat;

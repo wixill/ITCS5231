@@ -122,13 +122,16 @@ MonoBehaviour:
   fireJumpDist: {x: 1, y: 5.5, z: 5.5}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 2
+  volume: 1
+  ignition: {fileID: 8300000, guid: 241b86f61838616428ee421b4b73bc92, type: 3}
+  fireCrackle: {fileID: 8300000, guid: 0cdc20c7ec21adb419f60d014978ea70, type: 3}
+  playFireSounds: 1
+  crackleSoundDelay: 0
   thawTime: 0
   iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
   rigidBodies: []
-  volume: 1
-  ignition: {fileID: 8300000, guid: 241b86f61838616428ee421b4b73bc92, type: 3}
-  fireCrackle: {fileID: 0}
-  playFireSounds: 1
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!82 &5103764122527631027
 AudioSource:
   m_ObjectHideFlags: 0
@@ -140,7 +143,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 74cfc91328410964fa1f9048b3520284,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0cdc20c7ec21adb419f60d014978ea70, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7022456776489841831}
   - component: {fileID: 554909092213446802}
   m_Layer: 9
-  m_Name: HeavyCrate_Break
+  m_Name: FreezableCrate_Break
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   breakable: 0
   pullable: 0
-  flamable: 1
+  flamable: 0
   freezable: 1
   fracturedBlock: {fileID: 0}
   scaleFactor: 0.5
@@ -142,11 +142,17 @@ MonoBehaviour:
   fireJumpDist: {x: 3.47, y: 2.3, z: 3.74}
   jumpDistOffset: {x: 0, y: 0.98, z: 0}
   fireSpread: 2
+  volume: 0
+  ignition: {fileID: 0}
+  fireCrackle: {fileID: 0}
+  playFireSounds: 1
+  crackleSoundDelay: 1
   thawTime: 10
   iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
   rigidBodies:
   - {fileID: 7870827239789713932}
-  volume: 0
+  freezeSound: {fileID: 8300000, guid: b4542116d26ff7e46852802d695dba44, type: 3}
+  thawSound: {fileID: 8300000, guid: 9db8951efb4a20e43b5170a60ce6cfc3, type: 3}
 --- !u!114 &7022456776489841831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b568035a40795945ae1593d59eb1ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.5
 --- !u!82 &554909092213446802
 AudioSource:
   m_ObjectHideFlags: 0
@@ -173,7 +178,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 5d421ac30c566014aad9a1477030a262, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -187,7 +192,7 @@ AudioSource:
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:

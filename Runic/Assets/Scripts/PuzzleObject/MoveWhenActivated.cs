@@ -10,6 +10,7 @@ public class MoveWhenActivated : PuzzleObject
     [SerializeField] Vector3 endRot;
     [SerializeField] float rotSpeed;
     [SerializeField] float soundDelay;
+    [SerializeField] AudioClip moveSound;
     private AudioSource audioS;
     private bool move = false;
     // Checks if it has been activated before or not
@@ -36,7 +37,7 @@ public class MoveWhenActivated : PuzzleObject
         {
             move = true;
             hasActivated = true;
-            if(audioS != null) audioS.PlayOneShot(audioS.clip);
+            if(audioS != null) audioS.PlayOneShot(moveSound);
         }
     }
 
