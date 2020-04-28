@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngineInternal;
 
 // A platform/block that breaks after a certain amount of time once something is placed on top of it or the player walks over it
 public class BreakablePlatform : MonoBehaviour
@@ -24,7 +25,7 @@ public class BreakablePlatform : MonoBehaviour
         }
 
     }
-
+    
     // Update is called once per frame
     void Update()
     {
