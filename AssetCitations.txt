@@ -38,6 +38,10 @@ Arrow Hit - Cartoon arrow hit target
 Link: https://www.zapsplat.com/music/cartoon-arrow-hit-target/
 License: Zapslat standard license
 
+Player Hit - Arrow impact
+Link: https://www.zapsplat.com/music/arrow-impact/
+License: CC0 1.0 Universal License
+
 Jump - Bag, holdall, polyester, kick with foot 1
 Link: https://www.zapsplat.com/music/bag-holdall-polyester-kick-with-foot-1/
 License: Zapslat standard license

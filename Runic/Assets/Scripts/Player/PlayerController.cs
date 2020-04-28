@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private AudioClip arrowShootSound;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip landSound;
+    [SerializeField] private AudioClip hitSound;
     [SerializeField] private AudioClip grappleSound;
     [SerializeField] private Renderer model;
     [SerializeField] private Animator anim;
@@ -313,6 +314,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void LoseHealth() {
+        audioSource.PlayOneShot(hitSound);
         health--;
         if (health <= 0) {
             UIManager.getInstance().RestartLevel();
