@@ -129,7 +129,6 @@ public class PlayerController : MonoBehaviour {
                 if (dist < 3) {
                     isGrapplingTo = false;
                     line.positionCount = 0;
-                    canGrapple = false;
                 }
             // Pulling a grapple-able object to the player
             } else if (isGrapplingFrom && objectToPull != null) {
@@ -244,6 +243,7 @@ public class PlayerController : MonoBehaviour {
         UIManager.getInstance().SetActive(ArrowType.Standard);
         line.positionCount = 2;
         isGrapplingTo = true;
+        canGrapple = false;
         grapplePoint = new Vector3(toPoint.x, toPoint.y, toPoint.z);
         UIManager.getInstance().FadeInGrappleIcon(grappleCooldown);
         StartCoroutine(WaitTimeForGrapple());
@@ -256,6 +256,7 @@ public class PlayerController : MonoBehaviour {
         UIManager.getInstance().SetActive(ArrowType.Standard);
         line.positionCount = 2;
         isGrapplingFrom = true;
+        canGrapple = false;
         this.objectToPull = toPull;
         UIManager.getInstance().FadeInGrappleIcon(grappleCooldown);
         StartCoroutine(WaitTimeForGrapple());
@@ -341,7 +342,6 @@ public class PlayerController : MonoBehaviour {
             print("PLAYER COLLIDE WITH: " + hit.gameObject.name);
             isGrapplingTo = false;
             line.positionCount = 0;
-            canGrapple = false;
             grapplePoint = Vector3.zero;
         }
     }
