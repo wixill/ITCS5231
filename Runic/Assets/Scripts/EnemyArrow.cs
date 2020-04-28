@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class EnemyArrow : MonoBehaviour
 {
 
     [SerializeField] private Transform trans;
     [SerializeField] private Rigidbody rb;
     private bool hitSomething;
-    
+    private float playerHits;
 
 
     // Start is called before the first frame update
@@ -26,15 +26,24 @@ public class EnemyArrow : MonoBehaviour
     {
         if (!hitSomething)
         {
-            
+
             trans.LookAt(rb.velocity);
-            
+
         }
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        hitSomething = true;
+        if (collision.gameObject.tag == "Player")
+        {
+
+            playerHits++;
+            if (playerHits == 2)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
     }
+
 }
