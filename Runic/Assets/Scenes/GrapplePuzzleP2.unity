@@ -5523,7 +5523,9 @@ MonoBehaviour:
   rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
+  fireCrackle: {fileID: 0}
   playFireSounds: 1
+  crackleSoundDelay: 1
 --- !u!65 &200787888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6602,7 +6604,9 @@ MonoBehaviour:
   rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
+  fireCrackle: {fileID: 0}
   playFireSounds: 1
+  crackleSoundDelay: 1
 --- !u!65 &233476691
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18824,7 +18828,9 @@ MonoBehaviour:
   rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
+  fireCrackle: {fileID: 0}
   playFireSounds: 1
+  crackleSoundDelay: 1
 --- !u!65 &674193970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21392,7 +21398,9 @@ MonoBehaviour:
   rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
+  fireCrackle: {fileID: 0}
   playFireSounds: 1
+  crackleSoundDelay: 1
 --- !u!65 &763917440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41851,7 +41859,9 @@ MonoBehaviour:
   rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
+  fireCrackle: {fileID: 0}
   playFireSounds: 1
+  crackleSoundDelay: 1
 --- !u!65 &1564813997
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44456,7 +44466,9 @@ MonoBehaviour:
   rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
+  fireCrackle: {fileID: 0}
   playFireSounds: 1
+  crackleSoundDelay: 1
 --- !u!65 &1677270253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47622,7 +47634,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -57238,7 +57250,9 @@ MonoBehaviour:
   rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
+  fireCrackle: {fileID: 0}
   playFireSounds: 1
+  crackleSoundDelay: 1
 --- !u!65 &2131953639
 BoxCollider:
   m_ObjectHideFlags: 0
