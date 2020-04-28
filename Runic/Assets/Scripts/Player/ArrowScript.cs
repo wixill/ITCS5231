@@ -73,8 +73,9 @@ public class ArrowScript : MonoBehaviour
                     if (collision.gameObject.tag == "Interactable")
                     {
                         ArrowInteraction pullTarget = collision.gameObject.GetComponent<ArrowInteraction>();
-                        if (pullTarget.getPulled())
+                        if (pullTarget != null)
                         {
+                            pullTarget.getPulled();
                             shooterController.StartGrappleFrom(collision.gameObject);
                             pullTarget.setIsBeingPulled(true);
                         }

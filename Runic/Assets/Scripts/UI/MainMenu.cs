@@ -6,8 +6,10 @@ using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] SceneChanger sceneChanger;
-    [SerializeField] AudioMixer audioMixer;
+    [SerializeField] private SceneChanger sceneChanger;
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip toggleSound;
     private static MainMenu instance;
 
     private void Awake()
@@ -50,6 +52,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void ToggleFullscreen() {
+        audioSource.PlayOneShot(toggleSound);
         Screen.fullScreen = !Screen.fullScreen;
         if (Screen.fullScreen) {
             Screen.fullScreenMode = FullScreenMode.FullScreenWindow;

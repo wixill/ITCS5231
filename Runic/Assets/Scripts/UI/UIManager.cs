@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image freezeImage;
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Slider volumeSlider;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip toggleSound;
 
     private bool screenFreezing;
     private bool isPaused;
@@ -65,7 +67,7 @@ public class UIManager : MonoBehaviour
         freezeImage.gameObject.SetActive(false);
         isPaused = true;
         Time.timeScale = 0;
-        AudioListener.pause = true;
+        //AudioListener.pause = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);
@@ -75,7 +77,7 @@ public class UIManager : MonoBehaviour
         if (screenFreezing) freezeImage.gameObject.SetActive(true);
         isPaused = false;
         Time.timeScale = 1;
-        AudioListener.pause = false;
+        //AudioListener.pause = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
@@ -105,6 +107,7 @@ public class UIManager : MonoBehaviour
 
     public void ToggleFullscreen()
     {
+        audioSource.PlayOneShot(toggleSound);
         Screen.fullScreen = !Screen.fullScreen;
         if (Screen.fullScreen)
         {

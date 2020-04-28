@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private bool grappleEnabled = false;
 
     private static PlayerController instance = null;
+    private AudioSource audioSource;
     private Vector3 lastPos;
-    private Vector3 startCamPos;
     private bool justShot;
     private bool canGrapple;
     private bool canFreeze;
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         if (instance == null) {
             instance = this;
         } else if (instance != this) {
@@ -60,7 +61,6 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
         grapplePoint = Vector3.zero;
         lastPos = Vector3.zero;
-        startCamPos = new Vector3(0, 1.868f, 0.273f);
         arrowType = ArrowType.Standard;
 
         justShot = false;
@@ -74,20 +74,6 @@ public class PlayerController : MonoBehaviour {
         if (freezeEnabled) UnlockFreeze();
         if (flameEnabled) UnlockFlame();
         if (grappleEnabled) UnlockGrapple();
-
-        //transform.position = new Vector3(-1.7f, 22.6f, 40f);
-
-        /**
-        cm = GameObject.FindGameObjectWithTag("checkpointManager").GetComponent<CheckpointManager>();
-        print("cm pos = " + cm.checkpointPos);
-        if(cm.checkpointPos != Vector3.zero)
-        {
-            print("In cp pos, pos = " + cm.checkpointPos);
-            transform.position = cm.checkpointPos;
-            print("Actual pos = " + transform.position);
-        }
-        */
-        
     }
 
     // Update is called once per frame
