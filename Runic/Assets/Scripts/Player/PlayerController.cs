@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private AudioClip arrowShootSound;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip landSound;
+    [SerializeField] private AudioClip grappleSound;
     [SerializeField] private Renderer model;
     [SerializeField] private Animator anim;
     [SerializeField] private CharacterController controller;
@@ -245,6 +246,7 @@ public class PlayerController : MonoBehaviour {
         UIManager.getInstance().HideGrappleIcon();
         arrowType = ArrowType.Standard;
         UIManager.getInstance().SetActive(ArrowType.Standard);
+        audioSource.PlayOneShot(grappleSound);
         line.positionCount = 2;
         isGrapplingTo = true;
         canGrapple = false;

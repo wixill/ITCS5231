@@ -142,7 +142,6 @@ public class ArrowInteraction : MonoBehaviour
         {
             matRenderers[0].enabled = false;
             if (bc != null) bc.enabled = false;
-            audioS.PlayOneShot(audioS.clip);
 
             GameObject broken = Instantiate(fracturedBlock, transform.position, transform.rotation);
             broken.transform.localScale = new Vector3(this.transform.localScale.x * scaleFactor, this.transform.localScale.y * scaleFactor, this.transform.localScale.z * scaleFactor);
@@ -152,12 +151,12 @@ public class ArrowInteraction : MonoBehaviour
 
     public bool getPulled()
     {
-        audioS.PlayOneShot(audioS.clip);
         return pullable;
     }
 
     public void setIsBeingPulled(bool pulledStatus)
     {
+        audioS.PlayOneShot(audioS.clip);
         isBeingPulled = pulledStatus;
     }
 
