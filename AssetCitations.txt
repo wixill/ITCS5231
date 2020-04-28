@@ -22,6 +22,14 @@ License: http://creativecommons.org/licenses/by/4.0/
 
 SFX:
 
+Menu Select - Menu, select tone, good for game, app, software interace etc 35
+Link: https://www.zapsplat.com/music/menu-select-tone-good-for-game-app-software-interface-etc-35/
+License: Zapslat standard license
+
+Menu Hover - Menu, select tone, good for game, app, software interface etc 14
+Link: https://www.zapsplat.com/music/menu-select-tone-good-for-game-app-software-interface-etc-14/
+License: Zapslat standard license
+
 Arrow Shoot - Medieval Scythian Recurve arrow pass by 1
 Link: https://www.zapsplat.com/music/medieval-scythian-recurve-arrow-pass-by-1/
 License: Zapslat standard license
