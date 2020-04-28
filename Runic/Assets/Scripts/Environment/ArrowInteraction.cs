@@ -74,6 +74,12 @@ public class ArrowInteraction : MonoBehaviour
     private float thawCountdown;
     private GameObject fire;
     private AudioSource audioS;
+    [Range(0.0f, 1.0f)]
+    [SerializeField] private float volume;
+    [SerializeField] private AudioClip ignition;
+    [SerializeField] private bool playFireSounds = true;
+    private float crackleSoundDelay = 1.0f;
+
 
     private BoxCollider bc;
     private BreakablePlatform bp;
@@ -158,6 +164,7 @@ public class ArrowInteraction : MonoBehaviour
         if (flamable && !isOnFire)
         {
             isOnFire = true;
+            if (ignition != null && playFireSounds) audioS.PlayOneShot(ignition, volume);
             // Create the fire
             Vector3 fc = transform.position;
             if (fireCenter != Vector3.zero)
@@ -169,7 +176,8 @@ public class ArrowInteraction : MonoBehaviour
             fire.transform.localScale = new Vector3(this.transform.localScale.x * fireScaleFactor, fire.transform.localScale.y, this.transform.localScale.z * fireScaleFactor);
 
             ParticleSystem firePS = fire.GetComponent<ParticleSystem>();
-
+            if(playFireSounds) audioS.PlayDelayed(crackleSoundDelay);
+            print("Playing Fire Sound");
             if (!prewarm)
             {
                 firePS.Clear();
