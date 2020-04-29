@@ -3614,8 +3614,8 @@ MonoBehaviour:
   gravity: -19.62
   jumpHeight: 3
   grappleCooldown: 3
-  freezeCooldown: 5
-  flameCooldown: 5
+  freezeCooldown: 3
+  flameCooldown: 1.5
   arrowPrefab: {fileID: 8502519903798260032, guid: 21c1777c758e9444d8fa4af1f7f0aa66,
     type: 3}
   arrowSpawn: {fileID: 2011978072}

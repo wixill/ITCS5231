@@ -57,7 +57,7 @@ public class ArrowScript : MonoBehaviour
     {
         if (hitSomething) return;
         if (collision.collider.tag != "Arrow" && collision.collider.tag != "Player") {
-            print("This arrow is: " + type);
+            //print("This arrow is: " + type);
             audioSource.PlayOneShot(hitSound);
             hitSomething = true;
             rb.useGravity = false;

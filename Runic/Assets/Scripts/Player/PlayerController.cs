@@ -105,19 +105,19 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             arrowType = ArrowType.Standard;
             UIManager.getInstance().SetActive(ArrowType.Standard);
-            print(arrowType);
+            //print(arrowType);
         } else if (Input.GetKeyDown(KeyCode.Alpha2) && grappleEnabled && canGrapple) {
             arrowType = ArrowType.Grapple;
             UIManager.getInstance().SetActive(ArrowType.Grapple);
-            print(arrowType);
+            //print(arrowType);
         } else if (Input.GetKeyDown(KeyCode.Alpha4) && freezeEnabled && canFreeze) {
             arrowType = ArrowType.Freeze;
             UIManager.getInstance().SetActive(ArrowType.Freeze);
-            print(arrowType);
+            //print(arrowType);
         } else if (Input.GetKeyDown(KeyCode.Alpha3) && flameEnabled && canFlame) {
             arrowType = ArrowType.Flame;
             UIManager.getInstance().SetActive(ArrowType.Flame);
-            print(arrowType);
+            //print(arrowType);
         }
 
         if (isGrapplingTo || isGrapplingFrom) {
@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void StartGrappleTo(Vector3 toPoint) {
-        print("GRAPPLIN!");
+        //print("GRAPPLIN!");
         UIManager.getInstance().HideGrappleIcon();
         arrowType = ArrowType.Standard;
         UIManager.getInstance().SetActive(ArrowType.Standard);
@@ -263,7 +263,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void StartGrappleFrom(GameObject toPull) {
-        print("PULLIN!");
+        //print("PULLIN!");
         UIManager.getInstance().HideGrappleIcon();
         arrowType = ArrowType.Standard;
         UIManager.getInstance().SetActive(ArrowType.Standard);
@@ -366,7 +366,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (isGrapplingTo && hit.gameObject.layer != 9 && hit.gameObject.tag != "Player" && hit.gameObject.tag != "Arrow")
         {
-            print("PLAYER COLLIDE WITH: " + hit.gameObject.name);
+            //print("PLAYER COLLIDE WITH: " + hit.gameObject.name);
             isGrapplingTo = false;
             line.positionCount = 0;
             grapplePoint = Vector3.zero;

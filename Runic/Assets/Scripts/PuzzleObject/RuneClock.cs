@@ -46,7 +46,7 @@ public class RuneClock : MonoBehaviour
     void Update()
     {
         if (!interact.IsFrozen() && alarmActive) {
-            print("updating");
+            //print("updating");
             if (!audioS.isPlaying) audioS.Play();
             alarm -= Time.deltaTime;
             if (alarm <= 10 && !spedUp) {
@@ -59,7 +59,7 @@ public class RuneClock : MonoBehaviour
             ChangeColor();
         } else
         {
-            print("in else");
+            //print("in else");
             if (audioS.isPlaying) audioS.Pause();
         }
     }
