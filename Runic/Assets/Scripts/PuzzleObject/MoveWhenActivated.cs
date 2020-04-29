@@ -32,7 +32,7 @@ public class MoveWhenActivated : PuzzleObject
 
     public override void activate()
     {
-        print("Moving " + gameObject.name);
+        //print("Moving " + gameObject.name);
         if (!hasActivated)
         {
             move = true;
