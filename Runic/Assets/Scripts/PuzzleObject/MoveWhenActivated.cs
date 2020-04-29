@@ -37,7 +37,7 @@ public class MoveWhenActivated : PuzzleObject
         {
             move = true;
             hasActivated = true;
-            if(audioS != null) audioS.PlayOneShot(moveSound);
+            if(audioS != null && moveSound != null) audioS.PlayOneShot(moveSound);
         }
     }
 
