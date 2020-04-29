@@ -8,6 +8,8 @@ public class EnemyArrow : MonoBehaviour
     [SerializeField] private Transform trans;
     [SerializeField] private Rigidbody rb;
     private bool hitSomething;
+    private float lifeTimer = 3f;
+    private float timer = 0;
 
 
     // Start is called before the first frame update
@@ -23,6 +25,9 @@ public class EnemyArrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        if (timer >= lifeTimer) Destroy(gameObject);
+
         if (!hitSomething)
         {
 
