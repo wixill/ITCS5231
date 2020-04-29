@@ -133,7 +133,7 @@ public class EnemyScript : MonoBehaviour
             Destroy(collision.gameObject);
             audioSource.Play();
             numOfHits++;
-            if (numOfHits == 5)
+            if (numOfHits == 2)
             {
                 StartCoroutine(Disappear());
 
