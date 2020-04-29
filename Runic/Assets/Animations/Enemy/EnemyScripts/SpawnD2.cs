@@ -13,7 +13,7 @@ public class SpawnD2 : MonoBehaviour
     {
         if (!wespawwned)
         {
-            if (Vector3.Distance(Playertrans.position, spawnPos.position) <= 30)
+            if (Vector3.Distance(Playertrans.position, spawnPos.position) <= 23)
             {
                 StartCoroutine(SpawnD());
                 wespawwned = true;
