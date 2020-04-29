@@ -38599,6 +38599,11 @@ PrefabInstance:
       propertyPath: Mute
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1723934081525017693, guid: ce6a8b9e70c0a114597585b6effab4ec,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 245963816}
     - target: {fileID: 2744057109268121709, guid: ce6a8b9e70c0a114597585b6effab4ec,
         type: 3}
       propertyPath: audioSource
@@ -38615,6 +38620,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 245963816}
     - target: {fileID: 7700696443087351563, guid: ce6a8b9e70c0a114597585b6effab4ec,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 245963816}
+    - target: {fileID: 8870296837010270287, guid: ce6a8b9e70c0a114597585b6effab4ec,
         type: 3}
       propertyPath: audioSource
       value: 

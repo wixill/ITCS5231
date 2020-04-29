@@ -183,14 +183,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!65 &23202046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -381,14 +383,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!65 &26026393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -726,14 +730,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!4 &58908363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6431141232787424473, guid: 987b33a9e5c769f4a9da2898c66e9ffb,
@@ -1748,14 +1754,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!65 &331633716
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2000,14 +2008,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!1 &390058434
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,14 +2139,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!1001 &393407891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2356,14 +2368,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!1001 &417160011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2799,14 +2813,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!1001 &525225451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3318,14 +3334,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!65 &629063555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3765,14 +3783,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!1001 &675090153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3984,14 +4004,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!65 &755957493
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4438,14 +4460,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!65 &817600193
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5139,14 +5163,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!1 &878415433
 GameObject:
   m_ObjectHideFlags: 0
@@ -6270,14 +6296,16 @@ MonoBehaviour:
   fireJumpDist: {x: 0, y: 0, z: 0}
   jumpDistOffset: {x: 0, y: 0, z: 0}
   fireSpread: 500
-  thawTime: 0
-  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
-  rigidBodies: []
   volume: 0
   ignition: {fileID: 0}
   fireCrackle: {fileID: 0}
   playFireSounds: 1
   crackleSoundDelay: 1
+  thawTime: 0
+  iceMat: {fileID: 2100000, guid: a74e88492fa30e540a88a0a28e6dd93c, type: 2}
+  rigidBodies: []
+  freezeSound: {fileID: 0}
+  thawSound: {fileID: 0}
 --- !u!1 &1144993832
 GameObject:
   m_ObjectHideFlags: 0
@@ -7983,6 +8011,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1723934081525017693, guid: ce6a8b9e70c0a114597585b6effab4ec,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 653813879}
     - target: {fileID: 1928736000485192503, guid: ce6a8b9e70c0a114597585b6effab4ec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8009,6 +8042,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 653813879}
     - target: {fileID: 7700696443087351563, guid: ce6a8b9e70c0a114597585b6effab4ec,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 653813879}
+    - target: {fileID: 8870296837010270287, guid: ce6a8b9e70c0a114597585b6effab4ec,
         type: 3}
       propertyPath: audioSource
       value: 
