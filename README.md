@@ -118,10 +118,6 @@ Break Platform - Brick Debris Fall 006 by debsound
 Link: https://freesound.org/people/debsound/sounds/437602/
 License: Creative Commons Attrivution Noncommercial License
 
-Seesaw - seasaw1.wav by decembered
-Link: https://freesound.org/people/decembered/sounds/42776/
-License: Creative Commons Attribution 3.0
-
 Rocks - Small rock fall from top, roll down pile of rocks 2
 Link: https://www.zapsplat.com/music/small-rock-fall-from-top-roll-down-pile-of-rocks-2/
 License: Zapslat standard license
