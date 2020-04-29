@@ -148,8 +148,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-
-
         Vector3 pos = player.transform.localPosition;
         if (isGrounded) {
             anim.SetBool("isGrounded", true);
@@ -190,6 +188,14 @@ public class PlayerController : MonoBehaviour {
                 justShot = true;
                 StartCoroutine(WaitTimeForShooting()); ;
             }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (health < playerHealth) {
+            int current = health;
+            StartCoroutine(WaitTimeForHealthRegen(current));
         }
     }
 
@@ -321,8 +327,6 @@ public class PlayerController : MonoBehaviour {
         } else if (health < playerHealth) {
             UIManager.getInstance().DisplayPlayerHurt();
         }
-        int current = health;
-        StartCoroutine(WaitTimeForHealthRegen(current));
     }
 
     //cooldown time for the shooting, set to 3 seconds to wait
