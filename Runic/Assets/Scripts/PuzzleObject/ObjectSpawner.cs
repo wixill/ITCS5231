@@ -15,6 +15,7 @@ public class ObjectSpawner : PuzzleObject
 
     IEnumerator WaitToSpawnObject() {
         yield return new WaitForSeconds(spawnDelay);
-        Instantiate(spawnObject, transform.position, Quaternion.identity);
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y - 3, transform.position.z);
+        Instantiate(spawnObject, spawnPos, Quaternion.identity);
     }
 }

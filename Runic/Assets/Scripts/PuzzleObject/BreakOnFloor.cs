@@ -7,7 +7,7 @@ public class BreakOnFloor : MonoBehaviour
     private AudioSource audioS;
     private Renderer rend;
     private BoxCollider bc;
-
+    [SerializeField] private Rigidbody[] rigidBodies;
     private void Awake()
     {
         rend = gameObject.GetComponent<MeshRenderer>();
@@ -19,11 +19,19 @@ public class BreakOnFloor : MonoBehaviour
     {
         if (collision.gameObject.layer == 9)
         {
-            rend.enabled = false;
-            if (bc != null) bc.enabled = false;
+            //rend.enabled = false;
+            //if (bc != null) bc.enabled = false;
+            for (int i = 0; i < rigidBodies.Length; i++)
+            {
+                if (rigidBodies[i] != null)
+                {
+                    rigidBodies[i].constraints = RigidbodyConstraints.FreezeAll;
+                    rigidBodies[i].isKinematic = true;
+                }
+            }
             audioS.PlayOneShot(audioS.clip);
 
-            Destroy(gameObject, 3.0f);
+            Destroy(gameObject, 1.5f);
         }
     }
 }
