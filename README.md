@@ -1,24 +1,29 @@
-# ITCS5231 Game Project
-Game: Runic
+# ITCS5231 Game Project: Runic
+
+RUNIC
+
 Team: 
-- Jane Hiltz		Lead Level Designer
-- Will James		Lead Engineer
-- Marcus Lofton		Lead AI Developer
+- Jane Hiltz --- Lead Level Designer
+- Will James --- Lead Engineer
+- Marcus Lofton --- Lead AI Developer
 
 Made in Unity 3D
 
+Public GitHub Repository: https://github.com/wixill/ITCS5231
+
 Instructions:
-	You're a rune hunter seeking elemental runes to empower your trusted bow and arrows. Traverse through a ruined castle that 		is full of traps and puzzles in order to earn the power of the vine, flame, and frost runes. But be on your guard, as there 	lurks an ancient guardian trying to prevent you from reaching your goal.
+	
+You're a rune hunter seeking elemental runes to empower your trusted bow and arrows. Traverse through a ruined castle that 		is full of traps and puzzles in order to earn the power of the vine, flame, and frost runes. But be on your guard, as there 	lurks an ancient guardian trying to prevent you from reaching your goal.
 
 Controls:
-- Movement		WASD
-- Jump			Space
-- Aim			Hold Right Mouse Button
-- Shoot			Left Mouse Button While Aiming
-- Standard Arrow	1
-- Vine Arrow		2
-- Flame Arrow		3
-- Frost Arrow		4		
+- Movement --- WASD
+- Jump --- Space
+- Aim --- Hold Right Mouse Button
+- Shoot --- Left Mouse Button While Aiming
+- Standard Arrow --- 1
+- Vine Arrow --- 2
+- Flame Arrow --- 3
+- Frost Arrow --- 4		
 
 Asset Citations:
 
