@@ -64,7 +64,7 @@ public class Button : Activator
                         }
                     }
                     audioS.PlayOneShot(audioS.clip);
-                    print(gameObject.name);
+                    //print(gameObject.name);
                 }
             }
         }

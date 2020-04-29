@@ -72,7 +72,7 @@ public class PressurePlate : Activator
                         rend[i].material.SetColor("_EmissionColor", onColor);
                     }
                     audioS.PlayOneShot(audioS.clip);
-                    print(gameObject.name);
+                    //print(gameObject.name);
                 }
             }
             else if (!hasActivated)

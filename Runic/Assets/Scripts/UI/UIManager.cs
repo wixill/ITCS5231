@@ -106,12 +106,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void DisplayPlayerHurt() {
-        playerHurt = false;
+        playerHurt = true;
         hurtImage.gameObject.SetActive(true);
     }
 
     public void HidePlayerHurt() {
-        playerHurt = true;
+        playerHurt = false;
         hurtImage.gameObject.SetActive(false);
     }
 
